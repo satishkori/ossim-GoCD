@@ -1,10 +1,4 @@
-CMakeCache.txt
-CMakeFiles
-Makefile
-cmake_install.cmake
-cmake_uninstall.cmake
-install_manifest.txt
-bin
-lib
-ossim*
+*~
+include/ossim/ossimConfig.h
+include/ossim/ossimVersion.h
 
