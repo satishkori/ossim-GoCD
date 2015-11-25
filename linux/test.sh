@@ -10,7 +10,6 @@
 # Optional environment variables are:
 #
 #   OSSIM_BATCH_TEST_DATA -- Defaults to $OSSIM_DATA/ossim_data
-#   OSSIM_BATCH_TEST_RESULTS -- Defaults to $OSSIM_DATA/test_results
 #   GENERATE_EXPECTED_RESULTS -- "true"|"false". Defaults to "false"
 # 
 # Usage: test.sh [genx]
@@ -60,8 +59,12 @@ if [ -z $OSSIM_BATCH_TEST_DATA ]; then
   export OSSIM_BATCH_TEST_DATA=$OSSIM_DATA/ossim_data
 fi
 
-if [ -z $OSSIM_BATCH_TEST_RESULTS ]; then
-  export OSSIM_BATCH_TEST_RESULTS=$OSSIM_DATA/test_results
+if [ -z $OBT_EXP_DIR ]; then
+  export OBT_EXP_DIR=$OSSIM_DATA/expected_results
+fi
+
+if [ -z $OBT_OUT_DIR ]; then
+  export OBT_OUT_DIR=$GOCD_WORKSPACE/batch_test_output
 fi
 
 echo; echo "Test Environment:"
@@ -69,17 +72,22 @@ echo "  OSSIM_DATA=$OSSIM_DATA"
 echo "  OSSIM_INSTALL_PREFIX=$OSSIM_INSTALL_PREFIX"
 echo "  OSSIM_PREFS_FILE=$OSSIM_PREFS_FILE"
 echo "  OSSIM_BATCH_TEST_DATA=$OSSIM_BATCH_TEST_DATA"
-echo "  OSSIM_BATCH_TEST_RESULTS=$OSSIM_BATCH_TEST_RESULTS"
+echo "  OBT_EXP_DIR=$OBT_EXP_DIR"
+echo "  OBT_OUT_DIR=$OBT_OUT_DIR"
 echo
 
-if [ ! -d $OSSIM_BATCH_TEST_RESULTS ]; then
-  echo "STATUS: No test results were detected. Creating directory.";
-  mkdir -p $OSSIM_BATCH_TEST_RESULTS;
-fi
-if [ ! -d $OSSIM_BATCH_TEST_RESULTS/exp ]; then
+if [ ! -d $OBT_EXP_DIR ]; then
   echo "STATUS: No expected results were detected. Will generating expected results.";
   export GENERATE_EXPECTED_RESULTS="true";
-  mkdir -p $OSSIM_BATCH_TEST_RESULTS/exp;
+  mkdir -p $OBT_EXP_DIR;
+fi
+
+if [ ! -d $OBT_OUT_DIR ]; then
+  echo "STATUS: Creating directory <$OBT_OUT_DIR> to hold test results.";
+  mkdir -p $OBT_OUT_DIR;
+else
+  echo "STATUS: Cleaning directory <$OBT_OUT_DIR> of old results.";
+  rm -rf $OBT_OUT_DIR/*;
 fi
 
 #export the OSSIM runtime env to child processes:
