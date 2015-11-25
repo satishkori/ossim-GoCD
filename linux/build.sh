@@ -23,48 +23,49 @@
 # Uncomment following line to debug script line by line:
 #set -x; trap read debug
 
+echo; echo "Running build.sh script from <$PWD>...";
+
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
-echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
+echo "STATUS: Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 popd
 
 CMAKE_CONFIG_SCRIPT=$GOCD_WORKSPACE/ossim/cmake/scripts/ossim-cmake-config-LINUX.sh
 CMAKE_BUILD_TYPE="Release"
 export OSSIM_INSTALL_PREFIX=$GOCD_WORKSPACE/install
+export OSSIM_BUILD_DIR=$GOCD_WORKSPACE/build
 
 # Try running the CMake config script (sourcing here to capture OSSIM_BUILD_DIR var 
 # possibly initialized in cmake config script)
 if [ -x $CMAKE_CONFIG_SCRIPT ]; then
   . $CMAKE_CONFIG_SCRIPT $CMAKE_BUILD_TYPE
 else
-  echo; echo "Error: Cannot locate the cmake config script expected at $CMAKE_CONFIG_SCRIPT. Cannot continue."
+  echo; echo "ERROR: Error: Cannot locate the cmake config script expected at $CMAKE_CONFIG_SCRIPT. Cannot continue."
   exit 1
 fi
 if [ $? -ne 0 ]; then
-  echo; echo "Error encountered during CMake configuration. Build aborted."
+  echo; echo "ERROR: Error encountered during CMake configuration. Build aborted."
   exit 1
 fi
 
-# CMake successful, now run make in the build directory (OSSIM_BUILD_DIR 
-# exported by cmake config script):
 pushd $OSSIM_BUILD_DIR
-echo "Performing make in <$PWD>"
+echo "STATUS: Performing make in <$PWD>"
 make -j 8
 if [ $? -ne 0 ]; then
-  echo; echo "Error encountered during make. Check the console log and correct."
+  echo; echo "ERROR: Error encountered during make. Check the console log and correct."
   popd
   exit 1
 fi
-echo; echo "Build completed successfully. Binaries located in $OSSIM_BUILD_DIR"
+echo; echo "STATUS: Build completed successfully. Binaries located in $OSSIM_BUILD_DIR"
 
-echo "Performing make install to <$OSSIM_INSTALL_PREFIX>"
+echo "STATUS: Performing make install to <$OSSIM_INSTALL_PREFIX>"
 make install
 if [ $? -ne 0 ]; then
-  echo; echo "Error encountered during make install. Check the console log and correct."
+  echo; echo "ERROR: Error encountered during make install. Check the console log and correct."
   popd
   exit 1
 fi
-echo; echo "Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 exit 0
 
