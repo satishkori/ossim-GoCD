@@ -40,6 +40,7 @@ echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 popd
 
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
+echo "Exported OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR>."
 
 echo "Checking for required environment variables..."
 if [ ! -d $OSSIM_DATA ]; then
