@@ -33,7 +33,8 @@
 
 echo; echo "Running test.sh out of <$PWD>"
 
-SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
 echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
