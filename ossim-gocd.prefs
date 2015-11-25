@@ -1,94 +1,46 @@
-//------------------------------------------------------------------------
-// ossim_preferences for GoCD Pipelines
-// 
-// Requires the following ENV Vars to be defined at runtime:
-//
-//    OSSIM_DATA
-//    OSSIM_BUILD_DIR
-//
-//------------------------------------------------------------------------
+// ------------------------------------------------------------------------
+// Preferences for CENTOS GoCD Agent
+// ------------------------------------------------------------------------
+//plugin.file1: $(OSSIM_INSTALL_PREFIX)/lib/libossimpng_plugin.so
 
-// PLUGINS
-//plugin.file1:  $(OSSIM_BUILD_DIR)/lib/libossim_png_plugin.so
-//plugin.file2:  $(OSSIM_BUILD_DIR)/lib/libossim_kml_plugin.so
-//plugin.file10: $(OSSIM_BUILD_DIR)/lib/libossim_kakadu_plugin.so
-//plugin.file15: $(OSSIM_BUILD_DIR)/lib/libossim_mrsid_plugin.so
-//plugin.file20: $(OSSIM_BUILD_DIR)/lib/libossim_hdf5_plugin.so
-//plugin.file21: $(OSSIM_BUILD_DIR)/lib/libossim_pdal_plugin.so
-//plugin.file22: $(OSSIM_BUILD_DIR)/lib/libossim_cnes_plugin.so
-//plugin.file23: $(OSSIM_BUILD_DIR)/lib/libossim_geopdf_plugin.so
-//plugin.file25: $(OSSIM_BUILD_DIR)/lib/libossim_gdal_plugin.so
-
+default_elevation_path:  $(OSSIM_DATA)/elevation
 elevation_manager.default_height_above_ellipsoid: 0.0
 elevation_manager.elevation_offset: nan
 elevation_manager.use_geoid_if_null: true
-default_elevation_path:  $(OSSIM_DATA)/public/elevation
 elevation_manager.enabled:  true
 elevation_manager.threads: yes
-
-elevation_manager.elevation_source1.connection_string: $(OSSIM_DATA)/public/elevation/srtm/1arc
+elevation_manager.elevation_source1.connection_string: $(OSSIM_DATA)/elevation/dted/level0
 elevation_manager.elevation_source1.enabled: true
-elevation_manager.elevation_source1.type: srtm_directory
+elevation_manager.elevation_source1.type: dted_directory
 elevation_manager.elevation_source1.min_open_cells: 25
 elevation_manager.elevation_source1.max_open_cells: 50
-elevation_manager.elevation_source1.memory_map_cells: false
+elevation_manager.elevation_source1.memory_map_cells: true
 elevation_manager.elevation_source1.geoid.type: geoid1996
-
-elevation_manager.elevation_source3.connection_string: $(OSSIM_DATA)/public/elevation/srtm/3arc
-elevation_manager.elevation_source3.enabled: true
-elevation_manager.elevation_source3.type: srtm_directory
-elevation_manager.elevation_source3.min_open_cells: 25
-elevation_manager.elevation_source3.max_open_cells: 50
-elevation_manager.elevation_source3.memory_map_cells: false
-elevation_manager.elevation_source3.geoid.type: geoid1996
-
-datum_grids: $(OSSIM_DATA)/public/elevation/nadcon
-geoid_99_directory:  $(OSSIM_DATA)/public/elevation/geoids/geoid99
-geoid_ngs_directory: $(OSSIM_DATA)/public/elevation/geoids/geoid99
-geoid_ngs_directory.byte_order: big_endian
-geoid_egm_96_grid:   $(OSSIM_DATA)/public/elevation/geoids/egm96.grd
-
-ossim_share_directory: $(OSSIM_BUILD_DIR)/share
-
-epsg_database_file1: $(OSSIM_BUILD_DIR)/share/ossim/projection/ossim_epsg_projections-v7_4.csv
-epsg_database_file2: $(OSSIM_BUILD_DIR)/share/ossim/projection/ossim_harn_state_plane_epsg.csv
-epsg_database_file3: $(OSSIM_BUILD_DIR)/share/ossim/projection/ossim_state_plane_spcs.csv
-epsg_database_file4: $(OSSIM_BUILD_DIR)/share/ossim/projection/ossim_harn_state_plane_esri.csv
-wkt_database_file:   $(OSSIM_BUILD_DIR)/share/ossim/projection/ossim_wkt_pcs.csv
-
+datum_grids: $(OSSIM_DATA)/elevation/nadcon
+ossim_share_directory: $(OSSIM_INSTALL_PREFIX)/share
+epsg_database_file1: ossim_epsg_projections-v7_4.csv
+epsg_database_file2: ossim_harn_state_plane_epsg.csv
+epsg_database_file3: ossim_state_plane_spcs.csv
+epsg_database_file4: ossim_harn_state_plane_esri.csv
+wkt_database_file:   ossim_wkt_pcs.csv
+geoid_egm_96_grid:   $(OSSIM_DATA)/elevation/geoids/geoid96/egm96.grd
+geoid_99_directory:  $(OSSIM_DATA)/elevation/geoids/geoid99
+geoid_ngs_directory: $(OSSIM_DATA)/elevation/geoids/geoid99
+geoid_ngs_directory.byte_order: little_endian
 statusLatLon: true
 statusHeight: true
 statusDatum: true
 statusGSD: true
 statusUpdateOnClick: true
-
 cache_size: 1024
 overview_stop_dimension: 8
 overview_builder.scan_for_min_max_null_if_float: false
 tile_size: 256 256
-
 shapefile_colors_auto: false
 shapefile_normalized_rgb_pen_color: 0.004 1.0 0.004
 shapefile_normalized_rgb_brush_color: 0.004 1.0 0.004
 shapefile_point_size: 6.0 6.0
 ossim.igen_spec_output_directory: /tmp
-ossim.igen_executable:  $(OSSIM_BUILD_DIR)/bin/igen
-
-// Kakadu threads:
-kakadu_threads: 16
-
-// Keyword for ingesting terrasar-x and radarsat-2 data. When TRUE, instructs the 
-// sensor model to create an ossim coarse grid replacement model to improve performance
-geometric_sar_sensor_model.create_ocg: true
-
-// Keyword parsed presently by orthoigen. If true, histograms will be computed when needed
-// for all images that do not yet have a histogram. 
 autogenerate_histogram: true
-
-// When true, indicates to orthoigen application that the specified cut rectangle for the product 
-// shall be adjusted to fit the minimum bounding valid image rect. This eliminates null exterior 
-// pixels when the cut rect extends beyond the valid image rect. This preference can be overriden
-// by an option on the orthoigen command line. See the usage on orthoigen. [default is false]
 orthoigen.clip_to_valid_rect: false
 orthoigen.flip_null_pixels: none
-
