@@ -11,7 +11,7 @@
 echo; echo "Running setup.sh script from <$PWD>...";
 
 echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
-if [ ! -z $OSSIM_DATA_REPOSITORY ] ; then
+if [ -z $OSSIM_DATA_REPOSITORY ] ; then
   echo "ERROR: Env var OSSIM_DATA_REPOSITORY must be defined in order to syncronize against data repository.";
   exit 1;
 fi
