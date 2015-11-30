@@ -44,20 +44,18 @@ export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
 echo "Exported OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR>."
 
 echo "Checking for required environment variables..."
+
 if [ ! -d $OSSIM_DATA ]; then
   echo "ERROR: Required env var OSSIM_DATA is not defined or directory does not exist. Aborting setup..."; 
   exit 1
 fi
 
-pushd $OSSIM_INSTALL_DIR
-echo "CURRENT DIR IS <$PWD>"
-ls -la
-popd
-
 if [ ! -d $OSSIM_INSTALL_DIR ]; then
   echo "ERROR: OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR> directory does not exist. Aborting setup..."; 
   exit 1
 fi
+
+echo "OSSIM_PREFS_FILE = <$OSSIM_PREFS_FILE>"
 if [ ! -f $OSSIM_PREFS_FILE ]; then
   echo "ERROR: Required env var OSSIM_PREFS_FILE is not defined or file does not exist. Aborting setup..."; 
   exit 1
