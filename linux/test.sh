@@ -38,7 +38,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
 echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
-popd
+
 
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
 echo "Exported OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR>."
@@ -147,6 +147,7 @@ else
 fi
 
 # Success!
+popd
 echo "STATUS: Passed all tests."
 exit 0
 
