@@ -42,6 +42,9 @@ echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
 echo "Exported OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR>."
+export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib64:$LD_LIBRARY_PATH
+export PATH=$OSSIM_INSTALL_DIR/bin:$PATH
+
 
 echo "Checking for required environment variables..."
 
@@ -77,6 +80,8 @@ echo; echo "Test Environment:"
 echo "  OSSIM_DATA=$OSSIM_DATA"
 echo "  OSSIM_INSTALL_PREFIX=$OSSIM_INSTALL_PREFIX"
 echo "  OSSIM_PREFS_FILE=$OSSIM_PREFS_FILE"
+echo "  PATH=$PATH"
+echo "  LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 echo "  OSSIM_BATCH_TEST_DATA=$OSSIM_BATCH_TEST_DATA"
 echo "  OBT_EXP_DIR=$OBT_EXP_DIR"
 echo "  OBT_OUT_DIR=$OBT_OUT_DIR"
