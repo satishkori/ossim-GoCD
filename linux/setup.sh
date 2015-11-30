@@ -17,6 +17,8 @@
 
 echo; echo "Running setup.sh script from <$PWD>...";
 
+RSYNC_CMD="rsync -a"
+
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
@@ -37,7 +39,7 @@ fi
 
 # rsync elevation data:
 echo "STATUS: Syncing elevation data...";
-rsync -rmv --delete $OSSIM_DATA_REPOSITORY/elevation/dted/level0 $OSSIM_DATA/elevation/dted;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/dted/level0 $OSSIM_DATA/elevation/dted;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of elevation.";
   exit 1;
@@ -45,7 +47,7 @@ fi
 
 # rsync nadcon data:
 echo "STATUS: Syncing nadcon data...";
-rsync -rm --delete $OSSIM_DATA_REPOSITORY/elevation/nadcon $OSSIM_DATA/elevation;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/nadcon $OSSIM_DATA/elevation;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of nadcon grids.";
   exit 1;
@@ -62,7 +64,7 @@ fi
 
 # rsync geoid 96 data:
 echo "STATUS: Syncing geoid96 data...";
-rsync -rm --delete $OSSIM_DATA_REPOSITORY/elevation/geoid96_little_endian/ $OSSIM_DATA/elevation/geoids/geoid96;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid96_little_endian/ $OSSIM_DATA/elevation/geoids/geoid96;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of geoid96 grids.";
   exit 1;
@@ -70,7 +72,7 @@ fi
 
 # rsync geoid 99 data:
 echo "STATUS: Syncing geoid99 data...";
-rsync -rm --delete $OSSIM_DATA_REPOSITORY/elevation/geoid99_little_endian/ $OSSIM_DATA/elevation/geoids/geoid99;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid99_little_endian/ $OSSIM_DATA/elevation/geoids/geoid99;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of geoid99 grids.";
   exit 1;
@@ -78,7 +80,7 @@ fi
 
 #rsync imagery
 echo "STATUS: Syncing image data...";
-rsync -rm --delete $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_DATA/ossim_data;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_DATA/ossim_data;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of imagery.";
   exit 1;
