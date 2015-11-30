@@ -48,6 +48,12 @@ if [ ! -d $OSSIM_DATA ]; then
   echo "ERROR: Required env var OSSIM_DATA is not defined or directory does not exist. Aborting setup..."; 
   exit 1
 fi
+
+pushd $OSSIM_INSTALL_DIR
+echo "CURRENT DIR IS <$PWD>"
+ls -la
+popd
+
 if [ ! -d $OSSIM_INSTALL_DIR ]; then
   echo "ERROR: OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR> directory does not exist. Aborting setup..."; 
   exit 1
