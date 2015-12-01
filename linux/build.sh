@@ -29,43 +29,33 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
 echo "STATUS: Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
-popd
 
-CMAKE_CONFIG_SCRIPT=$GOCD_WORKSPACE/ossim/cmake/scripts/ossim-cmake-config-LINUX.sh
-CMAKE_BUILD_TYPE="Release"
-export OSSIM_INSTALL_PREFIX=$GOCD_WORKSPACE/install
 export OSSIM_BUILD_DIR=$GOCD_WORKSPACE/build
+export OSSIM_INSTALL_PREFIX=$GOCD_WORKSPACE/install
 
-# Try running the CMake config script (sourcing here to capture OSSIM_BUILD_DIR var 
-# possibly initialized in cmake config script)
-if [ -x $CMAKE_CONFIG_SCRIPT ]; then
-  . $CMAKE_CONFIG_SCRIPT $CMAKE_BUILD_TYPE
-else
-  echo; echo "ERROR: Error: Cannot locate the cmake config script expected at $CMAKE_CONFIG_SCRIPT. Cannot continue."
-  exit 1
-fi
+ossim/scripts/linux/build.sh
 if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Error encountered during CMake configuration. Build aborted."
-  exit 1
-fi
-
-pushd $OSSIM_BUILD_DIR
-echo "STATUS: Performing make in <$PWD>"
-make -j 8
-if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Error encountered during make. Check the console log and correct."
+  echo; echo "Error encountered during build. Check the console log and correct."
   popd
   exit 1
 fi
-echo; echo "STATUS: Build completed successfully. Binaries located in $OSSIM_BUILD_DIR"
 
-echo "STATUS: Performing make install to <$OSSIM_INSTALL_PREFIX>"
-make install
+ossim/scripts/linux/install.sh
 if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Error encountered during make install. Check the console log and correct."
+  echo; echo "Error encountered during install. Check the console log and correct."
   popd
   exit 1
 fi
-echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+
+zip -r install.zip install
+if [ $? -ne 0 ]; then
+  echo; echo "Error encountered zipping install dir. Check the console log and correct."
+  popd
+  exit 1
+fi
+
+echo; echo "GoCD build/install/zip completed successfully."
+
+popd
 exit 0
 
