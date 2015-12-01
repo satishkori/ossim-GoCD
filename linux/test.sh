@@ -123,9 +123,10 @@ if [ $COUNT != "1" ]; then
   echo "FAIL: Failed ossim-info test"; 
   exit 1;
 fi
-echo "STATUS: Passed.";
+echo "STATUS: Passed ossim-info --config test.";
 
 pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests
+echo; echo "GENERATE_EXPECTED_RESULTS = <$GENERATE_EXPECTED_RESULTS>"
 if [ $GENERATE_EXPECTED_RESULTS -eq "true" ]; then
   echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
   ossim-batch-test --accept-test all super-test.kwl
