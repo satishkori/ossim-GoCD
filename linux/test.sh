@@ -42,7 +42,7 @@ echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 #export the GoCD-specfic OSSIM runtime env to child processes:
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
 export PATH=$OSSIM_INSTALL_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib64:$LD_LIBRARY_PATH
 export OSSIM_PREFS_FILE=$GOCD_WORKSPACE/ossim-GoCD/ossim-gocd.prefs
 
 echo "Checking for required environment variables..."
