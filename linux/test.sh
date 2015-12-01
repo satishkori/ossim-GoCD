@@ -125,7 +125,7 @@ if [ $COUNT != "1" ]; then
 fi
 echo "STATUS: Passed.";
 
-pushd $GOCD_WORKSPACE/ossim/test/scripts
+pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests
 if [ $GENERATE_EXPECTED_RESULTS -eq "true" ]; then
   echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
   ossim-batch-test --accept-test all super-test.kwl
