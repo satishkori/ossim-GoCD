@@ -117,7 +117,7 @@ echo "STATUS: Passed.";
 
 echo; echo "STATUS: Running ossim-info --version test...";
 ossim-info --version
-COUNT=`ossim-info --version | grep --count "ossim-info 1.9.0"`
+COUNT="$(ossim-info --version | grep --count 'version: 1.9')"
 echo "COUNT = <$COUNT>"
 if [ $COUNT != "1" ]; then
   echo "FAIL: Failed ossim-info test"; 
