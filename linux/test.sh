@@ -104,7 +104,7 @@ ossim-info --version
 COUNT="$(ossim-info --version | grep --count 'version: 1.9')"
 echo "COUNT = <$COUNT>"
 if [ $COUNT != "1" ]; then
-  echo "FAIL: Failed ossim-info test"; 
+  echo "FAIL: Failed ossim-info --version test"; 
   exit 1;
 fi
 echo "STATUS: Passed ossim-info --version test.";
