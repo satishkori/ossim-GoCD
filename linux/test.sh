@@ -97,7 +97,7 @@ if [ $? -ne 0 ]; then
   echo; echo "ERROR: Failed while attempting to run <$COMMAND1>."
   exit 1
 fi
-echo "STATUS: Passed.";
+echo "STATUS: Passed ossim-info --config test.";
 
 echo; echo "STATUS: Running ossim-info --version test...";
 ossim-info --version
@@ -107,7 +107,7 @@ if [ $COUNT != "1" ]; then
   echo "FAIL: Failed ossim-info test"; 
   exit 1;
 fi
-echo "STATUS: Passed ossim-info --config test.";
+echo "STATUS: Passed ossim-info --version test.";
 
 pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests
 echo; echo "GENERATE_EXPECTED_RESULTS = <$GENERATE_EXPECTED_RESULTS>"
