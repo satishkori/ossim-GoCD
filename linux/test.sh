@@ -39,28 +39,16 @@ pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
 echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 
-
+#export the GoCD-specfic OSSIM runtime env to child processes:
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
-echo "Exported OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR>."
-export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib64:$LD_LIBRARY_PATH
 export PATH=$OSSIM_INSTALL_DIR/bin:$PATH
-
+export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib:$LD_LIBRARY_PATH
+export OSSIM_PREFS_FILE=$GOCD_WORKSPACE/ossim-GoCD/ossim-gocd.prefs
 
 echo "Checking for required environment variables..."
 
 if [ ! -d $OSSIM_DATA ]; then
   echo "ERROR: Required env var OSSIM_DATA is not defined or directory does not exist. Aborting setup..."; 
-  exit 1
-fi
-
-if [ ! -d $OSSIM_INSTALL_DIR ]; then
-  echo "ERROR: OSSIM_INSTALL_DIR = <$OSSIM_INSTALL_DIR> directory does not exist. Aborting setup..."; 
-  exit 1
-fi
-
-echo "OSSIM_PREFS_FILE = <$OSSIM_PREFS_FILE>"
-if [ ! -f $OSSIM_PREFS_FILE ]; then
-  echo "ERROR: Required env var OSSIM_PREFS_FILE is not defined or file does not exist. Aborting setup..."; 
   exit 1
 fi
 
@@ -101,10 +89,6 @@ else
   rm -rf $OBT_OUT_DIR/*;
 fi
 
-#export the OSSIM runtime env to child processes:
-export PATH=$OSSIM_INSTALL_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib:$LD_LIBRARY_PATH
-
 # TEST 1: Check ossim-info version:
 echo; echo "STATUS: Running ossim-info --config test...";
 COMMAND1="ossim-info --config --plugins"
@@ -132,7 +116,7 @@ if [ "$GENERATE_EXPECTED_RESULTS" == 'true' ]; then
   ossim-batch-test --accept-test all super-test.kwl
   EXIT_CODE=$?
   popd
-  #echo "STATUS: ossim-batch-test exit code = $?";echo
+  echo "STATUS: ossim-batch-test exit code = $EXIT_CODE";echo
   if [ $EXIT_CODE != 0 ]; then
     echo "FAIL: Error encountered generating expected results."
     exit 1
@@ -146,7 +130,7 @@ else
   ossim-batch-test super-test.kwl
   EXIT_CODE=$?
   popd
-  #echo "#### DEBUG #### EXIT_CODE = $EXIT_CODE"
+  echo "STATUS: ossim-batch-test EXIT_CODE = $EXIT_CODE"
   if [ $EXIT_CODE != 0 ]; then
     echo "FAIL: Failed batch test"
     exit 1
