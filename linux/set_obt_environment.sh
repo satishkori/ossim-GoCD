@@ -9,8 +9,6 @@
 ######################################################################################
 #set -x; trap read debug
 
-echo; echo "Running set_obt_environment.sh out of <$PWD>"
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 pushd $SCRIPT_DIR/../..

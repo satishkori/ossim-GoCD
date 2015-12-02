@@ -11,7 +11,10 @@
 #
 #####################################################################################
 
-echo; echo "Running sync_results.sh script from <$PWD>...";
+echo; echo; 
+echo "################################################################################"
+echo "#  Running `basename "$0"` out of <$PWD>"
+echo "################################################################################"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/set_obt_environment.sh
@@ -23,7 +26,7 @@ RSYNC_CMD="rsync -avz --delete"
 echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
 if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then
   echo "ERROR: Env var OSSIM_DATA_REPOSITORY must be defined and exist in order to syncronize against data repository.";
-  exit 1;
+  echo; exit 1;
 fi
 
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
@@ -36,10 +39,11 @@ fi
 echo "STATUS: Syncing expected results to the repository...";
 $RSYNC_CMD $OBT_EXP_DIR $REPO_EXPECTED_RESULTS_DIR
 if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync.";
-  exit 1;
+  echo "ERROR: Failed data repository rsync."; 
+  echo; exit 1;
 fi
 
+echo
 exit 0;
 
 
