@@ -127,7 +127,7 @@ if [ $GENERATE_EXPECTED_RESULTS ]; then
   # Generate expected results:
   echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
   mkdir -p $OBT_EXP_DIR;
-  ossim-batch-test --accept-test super-test.kwl
+  ossim-batch-test --accept-test all super-test.kwl
   EXIT_CODE=$?
   popd
   echo "STATUS: ossim-batch-test exit code = $EXIT_CODE";echo
