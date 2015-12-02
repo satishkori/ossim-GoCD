@@ -57,5 +57,4 @@ echo "  OBT_EXP_DIR=$OBT_EXP_DIR"
 echo "  OBT_OUT_DIR=$OBT_OUT_DIR"
 echo
 
-exit 0
 
