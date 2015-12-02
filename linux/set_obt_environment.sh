@@ -13,6 +13,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 pushd $SCRIPT_DIR/../..
 export GOCD_WORKSPACE=$PWD
+popd
 echo "Set GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 
 #export the GoCD-specfic OSSIM runtime env to child processes:
@@ -56,7 +57,5 @@ echo "  OBT_EXP_DIR=$OBT_EXP_DIR"
 echo "  OBT_OUT_DIR=$OBT_OUT_DIR"
 echo
 
-popd
-echo "STATUS: Passed all tests."
 exit 0
 
