@@ -10,7 +10,6 @@
 # Optional environment variables are:
 #
 #   OSSIM_BATCH_TEST_DATA -- Defaults to $OSSIM_DATA/ossim_data
-#   GENERATE_EXPECTED_RESULTS -- "true"|"false". Defaults to "false"
 # 
 # Usage: test.sh [genx]
 # 
@@ -32,6 +31,11 @@
 #set -x; trap read debug
 
 echo; echo "Running test.sh out of <$PWD>"
+
+GENERATE_EXPECTED_RERSULTS = false
+if [ "$1" == 'genx' ]; then
+  GENERATE_EXPECTED_RERSULTS = true;
+fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -110,8 +114,8 @@ fi
 echo "STATUS: Passed ossim-info --version test.";
 
 pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests
-echo; echo "GENERATE_EXPECTED_RESULTS = <$GENERATE_EXPECTED_RESULTS>"
-if [ "$GENERATE_EXPECTED_RESULTS" == 'true' ]; then
+echo; echo "GENERATE_EXPECTED_RESULTS = $GENERATE_EXPECTED_RESULTS"
+if [ $GENERATE_EXPECTED_RESULTS ]; then
   echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
   ossim-batch-test --accept-test all super-test.kwl
   EXIT_CODE=$?

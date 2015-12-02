@@ -4,6 +4,8 @@
 # Test data setup script for all OSSIM repositories. The following env vars must be 
 # set in the GoCD environment:
 #
+# Usage:  sync_data.sh <gocd_resource_name>
+#
 #   OSSIM_DATA_REPOSITORY -- local NFS mount point for data repository
 #   OSSIM_DATA -- Local directory to contain elevation, imagery, and expected results
 #
@@ -15,7 +17,9 @@
 #
 #####################################################################################
 
-echo; echo "Running setup.sh script from <$PWD>...";
+echo; echo "Running sync_data.sh script from <$PWD>...";
+
+GOCD_RESOURCE_NAME = $1
 
 RSYNC_CMD="rsync -avz --delete"
 
@@ -86,6 +90,17 @@ if [ $? != 0 ] ; then
   exit 1;
 fi
   
+#rsync expected results (if exists)
+EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
+if [ -d $EXPECTED_RESULTS_DIR ] ; then
+  echo "STATUS: Syncing expected results...";
+  $RSYNC_CMD $EXPECTED_RESULTS_DIR/ $OSSIM_DATA/expected_results;
+  if [ $? != 0 ] ; then 
+    echo "ERROR: Failed data repository rsync of expected results.";
+    exit 1;
+  fi
+fi
+
 exit 0;
 
 
