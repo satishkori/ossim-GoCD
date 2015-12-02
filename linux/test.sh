@@ -118,15 +118,16 @@ if [ $COUNT != "1" ]; then
 fi
 echo "STATUS: Passed ossim-info --version test.";
 
-# Move into batch test working directory and copy all config files from agent's permanent storage:
-mkdir $GOCD_WORKSPACE/batch_tests;
+# Move into batch test working directory that should contain all config files 
+# from previous rsync to data repo:
 pushd $GOCD_WORKSPACE/batch_tests;
 
 echo; echo "GENERATE_EXPECTED_RESULTS = $GENERATE_EXPECTED_RESULTS"
 if [ $GENERATE_EXPECTED_RESULTS ]; then
+  # Generate expected results:
   echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
   mkdir -p $OBT_EXP_DIR;
-  ossim-batch-test --accept-test all super-test.kwl
+  ossim-batch-test --accept-test super-test.kwl
   EXIT_CODE=$?
   popd
   echo "STATUS: ossim-batch-test exit code = $EXIT_CODE";echo
