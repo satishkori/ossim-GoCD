@@ -31,9 +31,6 @@ fi
 if [ ! -d $OBT_OUT_DIR ]; then
   echo "STATUS: Creating directory <$OBT_OUT_DIR> to hold test results.";
   mkdir -p $OBT_OUT_DIR;
-else
-  echo "STATUS: Cleaning directory <$OBT_OUT_DIR> of old results.";
-  rm -rf $OBT_OUT_DIR/*;
 fi
 
 # Move into batch test working directory that should contain all config files 
