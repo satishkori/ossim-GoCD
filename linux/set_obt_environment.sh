@@ -47,14 +47,14 @@ if [ -z $OBT_OUT_DIR ]; then
 fi
 
 echo; echo "Test Environment:"
-echo "  OSSIM_DATA=$OSSIM_DATA"
-echo "  OSSIM_INSTALL_DIR=$OSSIM_INSTALL_DIR"
-echo "  OSSIM_PREFS_FILE=$OSSIM_PREFS_FILE"
-echo "  PATH=$PATH"
-echo "  LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
-echo "  OBT_DATA_DIR=$OBT_DATA_DIR"
-echo "  OBT_EXP_DIR=$OBT_EXP_DIR"
-echo "  OBT_OUT_DIR=$OBT_OUT_DIR"
+echo "  OSSIM_DATA       = $OSSIM_DATA"
+echo "  OSSIM_INSTALL_DIR= $OSSIM_INSTALL_DIR"
+echo "  OSSIM_PREFS_FILE = $OSSIM_PREFS_FILE"
+echo "  PATH             = $PATH"
+echo "  LD_LIBRARY_PATH  = $LD_LIBRARY_PATH"
+echo "  OBT_DATA_DIR     = $OBT_DATA_DIR"
+echo "  OBT_EXP_DIR      = $OBT_EXP_DIR"
+echo "  OBT_OUT_DIR      = $OBT_OUT_DIR"
 echo
 
 
