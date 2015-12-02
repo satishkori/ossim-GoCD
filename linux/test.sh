@@ -31,9 +31,9 @@ if [ ! -d $OBT_OUT_DIR ]; then
   echo; exit 1;
 fi
 
-echo "STATUS: Cleaning directory <$OBT_OUT_DIR> of old results.";
-pushd $OBT_OUT_DIR;
-find . -type d -print -exec rm -rf {} \;
+#echo "STATUS: Cleaning directory <$OBT_OUT_DIR> of old results.";
+#pushd $OBT_OUT_DIR;
+#find . -type d -print -exec rm -rf {} \;
 
 # TEST 1: Check ossim-info version:
 echo; echo "STATUS: Running ossim-info --config test...";
