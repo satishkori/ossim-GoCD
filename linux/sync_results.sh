@@ -19,7 +19,7 @@ echo "##########################################################################
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/set_obt_environment.sh
 
-GOCD_RESOURCE_NAME = $1
+GOCD_RESOURCE_NAME=$1
 
 RSYNC_CMD="rsync -avz --delete"
 

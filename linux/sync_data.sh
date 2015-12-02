@@ -17,7 +17,7 @@ echo "##########################################################################
 echo "#  Running `basename "$0"` out of <$PWD>"
 echo "################################################################################"
 
-GOCD_RESOURCE_NAME = $1
+GOCD_RESOURCE_NAME=$1
 
 RSYNC_CMD="rsync -avz --delete"
 
