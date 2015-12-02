@@ -32,9 +32,9 @@
 
 echo; echo "Running test.sh out of <$PWD>"
 
-GENERATE_EXPECTED_RERSULTS = false
+GENERATE_EXPECTED_RESULTS = false
 if [ "$1" == 'genx' ]; then
-  GENERATE_EXPECTED_RERSULTS = true;
+  GENERATE_EXPECTED_RESULTS = true;
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

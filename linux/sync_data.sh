@@ -45,14 +45,14 @@ mkdir -p $OSSIM_DATA/data
 mkdir -p $OSSIM_DATA/expected_results
 mkdir $GOCD_WORKSPACE/batch_tests
 
-echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
+echo; echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
 if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then
   echo "ERROR: Env var OSSIM_DATA_REPOSITORY must be defined and exist in order to syncronize against data repository.";
   exit 1;
 fi
 
 # rsync elevation data:
-echo "STATUS: Syncing elevation data...";
+echo; echo "STATUS: Syncing elevation data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/dted/level0 $OSSIM_DATA/elevation/dted;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of elevation.";
@@ -60,7 +60,7 @@ if [ $? != 0 ] ; then
 fi
 
 # rsync nadcon data:
-echo "STATUS: Syncing nadcon data...";
+echo; echo "STATUS: Syncing nadcon data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/nadcon $OSSIM_DATA/elevation;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of nadcon grids.";
@@ -68,7 +68,7 @@ if [ $? != 0 ] ; then
 fi
 
 if [ ! -d $OSSIM_DATA/elevation/geoids ] ; then
-  echo "STATUS: Creating missing geoids subdirectory";
+  echo; echo "STATUS: Creating missing geoids subdirectory";
   mkdir $OSSIM_DATA/elevation/geoids; 
   if [ $? != 0 ] ; then 
     echo "ERROR: Failed creatiion of geoids directory at <$OSSIM_DATA/elevation/geoids>.";
@@ -77,7 +77,7 @@ if [ ! -d $OSSIM_DATA/elevation/geoids ] ; then
 fi
 
 # rsync geoid 96 data:
-echo "STATUS: Syncing geoid96 data...";
+echo; echo "STATUS: Syncing geoid96 data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid96_little_endian/ $OSSIM_DATA/elevation/geoids/geoid96;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of geoid96 grids.";
@@ -85,7 +85,7 @@ if [ $? != 0 ] ; then
 fi
 
 # rsync geoid 99 data:
-echo "STATUS: Syncing geoid99 data...";
+echo; echo "STATUS: Syncing geoid99 data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid99_little_endian/ $OSSIM_DATA/elevation/geoids/geoid99;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of geoid99 grids.";
@@ -93,7 +93,7 @@ if [ $? != 0 ] ; then
 fi
 
 #rsync imagery
-echo "STATUS: Syncing image data...";
+echo; echo "STATUS: Syncing image data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_DATA/data;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of imagery.";
@@ -103,7 +103,7 @@ fi
 #rsync expected results (if exists)
 EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
 if [ -d $EXPECTED_RESULTS_DIR ] ; then
-  echo "STATUS: Syncing expected results...";
+  echo; echo "STATUS: Syncing expected results...";
   $RSYNC_CMD $EXPECTED_RESULTS_DIR/ $OSSIM_DATA/expected_results;
   if [ $? != 0 ] ; then 
     echo "ERROR: Failed data repository rsync of expected results.";
@@ -112,7 +112,7 @@ if [ -d $EXPECTED_RESULTS_DIR ] ; then
 fi
 
 # Finally rsync the batch test config KWLs to the temporary pipeline:
-echo "STATUS: Syncing batch test config files...";
+echo; echo "STATUS: Syncing batch test config files...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/public_batch_tests/ $GOCD_WORKSPACE/batch_tests;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of batch test config files.";
