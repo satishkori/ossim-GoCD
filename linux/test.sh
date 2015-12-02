@@ -56,7 +56,7 @@ fi
 echo "STATUS: Passed ossim-info --version test.";
 
 # Run batch tests
-echo; echo "STATUS: Running batch tests..."
+echo; echo "STATUS: Running batch tests in <$PWD>..."
 ossim-batch-test super-test.kwl
 EXIT_CODE=$?
 echo "STATUS: ossim-batch-test EXIT_CODE = $EXIT_CODE"

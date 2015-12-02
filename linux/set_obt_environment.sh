@@ -14,7 +14,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd $SCRIPT_DIR/../..
 export GOCD_WORKSPACE=$PWD
 popd
-echo "Set GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 
 #export the GoCD-specfic OSSIM runtime env to child processes:
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
@@ -47,14 +46,15 @@ if [ -z $OBT_OUT_DIR ]; then
 fi
 
 echo; echo "Test Environment:"
+echo "  GOCD_WORKSPACE   = $GOCD_WORKSPACE"
 echo "  OSSIM_DATA       = $OSSIM_DATA"
 echo "  OSSIM_INSTALL_DIR= $OSSIM_INSTALL_DIR"
 echo "  OSSIM_PREFS_FILE = $OSSIM_PREFS_FILE"
-echo "  PATH             = $PATH"
-echo "  LD_LIBRARY_PATH  = $LD_LIBRARY_PATH"
 echo "  OBT_DATA_DIR     = $OBT_DATA_DIR"
 echo "  OBT_EXP_DIR      = $OBT_EXP_DIR"
 echo "  OBT_OUT_DIR      = $OBT_OUT_DIR"
+echo "  LD_LIBRARY_PATH  = $LD_LIBRARY_PATH"
+echo "  PATH             = $PATH"
 echo
 
 
