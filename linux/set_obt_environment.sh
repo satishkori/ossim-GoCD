@@ -33,8 +33,8 @@ if [ ! -d $OSSIM_DATA ] || [ ! -w $OSSIM_DATA ]; then
   exit 1;
 fi
 
-if [ -z $OBT_DATA_DIR ]; then
-  export OBT_DATA_DIR=$OSSIM_DATA/data
+if [ -z $OSSIM_BATCH_TEST_DATA ]; then
+  export OSSIM_BATCH_TEST_DATA=$OSSIM_DATA/data
 fi
 
 if [ -z $OBT_EXP_DIR ]; then
@@ -46,15 +46,15 @@ if [ -z $OBT_OUT_DIR ]; then
 fi
 
 echo; echo "Test Environment:"
-echo "  GOCD_WORKSPACE   = $GOCD_WORKSPACE"
-echo "  OSSIM_DATA       = $OSSIM_DATA"
-echo "  OSSIM_INSTALL_DIR= $OSSIM_INSTALL_DIR"
-echo "  OSSIM_PREFS_FILE = $OSSIM_PREFS_FILE"
-echo "  OBT_DATA_DIR     = $OBT_DATA_DIR"
-echo "  OBT_EXP_DIR      = $OBT_EXP_DIR"
-echo "  OBT_OUT_DIR      = $OBT_OUT_DIR"
-echo "  LD_LIBRARY_PATH  = $LD_LIBRARY_PATH"
-echo "  PATH             = $PATH"
+echo "  GOCD_WORKSPACE        = $GOCD_WORKSPACE"
+echo "  OSSIM_DATA            = $OSSIM_DATA"
+echo "  OSSIM_INSTALL_DIR     = $OSSIM_INSTALL_DIR"
+echo "  OSSIM_PREFS_FILE      = $OSSIM_PREFS_FILE"
+echo "  OSSIM_BATCH_TEST_DATA = $OSSIM_BATCH_TEST_DATA"
+echo "  OBT_EXP_DIR           = $OBT_EXP_DIR"
+echo "  OBT_OUT_DIR           = $OBT_OUT_DIR"
+echo "  LD_LIBRARY_PATH       = $LD_LIBRARY_PATH"
+echo "  PATH                  = $PATH"
 echo
 
 

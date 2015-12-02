@@ -28,8 +28,8 @@ source $SCRIPT_DIR/set_obt_environment.sh
 if [ ! -d $OSSIM_DATA/elevation ] ; then
   mkdir $OSSIM_DATA/elevation
 fi
-if [ ! -d $OSSIM_DATA/data ] ; then
-  mkdir $OSSIM_DATA/data
+if [ ! -d $OSSIM_BATCH_TEST_DATA ] ; then
+  mkdir $OSSIM_BATCH_TEST_DATA
 fi
 if [ ! -d $OBT_EXP_DIR ] ; then 
   mkdir $OBT_EXP_DIR
@@ -87,7 +87,7 @@ fi
 
 #rsync imagery
 echo; echo "STATUS: Syncing image data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_DATA/data;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_BATCH_TEST_DATA;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of imagery.";
   echo; exit 1;
