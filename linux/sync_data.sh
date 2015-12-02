@@ -29,11 +29,21 @@ GOCD_WORKSPACE=$PWD
 echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 popd
 
-echo "STATUS: Checking presence of env var OSSIM_DATA = <$OSSIM_DATA>...";
-if [ -z $OSSIM_DATA ] || [ ! -d $OSSIM_DATA ] ; then
-  echo "ERROR: Env var OSSIM_DATA must be defined and exist in order to syncronize against data repository.";
+if [ -z $OSSIM_DATA ]; then
+  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
   exit 1;
 fi
+  
+if [ ! -d $OSSIM_DATA ] || [ ! -w $OSSIM_DATA ]; then
+  echo "ERROR: The directory <$OSSIM_DATA> does not exist or is not writable. Make sure the user has write permissions.";
+  exit 1;
+fi
+
+# Should already be there but create if not:
+mkdir -p $OSSIM_DATA/elevation
+mkdir -p $OSSIM_DATA/data
+mkdir -p $OSSIM_DATA/expected_results
+mkdir $GOCD_WORKSPACE/batch_tests
 
 echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
 if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then
@@ -84,7 +94,7 @@ fi
 
 #rsync imagery
 echo "STATUS: Syncing image data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_DATA/ossim_data;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_DATA/data;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of imagery.";
   exit 1;
@@ -99,6 +109,14 @@ if [ -d $EXPECTED_RESULTS_DIR ] ; then
     echo "ERROR: Failed data repository rsync of expected results.";
     exit 1;
   fi
+fi
+
+# Finally rsync the batch test config KWLs to the temporary pipeline:
+echo "STATUS: Syncing batch test config files...";
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/public_batch_tests/ $GOCD_WORKSPACE/batch_tests;
+if [ $? != 0 ] ; then 
+  echo "ERROR: Failed data repository rsync of batch test config files.";
+  exit 1;
 fi
 
 exit 0;

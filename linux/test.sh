@@ -41,7 +41,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 pushd $SCRIPT_DIR/../..
 GOCD_WORKSPACE=$PWD
-echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
+echo "Set GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
 
 #export the GoCD-specfic OSSIM runtime env to child processes:
 export OSSIM_INSTALL_DIR=$GOCD_WORKSPACE/install
@@ -57,7 +57,7 @@ if [ ! -d $OSSIM_DATA ]; then
 fi
 
 if [ -z $OSSIM_BATCH_TEST_DATA ]; then
-  export OSSIM_BATCH_TEST_DATA=$OSSIM_DATA/ossim_data
+  export OSSIM_BATCH_TEST_DATA=$OSSIM_DATA/data
 fi
 
 if [ -z $OBT_EXP_DIR ]; then
@@ -65,7 +65,11 @@ if [ -z $OBT_EXP_DIR ]; then
 fi
 
 if [ -z $OBT_OUT_DIR ]; then
-  export OBT_OUT_DIR=$GOCD_WORKSPACE/batch_test_output
+  export OBT_OUT_DIR=$GOCD_WORKSPACE/batch_tests
+fi
+
+if [ -z $OBT_CONFIG_DIR ]; then
+  export OBT_CONFIG_DIR=$GOCD_WORKSPACE/batch_tests
 fi
 
 echo; echo "Test Environment:"
@@ -75,12 +79,13 @@ echo "  OSSIM_PREFS_FILE=$OSSIM_PREFS_FILE"
 echo "  PATH=$PATH"
 echo "  LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 echo "  OSSIM_BATCH_TEST_DATA=$OSSIM_BATCH_TEST_DATA"
+echo "  OBT_CONFIG_DIR=$OBT_CONFIG_DIR"
 echo "  OBT_EXP_DIR=$OBT_EXP_DIR"
 echo "  OBT_OUT_DIR=$OBT_OUT_DIR"
 echo
 
-if [ ! -d $OBT_EXP_DIR ]; then
-  echo "STATUS: No expected results were detected. Will generating expected results.";
+if [ ! -d $OBT_EXP_DIR ] && [! $GENERATE_EXPECTED_RESULTS ]; then
+  echo "STATUS: No expected results were detected. Cannot continue.";
   export GENERATE_EXPECTED_RESULTS="true";
   mkdir -p $OBT_EXP_DIR;
 fi
@@ -113,10 +118,14 @@ if [ $COUNT != "1" ]; then
 fi
 echo "STATUS: Passed ossim-info --version test.";
 
-pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests
+# Move into batch test working directory and copy all config files from agent's permanent storage:
+mkdir $GOCD_WORKSPACE/batch_tests;
+pushd $GOCD_WORKSPACE/batch_tests;
+
 echo; echo "GENERATE_EXPECTED_RESULTS = $GENERATE_EXPECTED_RESULTS"
 if [ $GENERATE_EXPECTED_RESULTS ]; then
   echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
+  mkdir -p $OBT_EXP_DIR;
   ossim-batch-test --accept-test all super-test.kwl
   EXIT_CODE=$?
   popd
