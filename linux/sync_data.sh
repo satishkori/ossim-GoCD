@@ -1,19 +1,14 @@
 #!/bin/sh
 #####################################################################################
 #
-# Test data setup script for all OSSIM repositories. The following env vars must be 
-# set in the GoCD environment:
+# Synchronizes the local GoCD agent machine with the OBT test data on repository
 #
 # Usage:  sync_data.sh <gocd_resource_name>
 #
+# Required ENV vars:
+#
 #   OSSIM_DATA_REPOSITORY -- local NFS mount point for data repository
 #   OSSIM_DATA -- Local directory to contain elevation, imagery, and expected results
-#
-# The test data directory, specified by the env var OSSIM_DATA is
-# syncronized against a master repository. The master data repository is
-# assumed to be NFS-mounted at the mount point specified in the environment
-# variable "OSSIM_DATA_REPOSITORY". The data will be rsynced to the local
-# directory specified by "OSSIM_DATA" env var.
 #
 #####################################################################################
 
@@ -24,26 +19,21 @@ GOCD_RESOURCE_NAME = $1
 RSYNC_CMD="rsync -avz --delete"
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-pushd $SCRIPT_DIR/../..
-GOCD_WORKSPACE=$PWD
-echo "Set working directory GOCD_WORKSPACE = <$GOCD_WORKSPACE>"
-popd
-
-if [ -z $OSSIM_DATA ]; then
-  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
-  exit 1;
-fi
-  
-if [ ! -d $OSSIM_DATA ] || [ ! -w $OSSIM_DATA ]; then
-  echo "ERROR: The directory <$OSSIM_DATA> does not exist or is not writable. Make sure the user has write permissions.";
-  exit 1;
-fi
+source $SCRIPT_DIR/set_obt_environment.sh
 
 # Should already be there but create if not:
-mkdir -p $OSSIM_DATA/elevation
-mkdir -p $OSSIM_DATA/data
-mkdir -p $OSSIM_DATA/expected_results
-mkdir $GOCD_WORKSPACE/batch_tests
+if [ ! -d $OSSIM_DATA/elevation ] ; then
+  mkdir $OSSIM_DATA/elevation
+fi
+if [ ! -d $OSSIM_DATA/data ] ; then
+  mkdir $OSSIM_DATA/data
+fi
+if [ ! -d $OBT_EXP_DIR ] ; then 
+  mkdir $OBT_EXP_DIR
+fi
+if [ ! -d $OBT_OUT_DIR ] ; then 
+  mkdir $OBT_OUT_DIR
+fi
 
 echo; echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
 if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then
@@ -101,10 +91,10 @@ if [ $? != 0 ] ; then
 fi
   
 #rsync expected results (if exists)
-EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
-if [ -d $EXPECTED_RESULTS_DIR ] ; then
+REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
+if [ -d $REPO_EXPECTED_RESULTS_DIR ] ; then
   echo; echo "STATUS: Syncing expected results...";
-  $RSYNC_CMD $EXPECTED_RESULTS_DIR/ $OSSIM_DATA/expected_results;
+  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OBT_EXP_DIR;
   if [ $? != 0 ] ; then 
     echo "ERROR: Failed data repository rsync of expected results.";
     exit 1;
@@ -113,7 +103,7 @@ fi
 
 # Finally rsync the batch test config KWLs to the temporary pipeline:
 echo; echo "STATUS: Syncing batch test config files...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/public_batch_tests/ $GOCD_WORKSPACE/batch_tests;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/public_batch_tests/ $OBT_OUT_DIR;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of batch test config files.";
   exit 1;
