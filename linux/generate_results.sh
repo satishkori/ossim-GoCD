@@ -23,7 +23,7 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $SCRIPT_DIR/set_obt_environment.sh
 
 if [ ! -d $OBT_EXP_DIR ]; then
-  echo "STATUS: No expected results were detected. Cannot continue.";
+  echo "STATUS: Creating expected results directory at <$OBT_EXP_DIR>.";
   export GENERATE_EXPECTED_RESULTS="true";
   mkdir -p $OBT_EXP_DIR;
 fi
