@@ -38,7 +38,7 @@ fi
 
 # rsync expected results:
 echo "STATUS: Syncing expected results to the repository...";
-$RSYNC_CMD $OBT_EXP_DIR $REPO_EXPECTED_RESULTS_DIR
+$RSYNC_CMD $OBT_EXP_DIR/ $REPO_EXPECTED_RESULTS_DIR
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync."; 
   echo; exit 1;
