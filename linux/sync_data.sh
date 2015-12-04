@@ -97,7 +97,7 @@ fi
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
 if [ -d $REPO_EXPECTED_RESULTS_DIR ] ; then
   echo; echo "STATUS: Syncing expected results from <$REPO_EXPECTED_RESULTS_DIR> to <$OBT_EXP_DIR>...";
-  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OBT_EXP_DIR;
+  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OBT_EXP_DIR/;
   if [ $? != 0 ] ; then 
     echo "ERROR: Failed data repository rsync of expected results.";
   echo; exit 1;
