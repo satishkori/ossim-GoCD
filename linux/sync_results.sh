@@ -21,7 +21,6 @@ echo "##########################################################################
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/set_obt_environment.sh
 
-
 RSYNC_CMD="rsync -avz --delete"
 
 echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
@@ -34,11 +33,11 @@ REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RES
 echo "STATUS: Checking existence of destination directory <$REPO_EXPECTED_RESULTS_DIR>...";
 if [ ! -d $REPO_EXPECTED_RESULTS_DIR ] ; then
   echo "Resource subdirectory <$REPO_EXPECTED_RESULTS_DIR> on repository is missing. Creating...";
-  mkdir -vp $REPO_EXPECTED_RESULTS_DIR;
+  mkdir -p $REPO_EXPECTED_RESULTS_DIR;
 fi
 
 # rsync expected results:
-echo "STATUS: Syncing expected results to the repository...";
+echo "STATUS: Syncing expected results in <$OBT_EXP_DIR> to the repository directory <$REPO_EXPECTED_RESULTS_DIR>...";
 $RSYNC_CMD $OBT_EXP_DIR/ $REPO_EXPECTED_RESULTS_DIR/
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync."; 
