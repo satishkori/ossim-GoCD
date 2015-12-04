@@ -31,14 +31,15 @@ if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then
 fi
 
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
+echo "STATUS: Checking existence of destination directory <$REPO_EXPECTED_RESULTS_DIR>...";
 if [ ! -d $REPO_EXPECTED_RESULTS_DIR ] ; then
-  echo "Resource subdirectory on repository is missing. Creating...";
-  mkdir -p $REPO_EXPECTED_RESULTS_DIR;
+  echo "Resource subdirectory <$REPO_EXPECTED_RESULTS_DIR> on repository is missing. Creating...";
+  mkdir -vp $REPO_EXPECTED_RESULTS_DIR;
 fi
 
 # rsync expected results:
 echo "STATUS: Syncing expected results to the repository...";
-$RSYNC_CMD $OBT_EXP_DIR/ $REPO_EXPECTED_RESULTS_DIR
+$RSYNC_CMD $OBT_EXP_DIR/ $REPO_EXPECTED_RESULTS_DIR/
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync."; 
   echo; exit 1;
