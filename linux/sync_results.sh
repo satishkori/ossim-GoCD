@@ -11,15 +11,16 @@
 #
 #####################################################################################
 
+GOCD_RESOURCE_NAME=$1
+
 echo; echo; 
 echo "################################################################################"
-echo "#  Running `basename "$0"` out of <$PWD>"
+echo "#  Running `basename "$0"` for resource <$1> out of <$PWD>"
 echo "################################################################################"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/set_obt_environment.sh
 
-GOCD_RESOURCE_NAME=$1
 
 RSYNC_CMD="rsync -avz --delete"
 
