@@ -37,24 +37,25 @@ if [ -z $OSSIM_BATCH_TEST_DATA ]; then
   export OSSIM_BATCH_TEST_DATA=$OSSIM_DATA/data
 fi
 
-if [ -z $OBT_EXP_DIR ]; then
-  export OBT_EXP_DIR=$OSSIM_DATA/expected_results
+if [ -z $OSSIM_BATCH_TEST_EXPECTED ]; then
+  export OSSIM_BATCH_TEST_EXPECTED=$OSSIM_DATA/expected_results
 fi
 
-if [ -z $OBT_OUT_DIR ]; then
-  export OBT_OUT_DIR=$GOCD_WORKSPACE/batch_tests
+if [ -z $OSSIM_BATCH_TEST_RESULTS ]; then
+  export OSSIM_BATCH_TEST_RESULTS=$GOCD_WORKSPACE/results
 fi
 
 echo; echo "Test Environment:"
-echo "  GOCD_WORKSPACE        = $GOCD_WORKSPACE"
-echo "  OSSIM_DATA            = $OSSIM_DATA"
-echo "  OSSIM_INSTALL_DIR     = $OSSIM_INSTALL_DIR"
-echo "  OSSIM_PREFS_FILE      = $OSSIM_PREFS_FILE"
-echo "  OSSIM_BATCH_TEST_DATA = $OSSIM_BATCH_TEST_DATA"
-echo "  OBT_EXP_DIR           = $OBT_EXP_DIR"
-echo "  OBT_OUT_DIR           = $OBT_OUT_DIR"
-echo "  LD_LIBRARY_PATH       = $LD_LIBRARY_PATH"
-echo "  PATH                  = $PATH"
+echo "  GOCD_WORKSPACE            = $GOCD_WORKSPACE"
+echo "  OSSIM_DATA                = $OSSIM_DATA"
+echo "  OSSIM_INSTALL_DIR         = $OSSIM_INSTALL_DIR"
+echo "  OSSIM_PREFS_FILE          = $OSSIM_PREFS_FILE"
+echo "  OSSIM_BATCH_TEST_DATA     = $OSSIM_BATCH_TEST_DATA"
+echo "  OSSIM_BATCH_TEST_EXPECTED = $OSSIM_BATCH_TEST_EXPECTED"  
+echo "  OSSIM_BATCH_TEST_RESULTS  = $OSSIM_BATCH_TEST_RESULTS"  
+echo "  OBT_OUT_DIR               = $OBT_OUT_DIR"
+echo "  LD_LIBRARY_PATH           = $LD_LIBRARY_PATH"
+echo "  PATH                      = $PATH"
 echo
 
 

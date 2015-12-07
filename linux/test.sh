@@ -21,19 +21,15 @@ if [ $? != 0 ] ; then
   echo; exit 1;
 fi
 
-if [ ! -d $OBT_EXP_DIR ]; then
-  echo "ERROR: No expected results were detected in <$OBT_EXP_DIR>. Cannot continue.";
+if [ ! -d $OSSIM_BATCH_TEST_EXPECTED ]; then
+  echo "ERROR: No expected results were detected in <$OSSIM_BATCH_TEST_EXPECTED>. Cannot continue.";
   echo; exit 1;
 fi
 
-if [ ! -d $OBT_OUT_DIR ]; then
-  echo "ERROR: No batch test working directory detected in <$OBT_OUT_DIR>. Cannot continue.";
-  echo; exit 1;
+if [ ! -d $OSSIM_BATCH_TEST_RESULTS ]; then
+  echo "STATUS: Creating directory <$OSSIM_BATCH_TEST_RESULTS> to hold test results.";
+  mkdir -p $OSSIM_BATCH_TEST_RESULTS;
 fi
-
-#echo "STATUS: Cleaning directory <$OBT_OUT_DIR> of old results.";
-#pushd $OBT_OUT_DIR;
-#find . -type d -print -exec rm -rf {} \;
 
 # TEST 1: Check ossim-info version:
 echo; echo "STATUS: Running ossim-info --config test...";

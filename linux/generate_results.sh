@@ -22,16 +22,16 @@ echo "##########################################################################
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $SCRIPT_DIR/set_obt_environment.sh
 
-if [ -d $OBT_EXP_DIR ]; then
-  echo "STATUS: Previous expected results found in <$OBT_EXP_DIR>. Wiping the directory clean...";
-  rm -rf $OBT_EXP_DIR/*
+if [ -d $OSSIM_BATCH_TEST_EXPECTED ]; then
+  echo "STATUS: Previous expected results found in <$OSSIM_BATCH_TEST_EXPECTED>. Wiping the directory clean...";
+  rm -rf $OSSIM_BATCH_TEST_EXPECTED/*
 else
-  mkdir -p $OBT_EXP_DIR;
+  mkdir -p $OSSIM_BATCH_TEST_EXPECTED;
 fi
 
-if [ ! -d $OBT_OUT_DIR ]; then
-  echo "STATUS: Creating directory <$OBT_OUT_DIR> to hold test results.";
-  mkdir -p $OBT_OUT_DIR;
+if [ ! -d $OSSIM_BATCH_TEST_RESULTS ]; then
+  echo "STATUS: Creating directory <$OSSIM_BATCH_TEST_RESULTS> to hold test results.";
+  mkdir -p $OSSIM_BATCH_TEST_RESULTS;
 fi
 
 # Move into batch test working directory that should contain all config files 
@@ -40,7 +40,6 @@ pushd $GOCD_WORKSPACE/batch_tests;
 
 # Generate expected results:
 echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
-mkdir -p $OBT_EXP_DIR;
 ossim-batch-test --accept-test all super-test.kwl
 EXIT_CODE=$?
 popd
@@ -50,6 +49,6 @@ if [ $EXIT_CODE != 0 ]; then
   exit 1
 fi
 
-echo "STATUS: Successfully generated expected results in <$OBT_OUT_DIR>."; echo
+echo "STATUS: Successfully generated expected results in <$OSSIM_BATCH_TEST_EXPECTED>."; echo
 exit 0
 
