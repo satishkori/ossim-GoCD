@@ -19,7 +19,7 @@ echo "##########################################################################
 echo "#  Running `basename "$0"` for resource <$1> out of <$PWD>"
 echo "################################################################################"
 
-RSYNC_CMD="rsync -avz --delete"
+RSYNC_CMD="rsync -rlptvz --delete"
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $SCRIPT_DIR/set_obt_environment.sh
