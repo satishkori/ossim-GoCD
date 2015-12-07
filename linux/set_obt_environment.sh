@@ -53,7 +53,6 @@ echo "  OSSIM_PREFS_FILE          = $OSSIM_PREFS_FILE"
 echo "  OSSIM_BATCH_TEST_DATA     = $OSSIM_BATCH_TEST_DATA"
 echo "  OSSIM_BATCH_TEST_EXPECTED = $OSSIM_BATCH_TEST_EXPECTED"  
 echo "  OSSIM_BATCH_TEST_RESULTS  = $OSSIM_BATCH_TEST_RESULTS"  
-echo "  OBT_OUT_DIR               = $OBT_OUT_DIR"
 echo "  LD_LIBRARY_PATH           = $LD_LIBRARY_PATH"
 echo "  PATH                      = $PATH"
 echo

@@ -37,11 +37,8 @@ fi
 if [ ! -d $OSSIM_BATCH_TEST_DATA ] ; then
   mkdir $OSSIM_BATCH_TEST_DATA
 fi
-if [ ! -d $OBT_EXP_DIR ] ; then 
+if [ ! -d $OSSIM_BATCH_TEST_EXPECTED ] ; then 
   mkdir $OBT_EXP_DIR
-fi
-if [ ! -d $OBT_OUT_DIR ] ; then 
-  mkdir $OBT_OUT_DIR
 fi
 
 echo; echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
@@ -102,20 +99,12 @@ fi
 #rsync expected results (if exists)
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
 if [ -d $REPO_EXPECTED_RESULTS_DIR ] && [ ! -z $SKIP_EXPECTED_RESULTS_SYNC ]; then
-  echo; echo "STATUS: Syncing expected results from <$REPO_EXPECTED_RESULTS_DIR> to <$OBT_EXP_DIR>...";
-  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OBT_EXP_DIR/;
+  echo; echo "STATUS: Syncing expected results from <$REPO_EXPECTED_RESULTS_DIR> to <$OSSIM_BATCH_TEST_EXPECTED>...";
+  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OSSIM_BATCH_TEST_EXPECTED/;
   if [ $? != 0 ] ; then 
     echo "ERROR: Failed data repository rsync of expected results.";
   echo; exit 1;
   fi
-fi
-
-# Finally rsync the batch test config KWLs to the temporary pipeline:
-echo; echo "STATUS: Syncing batch test config files...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/public_batch_tests/ $OBT_OUT_DIR;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of batch test config files.";
-  echo; exit 1;
 fi
 
 echo 

@@ -29,6 +29,11 @@ if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then
   echo; exit 1;
 fi
 
+if [ -z $OSSIM_BATCH_TEST_EXPECTED ] || [ ! -d $OSSIM_BATCH_TEST_EXPECTED ] ; then
+  echo "ERROR: Env var OSSIM_BATCH_TEST_EXPECTED must be defined and exist in order to syncronize against data repository.";
+  echo; exit 1;
+fi
+
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
 echo "STATUS: Checking existence of destination directory <$REPO_EXPECTED_RESULTS_DIR>...";
 if [ ! -d $REPO_EXPECTED_RESULTS_DIR ] ; then
@@ -37,8 +42,8 @@ if [ ! -d $REPO_EXPECTED_RESULTS_DIR ] ; then
 fi
 
 # rsync expected results:
-echo "STATUS: Syncing expected results in <$OBT_EXP_DIR> to the repository directory <$REPO_EXPECTED_RESULTS_DIR>...";
-$RSYNC_CMD $OBT_EXP_DIR/ $REPO_EXPECTED_RESULTS_DIR/
+echo "STATUS: Syncing expected results in <$OSSIM_BATCH_TEST_EXPECTED> to the repository directory <$REPO_EXPECTED_RESULTS_DIR>...";
+$RSYNC_CMD $OSSIM_BATCH_TEST_EXPECTED/ $REPO_EXPECTED_RESULTS_DIR/
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync."; 
   echo; exit 1;
