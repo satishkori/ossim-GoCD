@@ -10,6 +10,12 @@
 #   OSSIM_DATA_REPOSITORY -- local NFS mount point for data repository
 #   OSSIM_DATA -- Local directory to contain elevation, imagery, and expected results
 #
+# Optional referenced  env var:
+#
+#   SKIP_EXPECTED_RESULTS_SYNC -- if defined, implies the data sync is for 
+#      *generating* expected results, therefore prior expected results are not synced
+#      from the repo (they are ignored).
+#
 #####################################################################################
 
 GOCD_RESOURCE_NAME=$1
@@ -95,7 +101,7 @@ fi
   
 #rsync expected results (if exists)
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
-if [ -d $REPO_EXPECTED_RESULTS_DIR ] ; then
+if [ -d $REPO_EXPECTED_RESULTS_DIR ] && [ ! -z $SKIP_EXPECTED_RESULTS_SYNC ]; then
   echo; echo "STATUS: Syncing expected results from <$REPO_EXPECTED_RESULTS_DIR> to <$OBT_EXP_DIR>...";
   $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OBT_EXP_DIR/;
   if [ $? != 0 ] ; then 
