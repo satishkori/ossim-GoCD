@@ -35,7 +35,7 @@ if [ ! -d $OSSIM_BATCH_TEST_RESULTS ]; then
 fi
 
 # Generate expected results:
-pushd $GOCD_WORKSPACE/ossim-GoCD/batch-tests;
+pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests;
 echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl in <$PWD>...";echo
 ossim-batch-test --accept-test all super-test.kwl
 EXIT_CODE=$?
