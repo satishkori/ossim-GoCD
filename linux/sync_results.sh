@@ -18,10 +18,11 @@ echo "##########################################################################
 echo "#  Running `basename "$0"` for resource <$1> out of <$PWD>"
 echo "################################################################################"
 
+# Set GoCD-specific environment:
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/set_obt_environment.sh
 
-RSYNC_CMD="rsync -rlptvz --delete"
+RSYNC_CMD="rsync -rlptvz"
 
 echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";
 if [ -z $OSSIM_DATA_REPOSITORY ] || [ ! -d $OSSIM_DATA_REPOSITORY ] ; then

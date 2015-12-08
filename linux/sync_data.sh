@@ -25,8 +25,9 @@ echo "##########################################################################
 echo "#  Running `basename "$0"` for resource <$1> out of <$PWD>"
 echo "################################################################################"
 
-RSYNC_CMD="rsync -rlptvz --delete"
+RSYNC_CMD="rsync -rlptvz"
 
+# Set GoCD-specific environment:
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source $SCRIPT_DIR/set_obt_environment.sh
 
@@ -38,7 +39,7 @@ if [ ! -d $OSSIM_BATCH_TEST_DATA ] ; then
   mkdir $OSSIM_BATCH_TEST_DATA
 fi
 if [ ! -d $OSSIM_BATCH_TEST_EXPECTED ] ; then 
-  mkdir $OBT_EXP_DIR
+  mkdir $OSSIM_BATCH_TEST_EXPECTED
 fi
 
 echo; echo "STATUS: Checking access to data repository at <$OSSIM_DATA_REPOSITORY>...";

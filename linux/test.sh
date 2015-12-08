@@ -14,6 +14,7 @@ echo "##########################################################################
 echo "#  Running `basename "$0"` out of <$PWD>"
 echo "################################################################################"
 
+# Set GoCD-specific environment:
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $SCRIPT_DIR/set_obt_environment.sh
 if [ $? != 0 ] ; then 
