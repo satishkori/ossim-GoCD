@@ -53,9 +53,11 @@ fi
 echo "STATUS: Passed ossim-info --version test.";
 
 # Run batch tests
+pushd $GOCD_WORKSPACE/ossim-GoCD/batch-tests;
 echo; echo "STATUS: Running batch tests in <$PWD>..."
 ossim-batch-test super-test.kwl
 EXIT_CODE=$?
+popd
 echo "STATUS: ossim-batch-test EXIT_CODE = $EXIT_CODE"
 if [ $EXIT_CODE != 0 ]; then
   echo "FAIL: Failed batch test"
@@ -63,7 +65,6 @@ if [ $EXIT_CODE != 0 ]; then
 fi
 
 # Success!
-popd
 echo "STATUS: Passed all tests."
 echo
 exit 0

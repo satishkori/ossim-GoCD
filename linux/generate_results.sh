@@ -34,11 +34,8 @@ if [ ! -d $OSSIM_BATCH_TEST_RESULTS ]; then
   mkdir -p $OSSIM_BATCH_TEST_RESULTS;
 fi
 
-# Move into batch test working directory that should contain all config files 
-# from previous rsync to data repo:
-pushd $GOCD_WORKSPACE/batch_tests;
-
 # Generate expected results:
+pushd $GOCD_WORKSPACE/ossim-GoCD/batch-tests;
 echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
 ossim-batch-test --accept-test all super-test.kwl
 EXIT_CODE=$?
