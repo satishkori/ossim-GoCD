@@ -36,7 +36,7 @@ fi
 
 # Generate expected results:
 pushd $GOCD_WORKSPACE/ossim-GoCD/batch-tests;
-echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl...";echo
+echo "STATUS: Running ossim-batch-test --accept-test super-test.kwl in <$PWD>...";echo
 ossim-batch-test --accept-test all super-test.kwl
 EXIT_CODE=$?
 popd
