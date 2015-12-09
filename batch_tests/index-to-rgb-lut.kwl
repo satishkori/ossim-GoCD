@@ -40,7 +40,6 @@ test1.test_command0: ossim-index-to-rgb-lut-test $(OSSIM_BATCH_TEST_DATA)/public
 // comparison of last run command against expected results.
 //---------------------------------------
 test1.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/lut-test.txt $(OBT_OUT_DIR)/lut-test.txt
-test1.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/lut-test.tif $(OBT_OUT_DIR)/lut-test.tif
 
 
 
