@@ -28,12 +28,12 @@ test1.description: Test various modes of index to RGB loook-up-table remapper cl
 //---------------------------------------
 // Commands to generate expected results.
 //---------------------------------------
-test1.expected_results_command0: ossim-index-to-rgb-lut-test $(OBT_EXP_DIR)/lut-test.tif > $(OBT_EXP_DIR)/lut-test.txt
+test1.expected_results_command0: ossim-index-to-rgb-lut-test $(OSSIM_BATCH_TEST_DATA)/public/lut/lut-test.tif > $(OBT_EXP_DIR)/lut-test.txt
 
 //---------------------------------------
 // The actual commands to test.
 //---------------------------------------
-test1.test_command0: ossim-index-to-rgb-lut-test $(OBT_OUT_DIR)/lut-test.tif > $(OBT_OUT_DIR)/lut-test.txt
+test1.test_command0: ossim-index-to-rgb-lut-test $(OSSIM_BATCH_TEST_DATA)/public/lut/lut-test.tif > $(OBT_OUT_DIR)/lut-test.txt
 
 //---------------------------------------
 // The post-processing (comparison) commands. Typically these involve a file 
