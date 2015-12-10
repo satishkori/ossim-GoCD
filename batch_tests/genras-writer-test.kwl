@@ -60,16 +60,16 @@ test1.enabled: 1
 // ---
 
 // Write the image:
-test1.expected_results_command0: ossim-icp general_raster_bip $(OSSIM_BATCH_TEST_DATA)/public/tif/ls7-ff-fusion.tif $(OBT_OUT_DIR)/Clinton-bip-exp.ras
+test1.expected_results_command0: ossim-icp general_raster_bip $(OSSIM_BATCH_TEST_DATA)/public/tif/ls7-ff-fusion.tif $(OBT_EXP_DIR)/Clinton-bip-exp.ras
 
 // Build overviews:
-test1.expected_results_command1: ossim-preproc -r -o --ch $(OBT_OUT_DIR)/Clinton-bip-exp.ras
+test1.expected_results_command1: ossim-preproc -r -o --ch $(OBT_EXP_DIR)/Clinton-bip-exp.ras
 
 // Info dump to expected results dir:
-test1.expected_results_command2: ossim-info -i -p $(OBT_OUT_DIR)/Clinton-bip-exp.ras > $(OBT_EXP_DIR)/test1-info.txt
+test1.expected_results_command2: ossim-info -i -p $(OBT_EXP_DIR)/Clinton-bip-exp.ras > $(OBT_EXP_DIR)/test1-info.txt
 
 // Copy histogram to expected results dir:
-test1.expected_results_command3: $(COPY_CMD)  $(OBT_OUT_DIR)/Clinton-bip-exp.his $(OBT_EXP_DIR)/test1-his.txt
+test1.expected_results_command3: $(COPY_CMD)  $(OBT_EXP_DIR)/Clinton-bip-exp.his $(OBT_EXP_DIR)/test1-his.txt
 
 // ---
 // The actual commands to test:
@@ -110,16 +110,16 @@ test2.enabled: 1
 // ---
 
 // Write the image:
-test2.expected_results_command0: ossim-icp general_raster_bil $(OSSIM_BATCH_TEST_DATA)/public/tif/ls7-ff-fusion.tif $(OBT_OUT_DIR)/Clinton-bil-exp.ras
+test2.expected_results_command0: ossim-icp general_raster_bil $(OSSIM_BATCH_TEST_DATA)/public/tif/ls7-ff-fusion.tif $(OBT_EXP_DIR)/Clinton-bil-exp.ras
 
 // Build overviews:
-test2.expected_results_command1: ossim-preproc -r -o --ch $(OBT_OUT_DIR)/Clinton-bil-exp.ras
+test2.expected_results_command1: ossim-preproc -r -o --ch $(OBT_EXP_DIR)/Clinton-bil-exp.ras
 
 // Info dump to expected results dir:
-test2.expected_results_command2: ossim-info -i -p $(OBT_OUT_DIR)/Clinton-bil-exp.ras > $(OBT_EXP_DIR)/test2-info.txt
+test2.expected_results_command2: ossim-info -i -p $(OBT_EXP_DIR)/Clinton-bil-exp.ras > $(OBT_EXP_DIR)/test2-info.txt
 
 // Copy histogram to expected results dir:
-test2.expected_results_command3: $(COPY_CMD)  $(OBT_OUT_DIR)/Clinton-bil-exp.his $(OBT_EXP_DIR)/test2-his.txt
+test2.expected_results_command3: $(COPY_CMD)  $(OBT_EXP_DIR)/Clinton-bil-exp.his $(OBT_EXP_DIR)/test2-his.txt
 
 // ---
 // The actual commands to test:
@@ -160,16 +160,16 @@ test3.enabled: 1
 // ---
 
 // Write the image:
-test3.expected_results_command0: ossim-icp general_raster_bsq $(OSSIM_BATCH_TEST_DATA)/public/tif/ls7-ff-fusion.tif $(OBT_OUT_DIR)/Clinton-bsq-exp.ras
+test3.expected_results_command0: ossim-icp general_raster_bsq $(OSSIM_BATCH_TEST_DATA)/public/tif/ls7-ff-fusion.tif $(OBT_EXP_DIR)/Clinton-bsq-exp.ras
 
 // Build overviews:
-test3.expected_results_command1: ossim-preproc -r -o --ch $(OBT_OUT_DIR)/Clinton-bsq-exp.ras
+test3.expected_results_command1: ossim-preproc -r -o --ch $(OBT_EXP_DIR)/Clinton-bsq-exp.ras
 
 // Info dump to expected results dir:
-test3.expected_results_command2: ossim-info -i -p $(OBT_OUT_DIR)/Clinton-bsq-exp.ras > $(OBT_EXP_DIR)/test3-info.txt
+test3.expected_results_command2: ossim-info -i -p $(OBT_EXP_DIR)/Clinton-bsq-exp.ras > $(OBT_EXP_DIR)/test3-info.txt
 
 // Copy histogram to expected results dir:
-test3.expected_results_command3: $(COPY_CMD)  $(OBT_OUT_DIR)/Clinton-bsq-exp.his $(OBT_EXP_DIR)/test3-his.txt
+test3.expected_results_command3: $(COPY_CMD)  $(OBT_EXP_DIR)/Clinton-bsq-exp.his $(OBT_EXP_DIR)/test3-his.txt
 
 // ---
 // The actual commands to test:
