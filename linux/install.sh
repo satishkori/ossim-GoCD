@@ -72,8 +72,9 @@ fi
 if [ "$CREATE_LINK" == "create-link" ]; then
   # Create a link that can be used as artifact of latest build/install. This will overwrite previous sandbox's so only
   # the latest is used for testing (standalone) or generating expected results
-  echo "Build timestamp: $TIMESTAMP
-       " > install.txt
+  echo "Build timestamp: $TIMESTAMP" > install.txt  
+  echo "Pipeline path: $OSSIM_DEV_HOME" >> install.txt
+  echo >> install.txt
   ln -s $FILENAME_TS "install.zip"
   echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME> and created link <install.zip>."
 fi
