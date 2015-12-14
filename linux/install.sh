@@ -60,7 +60,7 @@ INSTALL_DIRNAME=${PWD##*/}
 echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
 cd ..
 
-TIMESTAMP=`date +%Y-%m-%d`
+TIMESTAMP=`date +%Y-%m-%d-%H%M`
 FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
 zip -r $FILENAME_TS $INSTALL_DIRNAME
 if [ $? -ne 0 ]; then
@@ -77,6 +77,5 @@ if [ "$CREATE_LINK" == "create-link" ]; then
 fi
 
 popd # Out of dir containing install subdir
-popd # out of OSSIM_DEV_HOME
 exit 0
 
