@@ -23,7 +23,7 @@ elevation_manager.elevation_source1.max_open_cells: 50
 elevation_manager.elevation_source1.memory_map_cells: true
 elevation_manager.elevation_source1.geoid.type: geoid1996
 datum_grids: $(OSSIM_DATA)/elevation/nadcon
-ossim_share_directory: $(OSSIM_INSTALL_PREFIX)/share
+ossim_share_directory: $(OSSIM_INSTALL_DIR)/share
 epsg_database_file1: ossim_epsg_projections-v7_4.csv
 epsg_database_file2: ossim_harn_state_plane_epsg.csv
 epsg_database_file3: ossim_state_plane_spcs.csv
