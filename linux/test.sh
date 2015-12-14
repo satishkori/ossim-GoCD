@@ -53,7 +53,7 @@ fi
 echo "STATUS: Passed ossim-info --version test.";
 
 # Run batch tests
-pushd $GOCD_WORKSPACE/ossim-GoCD/batch_tests;
+pushd $OSSIM_DEV_HOME/ossim-GoCD/batch_tests;
 echo; echo "STATUS: Running batch tests in <$PWD>..."
 ossim-batch-test super-test.kwl
 EXIT_CODE=$?

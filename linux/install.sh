@@ -25,29 +25,23 @@ CREATE_LINK=$1
 
 # Set GoCD-specific environment:
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $SCRIPT_DIR/set_obt_environment.sh
-if [ $? != 0 ] ; then 
-  echo "ERROR: Could not set OBT environment.";
-  echo; exit 1;
+pushd $SCRIPT_DIR/../..
+export OSSIM_DEV_HOME=$PWD
+popd
+
+# Establish CMAKE's install directory:
+if [ -z "$OSSIM_INSTALL_PREFIX" ]; then
+    OSSIM_INSTALL_PREFIX=$OSSIM_DEV_HOME/install
 fi
+
 
 echo "STATUS: Checking presence of env var OSSIM_BUILD_DIR = <$OSSIM_BUILD_DIR>...";
 if [ -z $OSSIM_BUILD_DIR ]; then
-  OSSIM_BUILD_DIR=$GOCD_WORKSPACE/build;
+  OSSIM_BUILD_DIR=$OSSIM_DEV_HOME/build;
   if [ ! -d $OSSIM_BUILD_DIR ] ; then
     echo "ERROR: OSSIM_BUILD_DIR = <$OSSIM_BUILD_DIR> does not exist at this location. Cannot install";
     exit 1;
   fi
-fi
-
-if [ -z $OSSIM_INSTALL_PREFIX ]; then
-  OSSIM_INSTALL_PREFIX=$GOCD_WORKSPACE/install;
-  echo "INFO: OSSIM_INSTALL_DIR environment variable is not defined. Defaulting to <$OSSIM_INSTALL_PREFIX>";
-fi
-
-if [ ! -d $OSSIM_INSTALL_PREFIX ] ; then
-  echo "INFO: Installation directory <$OSSIM_INSTALL_PREFIX> does not exist. Creating...";
-  mkdir $OSSIM_INSTALL_PREFIX;
 fi
 
 pushd $OSSIM_BUILD_DIR
