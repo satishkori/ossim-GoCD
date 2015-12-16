@@ -1,11 +1,9 @@
 #!/bin/bash 
 
+AGENT=$1
+STATUS=$2
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-pushd $SCRIPT_DIR/../../ossim
-
-cp -f ../ossim-GoCD/images/$1.png current_status.png
-#git commit -a -m "auto-update from GoCD" 
-#git push
-
+pushd $SCRIPT_DIR/../images
+scp -vp $STATUS.png okramer@omar.ossim.org:$AGENT_status.png
 popd
