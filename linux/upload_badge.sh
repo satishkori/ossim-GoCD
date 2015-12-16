@@ -9,6 +9,13 @@ pushd $SCRIPT_DIR/../images
 CMD="scp -vp $STATUS.png okramer@omar.ossim.org:${AGENT}_status.png"
 echo "command: $CMD"
 $CMD
+if [ $? != 0 ]; then
+  echo "upload_badge.sh: Error encountered running command <$CMD>."; echo
+  popd
+  exit 1
+fi
 echo
 popd
+exit 0
+
 
