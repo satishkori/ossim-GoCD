@@ -7,6 +7,7 @@ echo "upload_badge.sh: AGENT=<$AGENT>, STATUS=<$STATUS>"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd $SCRIPT_DIR/../images
 CMD="scp -vp $STATUS.png go@omar.ossim.org:${AGENT}_status.png"
+echo "whoami: `whoami`"
 echo "command: $CMD"
 $CMD
 if [ $? != 0 ]; then
