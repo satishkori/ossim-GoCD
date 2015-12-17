@@ -3,14 +3,14 @@
 #
 # Install script for ossimlabs
 #
-# Usage: install.sh [create-link]
+# Usage: install.sh [-z]
 #
 # This script can be run from anywhere. It performs two functions:
 # 
 #   1. performs a make install, and
-#   2. zips the install directory for use as sandbox or artifact.
-#   3. Optionally creates a link to the zipped install that does not contain
-#      a timestamp or pipeline name, so it is accessible by other pipelines.
+#   2. Optionally zips the install directory for use as sandbox or artifact,
+#      and creates a link to the zipped install that does not contain
+#      a timestamp or pipeline name, so it is easily accessible by other pipelines.
 #
 # No env vars need to be predefined. The install output will be written to
 # $OSSIM_DEV_HOME/install where $OSSIM_DEV_HOME is the top-level
@@ -21,7 +21,7 @@
 #
 ###############################################################################
 
-CREATE_LINK=$1
+ZIP_OPTION=$1
 
 # Set GoCD-specific environment:
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -67,20 +67,21 @@ Job Name:        $GO_JOB_NAME
 " > gocd_install.info
 cd ..
 
-echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
-FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
-zip -r $FILENAME_TS $INSTALL_DIRNAME
-if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
-  popd
-  exit 1
-fi
+if [ "$ZIP_OPTION" == "-z" ]; then
+  echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
+  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
+  zip -r $FILENAME_TS $INSTALL_DIRNAME
+  if [ $? -ne 0 ]; then
+    echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
+    popd
+    exit 1
+  fi
 
-if [ "$CREATE_LINK" == "create-link" ]; then
-  # Create a link that can be used as artifact of latest build/install. This will overwrite previous sandbox's so only
-  # the latest is used for testing (standalone) or generating expected results
+  # Create a link that can be used as artifact of latest build/install. This will    
+  # overwrite previous sandbox's so only the latest is used for testing (standalone)
+  # or generating expected results
   ln -s $FILENAME_TS "install.zip"
-  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME> and created link <install.zip>."
+  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
 fi
 
 popd # Out of dir containing install subdir
