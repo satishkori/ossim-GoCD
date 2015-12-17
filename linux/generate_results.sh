@@ -4,6 +4,8 @@
 #
 # Script for generate OBT expected results. Required environment variables are:
 #
+# Usage:  generate_results.sh <gocd_resource_name>
+#
 #   OSSIM_DATA -- Local directory to contain elevation, imagery, and expected results
 #   OSSIM_PREFS_FILE -- Path to preferences used by test executables.
 #
@@ -13,6 +15,8 @@
 #
 ######################################################################################
 #set -x; trap read debug
+
+GOCD_RESOURCE_NAME=$1
 
 echo; echo; 
 echo "################################################################################"
@@ -47,5 +51,23 @@ if [ $EXIT_CODE != 0 ]; then
 fi
 
 echo "STATUS: Successfully generated expected results in <$OSSIM_BATCH_TEST_EXPECTED>."; echo
+
+REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
+echo "STATUS: Checking existence of destination directory <$REPO_EXPECTED_RESULTS_DIR>...";
+if [ ! -d $REPO_EXPECTED_RESULTS_DIR ] ; then
+  echo "Resource subdirectory <$REPO_EXPECTED_RESULTS_DIR> on repository is missing. Creating...";
+  mkdir -p $REPO_EXPECTED_RESULTS_DIR;
+fi
+
+# rsync expected results:
+echo "STATUS: Syncing expected results in <$OSSIM_BATCH_TEST_EXPECTED> to the repository directory <$REPO_EXPECTED_RESULTS_DIR>...";
+RSYNC_CMD="rsync -rlptvz"
+$RSYNC_CMD $OSSIM_BATCH_TEST_EXPECTED/ $REPO_EXPECTED_RESULTS_DIR/
+if [ $? != 0 ] ; then 
+  echo "ERROR: Failed data repository rsync."; 
+  echo; exit 1;
+fi
+
+echo
 exit 0
 
