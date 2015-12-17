@@ -42,13 +42,14 @@ As described above, the following environment variables need to be defined in th
 
 ## Customizing a Pipeline to Test a Feature Branch
 
-The pipelines listed above apply mostly to the "dev" branch of all referenced reopsitories. However, it is fairly straightforward to create a new pipeline to test a feature branch instead:
-1. Clone the pipeline you would like to use.
-2. Change the materials list to reflect you feature branch.
-That's it.
+The pipelines listed above apply mostly to the "dev" branch of all referenced reopsitories. However, it is fairly straightforward to create a new pipeline to test a feature branch instead. These are the steps:
 
+1. Clone the pipeline you would like to use. From the top menu bar of GoCD, select Admin->Pipelines, find the exisiting pipeline you would like to use for your branch, and select "Clone". GoCD will ask you to name your pipeline. You should include the branch name in the pipeline name to make it easy to identify. Your new pipeline will appear in the list.
+2. Select your pipeline from the list to go to its setup page. Under the "Materials" tab, click on a material name, say "ossim". A dialog box will appear that let's you edit the branch being fetched. Enter your feature branch anem and then "CHECK CONNECTION" to make sure GoCD can see it.
 
-# Badge Uploading
+That's it. Be aware that any testing stage will still use the expected results that were generated from the "dev" branch. If you did anything that changes the results, even if the result is better, your test will fail.
+
+# Status Badge Uploading
 
 The following describes the implementation in linux. Presumably a similar scheme will be adopted for other resource types.
 
