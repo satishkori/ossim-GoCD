@@ -26,11 +26,16 @@ The following scripts are used in the current GoCD pipelines:
 
 This repository also maintains the ossim-preferences file used by the GoCD agents. It provides paths to all plugins as they are made available in the pipeline configuration. It also provides the path to the elevation data used in the OSSIM testing. 
 
+# GoCD Pipelines
+
+As of Dec 2015, the primary pipelines in use are 
+* ossimlabs-dev -- Build and test of dev branch
+* ossimlabs-master -- Build and test of master branch
+* generate-test-expected -- Generates expected results
 As described above, the following environment variables need to be defined in the GoCD pipeline environment test-stage:
 
    * OSSIM_DATA -- Location on the GoCD agent outside of the pipeline where the test data resides. It is syncronized against a master data repository each time the pipeline is executed.
    * OSSIM_DATA_REPOSITORY -- The NFS mount location for the remote data repository. 
-   * 
 
 # Badge Uploading
 
