@@ -29,13 +29,24 @@ This repository also maintains the ossim-preferences file used by the GoCD agent
 # GoCD Pipelines
 
 As of Dec 2015, the primary pipelines in use are 
-* ossimlabs-dev -- Build and test of dev branch
-* ossimlabs-master -- Build and test of master branch
-* generate-test-expected -- Generates expected results
+* `ossimlabs-dev` -- Build and test of dev branch
+* `ossimlabs-master` -- Build and test of master branch
+* `OSSIM_Core-dev-build` -- Builds only ossim and ossim-plugins repos. Installs to a sandbox and uploads the zipped sandbox to the Go server as an artifact.
+* `generate-test-expected` -- Generates expected results using the sandbox artifact created by OSSIM_Core-dev-build.
+* `OSSIM_Core-dev-test` -- Runs tests using the sandbox artifact created by `OSSIM_Core-dev-build`.
+* 
 As described above, the following environment variables need to be defined in the GoCD pipeline environment test-stage:
 
    * OSSIM_DATA -- Location on the GoCD agent outside of the pipeline where the test data resides. It is syncronized against a master data repository each time the pipeline is executed.
    * OSSIM_DATA_REPOSITORY -- The NFS mount location for the remote data repository. 
+
+## Customizing a Pipeline to Test a Feature Branch
+
+The pipelines listed above apply mostly to the "dev" branch of all referenced reopsitories. However, it is fairly straightforward to create a new pipeline to test a feature branch instead:
+1. Clone the pipeline you would like to use.
+2. Change the materials list to reflect you feature branch.
+That's it.
+
 
 # Badge Uploading
 
