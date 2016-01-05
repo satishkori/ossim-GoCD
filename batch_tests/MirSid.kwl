@@ -1,0 +1,1247 @@
+//
+//
+//
+//							All In One Image Test 
+//
+//
+//
+//
+//	This is an all in one test which has all of the formats available in one script. This test will allow an image to be added to the do-regression-test.kwl.
+//
+//	The do-regression-test.kwl runs all separate tests at one time and writes it out to a log that will be check for errors/failers
+//
+//	All tests in this script will need to follow the correct numbering sequence ( ie last test number ended with 529, then the next test number will be 530 )
+//	
+//	A Search and Replace will be used to change the numbering of the tests
+//
+//	All tests will need to have the Index ID used when the test is built
+//
+//	After the test has been built the Index ID and the path to the image will need to be added to the Index ID document ( /data1/test/Index_ID )
+//
+//	All new image should be place in the /data1/test directory
+//
+//
+//====================================================================================================================================================================
+//
+//
+//	WMS JPEG will be tested
+//
+//
+//
+//====================================================================================================================================================================
+// Test Diretory:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//---
+// Begin test581:
+// --- 
+
+test581.name: wms-get-map-test581
+test581.description: Test a wms get map call to omar server.
+test581.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test581.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=464&x=88&y=393&id=38292&format=image/jpeg&pivot=5000%2C5000&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test581.jpg
+
+// ossim-info -i (image) dump:
+test581.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test581.jpg > $(OBT_EXP_DIR)/test581-info.txt
+
+// Make a histogram:
+test581.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test581.jpg
+
+// The actual commands to test:
+
+// Get the image via wget:
+test581.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=464&x=88&y=393&id=38292&format=image/jpeg&pivot=5000%2C5000&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test581.jpg
+
+// ossim-info -i (image) dump:
+test581.test_command1: ossim-info -i $(OBT_OUT_DIR)/test581.jpg > $(OBT_OUT_DIR)/test581-info.txt
+
+// Make a histogram:
+test581.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test581.jpg
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test581.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test581-info.txt $(OBT_OUT_DIR)/test581-info.txt
+
+// Test the histogram:
+test581.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test581.his $(OBT_OUT_DIR)/test581.his
+
+// End test581:
+//
+//
+//
+//=================================================================================================================================================================
+//
+//
+//
+//	WMS PNG will be tested
+//
+//
+//===================================================================================================================================================================
+//
+//
+//
+//
+// 
+// Test Diretory:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//---
+// Begin test582:
+// --- 
+
+test582.name: wms-get-map-test582
+test582.description: Test a wms get map call to omar server.
+test582.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test582.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=464&x=88&y=393&id=38292&format=image/png&pivot=5000%2C5000&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test582.png
+
+// ossim-info -i (image) dump:
+test582.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test582.png > $(OBT_EXP_DIR)/test582-info.txt
+
+// Make a histogram:
+test582.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test582.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test582.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=464&x=88&y=393&id=38292&format=image/png&pivot=5000%2C5000&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test582.png
+
+// ossim-info -i (image) dump:
+test582.test_command1: ossim-info -i $(OBT_OUT_DIR)/test582.png > $(OBT_OUT_DIR)/test582-info.txt
+
+// Make a histogram:
+test582.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test582.png
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test582.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test582-info.txt $(OBT_OUT_DIR)/test582-info.txt
+
+// Test the histogram:
+test582.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test582.his $(OBT_OUT_DIR)/test582.his
+
+// End test582:
+
+//
+//====================================================================================================================================================================
+//
+//
+//	This will test WMS Gif
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+// 
+// Test Diretory:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//---
+// Begin test583:
+// --- 
+
+test583.name: wms-get-map-test583
+test583.description: Test a wms get map call to omar server.
+test583.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test583.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=464&x=88&y=393&id=38292&format=image/gif&pivot=5000%2C5000&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test583.gif
+
+// ossim-info -i (image) dump:
+test583.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test583.gif > $(OBT_EXP_DIR)/test583-info.txt
+
+
+// Make a histogram:
+test583.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test583.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test583.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=464&x=88&y=393&id=38292&format=image/gif&pivot=5000%2C5000&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test583.gif
+
+// ossim-info -i (image) dump:
+test583.test_command1: ossim-info -i $(OBT_OUT_DIR)/test583.gif > $(OBT_OUT_DIR)/test583-info.txt
+
+// Make a histogram:
+test583.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test583.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test583.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test583-info.txt $(OBT_OUT_DIR)/test583-info.txt
+
+// Test the histogram:
+test583.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test583.his $(OBT_OUT_DIR)/test583.his
+
+// End test583
+//
+//=====================================================================================================================================================================
+//
+//
+//	This will test the Ortho Geotiff    
+//                                                                                                                                                                                     
+//
+//=====================================================================================================================================================================
+//
+// ---
+// Begin test584:
+// --- 
+// Drobo Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+
+test584.name: wcs-get-map-test584
+test584.description: Test a wcs get map call to omar server.
+test584.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test584.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geotiff&crs=EPSG%3A4326&bbox=-71.453156%2C42.259909%2C-71.447373%2C42.262405&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test584.tif
+
+// ossim-info -i (image) dump:
+test584.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test584.tif > $(OBT_EXP_DIR)/test584-info.txt
+
+// Make a histogram:
+test584.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test584.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test584.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geotiff&crs=EPSG%3A4326&bbox=-71.453156%2C42.259909%2C-71.447373%2C42.262405&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test584.tif
+
+// ossim-info -i (image) dump:
+test584.test_command1: ossim-info -i $(OBT_OUT_DIR)/test584.tif > $(OBT_OUT_DIR)/test584-info.txt
+
+// Make a histogram:
+test584.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test584.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test584.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test584-info.txt $(OBT_OUT_DIR)/test584-info.txt
+
+// Test the histogram:
+test584.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test584.his $(OBT_OUT_DIR)/test584.his
+
+// End test584:
+//
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//	This will test the Orthoo Geotiff 8 bit image
+//
+//
+//
+//=====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test585:
+// --- 
+//This will test the Ortho GeoTiff - 8 bit image 
+//
+//	/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+// Copy of do-test-PT4.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+
+test585.name: wcs-get-map-test585
+test585.description: Test a wcs get map call to omar server.
+test585.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test585.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geotiff_uint8&crs=EPSG%3A4326&bbox=-71.455916%2C42.259101%2C-71.444349%2C42.264092&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test585.tif
+
+// ossim-info -i (image) dump:
+test585.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test585.tif > $(OBT_EXP_DIR)/test585-info.txt
+
+// Make a histogram:
+test585.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test585.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test585.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geotiff_uint8&crs=EPSG%3A4326&bbox=-71.455916%2C42.259101%2C-71.444349%2C42.264092&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test585.tif
+
+// ossim-info -i (image) dump:
+test585.test_command1: ossim-info -i $(OBT_OUT_DIR)/test585.tif > $(OBT_OUT_DIR)/test585-info.txt
+
+// Make a histogram:
+test585.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test585.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test585.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test585-info.txt $(OBT_OUT_DIR)/test585-info.txt
+
+// Test the histogram:
+test585.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test585.his $(OBT_OUT_DIR)/test585.his
+
+// End test585:
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+//	This will test Ortho JPEG
+//
+//
+//=====================================================================================================================================================================
+//
+//
+// ---
+// Begin test586:
+// --- 
+// Image Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .jpg file format
+//
+//
+
+test586.name: wcs-get-map-test586
+test586.description: Test a wcs get map call to omar server.
+test586.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test586.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=image/jpeg&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test586.jpg
+
+// ossim-info -i (image) dump:
+test586.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test586.jpg > $(OBT_EXP_DIR)/test586-info.txt
+
+// Make a histogram:
+test586.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test586.jpg
+
+// The actual commands to test:
+
+// Get the image via wget:
+test586.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=image/jpeg&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test586.jpg
+
+// ossim-info -i (image) dump:
+test586.test_command1: ossim-info -i $(OBT_OUT_DIR)/test586.jpg > $(OBT_OUT_DIR)/test586-info.txt
+
+// Make a histogram:
+test586.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test586.jpg
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test586.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test586-info.txt $(OBT_OUT_DIR)/test586-info.txt
+
+// Test the histogram:
+test586.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test586.his $(OBT_OUT_DIR)/test586.his
+
+// End test586:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//	This will test the Ortho PNG format
+//
+//
+//====================================================================================================================================================================
+//
+//
+////
+// ---
+// Begin test587:
+// --- 
+// Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .png file format
+//
+//
+
+test587.name: wcs-get-map-test587
+test587.description: Test a wcs get map call to omar server.
+test587.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test587.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=image/png&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test587.png
+
+// ossim-info -i (image) dump:
+test587.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test587.png > $(OBT_EXP_DIR)/test587-info.txt
+
+// Make a histogram:
+test587.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test587.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test587.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=image/png&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test587.png
+
+// ossim-info -i (image) dump:
+test587.test_command1: ossim-info -i $(OBT_OUT_DIR)/test587.png > $(OBT_OUT_DIR)/test587-info.txt
+
+// Make a histogram:
+test587.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test587.png
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test587.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test587-info.txt $(OBT_OUT_DIR)/test587-info.txt
+
+// Test the histogram:
+test587.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test587.his $(OBT_OUT_DIR)/test587.his
+
+// End test587:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//	This will test the Ortho PNG 8 bit format
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+////
+// ---
+// Begin test588:
+// --- 
+// Drobo Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .png -8bit- file format
+//
+//
+
+test588.name: wcs-get-map-test588
+test588.description: Test a wcs get map call to omar server.
+test588.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test588.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=png_uint8&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test588.png
+
+// ossim-info -i (image) dump:
+test588.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test588.png > $(OBT_EXP_DIR)/test588-info.txt
+
+// Make a histogram:
+test588.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test588.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test588.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=png_uint8&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test588.png
+
+// ossim-info -i (image) dump:
+test588.test_command1: ossim-info -i $(OBT_OUT_DIR)/test588.png > $(OBT_OUT_DIR)/test588-info.txt
+
+// Make a histogram:
+test588.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test588.png
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test588.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test588-info.txt $(OBT_OUT_DIR)/test588-info.txt
+
+// Test the histogram:
+test588.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test588.his $(OBT_OUT_DIR)/test588.his
+
+// End test588:
+//
+//
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+// 	This test will test the ortho JPEG2000 format
+//
+//
+//====================================================================================================================================================================
+//
+// ---
+// Begin test589:
+// --- 
+// Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .jp2 -jpeg200- file format
+//
+//
+
+test589.name: wcs-get-map-test589
+test589.description: Test a wcs get map call to omar server.
+test589.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test589.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geojp2&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test589.jp2
+
+// ossim-info -i (image) dump:
+test589.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test589.jp2 > $(OBT_EXP_DIR)/test589-info.txt
+
+// Make a histogram:
+test589.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test589.jp2
+
+// The actual commands to test:
+
+// Get the image via wget:
+test589.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geojp2&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test589.jp2
+
+// ossim-info -i (image) dump:
+test589.test_command1: ossim-info -i $(OBT_OUT_DIR)/test589.jp2 > $(OBT_OUT_DIR)/test589-info.txt
+
+// Make a histogram:
+test589.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test589.jp2
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test589.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test589-info.txt $(OBT_OUT_DIR)/test589-info.txt
+
+// Test the histogram:
+test589.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test589.his $(OBT_OUT_DIR)/test589.his
+
+// End test589:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// 	This will test the JPEG 2000 8 bit format
+//
+//
+//=====================================================================================================================================================================
+//
+// ---
+// Begin test590:
+// --- 
+//  Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .jp2 -jpeg200- file format
+//
+//
+
+test590.name: wcs-get-map-test590
+test590.description: Test a wcs get map call to omar server.
+test590.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test590.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geojp2_uint8&crs=EPSG%3A4326&bbox=-104.996263%2C38.968045%2C-104.773623%2C39.064114&coverage=88f20ed5e49dc1bc498578804bb901cc25cd084624a7c91b2d461ad0c8825334&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test590.jp2
+
+// ossim-info -i (image) dump:
+test590.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test590.jp2 > $(OBT_EXP_DIR)/test590-info.txt
+
+// Make a histogram:
+test590.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test590.jp2
+
+// The actual commands to test:
+
+// Get the image via wget:
+test590.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geojp2_uint8&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test590.jp2
+
+// ossim-info -i (image) dump:
+test590.test_command1: ossim-info -i $(OBT_OUT_DIR)/test590.jp2 > $(OBT_OUT_DIR)/test590-info.txt
+
+// Make a histogram:
+test590.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test590.jp2
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test590.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test590-info.txt $(OBT_OUT_DIR)/test590-info.txt
+
+// Test the histogram:
+test590.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test590.his $(OBT_OUT_DIR)/test590.his
+
+// End test590:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//This test will be testing the ortho PDF format
+//
+//
+//=====================================================================================================================================================================
+//
+//
+// ---
+// Begin test591:
+// --- 
+// Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .pdf - file format
+//
+//
+
+test591.name: wcs-get-map-test591
+test591.description: Test a wcs get map call to omar server.
+test591.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test591.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=application/pdf&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test591.pdf
+
+// ossim-info -i (image) dump:
+test591.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test591.pdf > $(OBT_EXP_DIR)/test591-info.txt
+
+// The actual commands to test:
+
+// Get the image via wget:
+test591.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=application/pdf&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test591.pdf
+
+// ossim-info -i (image) dump:
+test591.test_command1: ossim-info -i $(OBT_OUT_DIR)/test591.pdf > $(OBT_OUT_DIR)/test591-info.txt
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test591.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test591-info.txt $(OBT_OUT_DIR)/test591-info.txt
+
+// End test591:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//	This will test Ortho KLM
+//
+//
+//=====================================================================================================================================================================
+//
+//
+//
+// Image Path: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+// Image Test 
+// ---
+// Begin test592:
+// --- 
+
+test592.name: wms-get-map-test592
+test592.description: Test a wms get map call to omar server.
+test592.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test592.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default&request=GetKML" -O $(OBT_EXP_DIR)/test592.kml
+
+// ossim-info -i (image) dump:
+//test592.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test592.kml > $(OBT_EXP_DIR)/test592-info.txt
+
+// Make a histogram:
+//test592.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test592.kml
+
+// The actual commands to test:
+
+// Get the image via wget:
+test592.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default&request=GetKML" -O $(OBT_OUT_DIR)/test592.kml
+
+// ossim-info -i (image) dump:
+//test592.test_command1: ossim-info -i $(OBT_OUT_DIR)/test592.kml > $(OBT_OUT_DIR)/test592-info.txt
+
+// Make a histogram:
+//test592.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test592.kml
+
+// Post process commands for diffs and stuff:
+
+// Test diff the KML:
+test592.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test592.kml $(OBT_OUT_DIR)/test592.kml
+
+// Test the histogram:
+//test592.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test592.his $(OBT_OUT_DIR)/test592.his
+
+// End test592:
+//
+//=======================================================================================================================================================================
+//
+//
+//	This test will test the KML Super Overlay
+//
+//
+//=======================================================================================================================================================================
+//
+// Image Path:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+// Image Test Directory
+// ---
+// Begin test593:
+// --- 
+
+test593.name: wms-get-map-test593
+test593.description: Test a wms get map call to omar server.
+test593.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test593.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/superOverlay/createKml" --post-data "id=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test593.kml
+
+// ossim-info -i (image) dump:
+//test593.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test593.kml > $(OBT_EXP_DIR)/test593-info.txt
+
+// Make a histogram:
+//test593.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test593.kml
+
+// The actual commands to test:
+
+// Get the image via wget:
+test593.test_command0: wget "$(OMAR_TEST_URL)/omar/superOverlay/createKml" --post-data "id=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test593.kml
+
+// ossim-info -i (image) dump:
+//test593.test_command1: ossim-info -i $(OBT_OUT_DIR)/test593.kml > $(OBT_OUT_DIR)/test593-info.txt
+
+// Make a histogram:
+//test593.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test593.kml
+
+// Post process commands for diffs and stuff:
+
+// Test diff the KML:
+test593.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test593.kml $(OBT_OUT_DIR)/test593.kml
+
+// Test the histogram:
+//test593.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test593.his $(OBT_OUT_DIR)/test593.his
+
+// End test593:
+//
+//===========================================================================================================================================================================
+//
+//
+//
+//	This will test the KMZ PNG format
+//
+//
+//============================================================================================================================================================================
+//
+//
+//
+// Image Test Directory/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+// ---
+// Begin test594:
+// --- 
+
+test594.name: wms-get-map-test594
+test594.description: Test a wms get map call to omar server.
+test594.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test594.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test594
+test594.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test594
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test594.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&format=image/png&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test594/test.kmz
+
+// Unzip it:
+test594.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test594 -o $(OBT_EXP_DIR)/test594/test.kmz
+
+// Make a histogram:
+test594.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test594/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test594.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&format=image/png&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test594/test.kmz
+
+// Unzip it:
+test594.test_command1: unzip -d $(OBT_OUT_DIR)/test594 -o $(OBT_OUT_DIR)/test594/test.kmz
+
+// Make a histogram:
+test594.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test594/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test594.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test594/test.kmz $(OBT_OUT_DIR)/test594/test.kmz
+
+// Diff the histogram:
+test594.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test594/images/image.his $(OBT_OUT_DIR)/test594/images/image.his
+
+// End test594:
+//
+//=========================================================================================================================================================================
+//
+//
+//
+//	This test will test the KMZ PNG Transparent formant
+//
+//
+//
+//=========================================================================================================================================================================
+//
+//
+//
+// Image Test Directory /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+// ---
+// Begin test595:
+// --- 
+
+test595.name: wms-get-map-test595
+test595.description: Test a wms get map call to omar server.
+test595.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test595.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test595
+test595.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test595
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test595.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&format=image/png&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&transparent=true&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test595/test.kmz
+
+// Unzip it:
+test595.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test595 -o $(OBT_EXP_DIR)/test595/test.kmz
+
+// Make a histogram:
+test595.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test595/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test595.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&format=image/png&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&transparent=true&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test595/test.kmz
+
+// Unzip it:
+test595.test_command1: unzip -d $(OBT_OUT_DIR)/test595 -o $(OBT_OUT_DIR)/test595/test.kmz
+
+// Make a histogram:
+test595.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test595/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test595.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test595/test.kmz $(OBT_OUT_DIR)/test595/test.kmz
+
+// Diff the histogram:
+test595.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test595/images/image.his $(OBT_OUT_DIR)/test595/images/image.his
+
+// End test595:
+//
+//============================================================================================================================================================================
+//
+//
+//	This will test KMZ JPEG
+//
+//
+//============================================================================================================================================================================
+//
+//
+//
+/// Image Test Directory /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+// ---
+// Begin test596:
+// --- 
+
+test596.name: wms-get-map-test596
+test596.description: Test a wms get map call to omar server.
+test596.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test596.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test596
+test596.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test596
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test596.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&format=image/jpeg&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test596/test.kmz
+
+// Unzip it:
+test596.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test596 -o $(OBT_EXP_DIR)/test596/test.kmz
+
+// Make a histogram:
+test596.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test596/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test596.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=464&format=image/jpeg&srs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&layers=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test596/test.kmz
+
+// Unzip it:
+test596.test_command1: unzip -d $(OBT_OUT_DIR)/test596 -o $(OBT_OUT_DIR)/test596/test.kmz
+
+// Make a histogram:
+test596.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test596/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test596.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test596/test.kmz $(OBT_OUT_DIR)/test596/test.kmz
+
+// Diff the histogram:
+test596.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test596/images/image.his $(OBT_OUT_DIR)/test596/images/image.his
+
+// End test596:
+//
+//
+//=============================================================================================================================================================================
+//
+//
+//
+//	This will test the Muilt-Layer Geotiff    
+//                                                                                                                                                                                     
+//
+//=============================================================================================================================================================================
+//
+// ---
+// Begin test597:
+// --- 
+// Drobo Directory:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+
+test597.name: wcs-get-map-test597
+test597.description: Test a wcs get map call to omar server.
+test597.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test597.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=geotiff&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test597.tif
+
+// ossim-info -i (image) dump:
+test597.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test597.tif > $(OBT_EXP_DIR)/test597-info.txt
+
+// Make a histogram:
+test597.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test597.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test597.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=geotiff&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test597.tif
+
+// ossim-info -i (image) dump:
+test597.test_command1: ossim-info -i $(OBT_OUT_DIR)/test597.tif > $(OBT_OUT_DIR)/test597-info.txt
+
+// Make a histogram:
+test597.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test597.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test597.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test597-info.txt $(OBT_OUT_DIR)/test597-info.txt
+
+// Test the histogram:
+test597.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test597.his $(OBT_OUT_DIR)/test597.his
+
+// End test597:
+//
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//	This will test the Muilt-Layer Geotiff 8 bit image
+//
+//
+//=====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test598:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//	/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+// Copy of do-test-PT4.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+
+test598.name: wcs-get-map-test598
+test598.description: Test a wcs get map call to omar server.
+test598.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test598.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=geotiff_uint8&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test598.tif
+
+// ossim-info -i (image) dump:
+test598.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test598.tif > $(OBT_EXP_DIR)/test598-info.txt
+
+// Make a histogram:
+test598.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test598.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test598.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=geotiff_uint8&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test598.tif
+
+// ossim-info -i (image) dump:
+test598.test_command1: ossim-info -i $(OBT_OUT_DIR)/test598.tif > $(OBT_OUT_DIR)/test598-info.txt
+
+// Make a histogram:
+test598.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test598.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test598.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test598-info.txt $(OBT_OUT_DIR)/test598-info.txt
+
+// Test the histogram:
+test598.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test598.his $(OBT_OUT_DIR)/test598.his
+
+// End test598:
+//
+//
+//
+//====================================================================================================================================================================
+//
+//	This will test Muilt-layer JPEG
+//
+//=====================================================================================================================================================================
+//
+//
+// ---
+// Begin test599:
+// --- 
+// Image Directory:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .jpg file format
+//
+//
+
+test599.name: wcs-get-map-test599
+test599.description: Test a wcs get map call to omar server.
+test599.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test599.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=image/jpeg&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test599.jpg
+
+// ossim-info -i (image) dump:
+test599.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test599.jpg > $(OBT_EXP_DIR)/test599-info.txt
+
+// Make a histogram:
+test599.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test599.jpg
+
+// The actual commands to test:
+
+// Get the image via wget:
+test599.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=image/jpeg&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test599.jpg
+
+// ossim-info -i (image) dump:
+test599.test_command1: ossim-info -i $(OBT_OUT_DIR)/test599.jpg > $(OBT_OUT_DIR)/test599-info.txt
+
+// Make a histogram:
+test599.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test599.jpg
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test599.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test599-info.txt $(OBT_OUT_DIR)/test599-info.txt
+
+// Test the histogram:
+test599.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test599.his $(OBT_OUT_DIR)/test599.his
+
+// End test599:
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+//	This test will test the Muilt-Layer JPEG2000 format
+//
+//
+//====================================================================================================================================================================
+//
+// ---
+// Begin test600:
+// --- 
+// Directory: /data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .jp2 -jpeg200- file format
+//
+//
+
+test600.name: wcs-get-map-test600
+test600.description: Test a wcs get map call to omar server.
+test600.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test600.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=geojp2&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test600.jp2
+
+// ossim-info -i (image) dump:
+test600.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test600.jp2 > $(OBT_EXP_DIR)/test600-info.txt
+
+// Make a histogram:
+test600.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test600.jp2
+
+// The actual commands to test:
+
+// Get the image via wget:
+test600.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1274&height=484&format=geojp2&crs=EPSG%3A4326&bbox=-71.477119%2C42.249845%2C-71.420189%2C42.271446&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test600.jp2
+
+// ossim-info -i (image) dump:
+test600.test_command1: ossim-info -i $(OBT_OUT_DIR)/test600.jp2 > $(OBT_OUT_DIR)/test600-info.txt
+
+// Make a histogram:
+test600.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test600.jp2
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test600.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test600-info.txt $(OBT_OUT_DIR)/test600-info.txt
+
+// Test the histogram:
+test600.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test600.his $(OBT_OUT_DIR)/test600.his
+
+// End test600:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//	This will test the Muilt-Layer JPEG 2000 8 bit format
+//
+//
+//=====================================================================================================================================================================
+//
+// ---
+// Begin test601:
+// --- 
+//  Directory:/data1/test/data/unknown/coq2008_15cm/20428900_15.sid
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .jp2 -jpeg200- file format
+//
+//
+
+test601.name: wcs-get-map-test601
+test601.description: Test a wcs get map call to omar server.
+test601.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test601.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geojp2_uint8&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test601.jp2
+
+// ossim-info -i (image) dump:
+test601.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test601.jp2 > $(OBT_EXP_DIR)/test601-info.txt
+
+// Make a histogram:
+test601.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test601.jp2
+
+// The actual commands to test:
+
+// Get the image via wget:
+test601.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=464&format=geojp2_uint8&crs=EPSG%3A4326&bbox=-71.453383%2C42.261289%2C-71.441816%2C42.26628&coverage=1775ccd954a4fb576c543c2c5453ee0664919a9e4451323af7db942e9f4db233&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test601.jp2
+
+// ossim-info -i (image) dump:
+test601.test_command1: ossim-info -i $(OBT_OUT_DIR)/test601.jp2 > $(OBT_OUT_DIR)/test601-info.txt
+
+// Make a histogram:
+test601.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test601.jp2
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test601.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test601-info.txt $(OBT_OUT_DIR)/test601-info.txt
+
+// Test the histogram:
+test601.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test601.his $(OBT_OUT_DIR)/test601.his
+
+// End test601:
+//
+//
+//====================================================================================================================================================================
+//
+//

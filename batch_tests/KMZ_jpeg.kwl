@@ -1,0 +1,1190 @@
+//
+//
+//This test will test the KMZ JPEG format
+//
+//
+//====================================================================================================================
+//
+//00011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test393:
+// --- 
+
+test393.name: wms-get-map-test393
+test393.description: Test a wms get map call to omar server.
+test393.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test393.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test393
+test393.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test393
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test393.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=3.005483%2C36.710187%2C3.21807%2C36.802117&layers=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test393/test.kmz
+
+// Unzip it:
+test393.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test393 -o $(OBT_EXP_DIR)/test393/test.kmz
+
+// Make a histogram:
+test393.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test393/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test393.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=3.005483%2C36.710187%2C3.21807%2C36.802117&layers=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test393/test.kmz
+
+// Unzip it:
+test393.test_command1: unzip -d $(OBT_OUT_DIR)/test393 -o $(OBT_OUT_DIR)/test393/test.kmz
+
+// Make a histogram:
+test393.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test393/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test393.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test393/test.kmz $(OBT_OUT_DIR)/test393/test.kmz
+
+// Diff the histogram:
+test393.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test393/images/image.his $(OBT_OUT_DIR)/test393/images/image.his
+
+// End test393:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test394:
+// --- 
+
+test394.name: wms-get-map-test394
+test394.description: Test a wms get map call to omar server.
+test394.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test394.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test394
+test394.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test394
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test394.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=63.549033%2C26.983074%2C63.670309%2C27.035517&layers=7a98974f7489f0608e65a8f58c62f9168335045a0b94c2ec3e449afd19ad3819&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test394/test.kmz
+
+// Unzip it:
+test394.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test394 -o $(OBT_EXP_DIR)/test394/test.kmz
+
+// Make a histogram:
+test394.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test394/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test394.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=63.549033%2C26.983074%2C63.670309%2C27.035517&layers=7a98974f7489f0608e65a8f58c62f9168335045a0b94c2ec3e449afd19ad3819&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test394/test.kmz
+
+// Unzip it:
+test394.test_command1: unzip -d $(OBT_OUT_DIR)/test394 -o $(OBT_OUT_DIR)/test394/test.kmz
+
+// Make a histogram:
+test394.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test394/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test394.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test394/test.kmz $(OBT_OUT_DIR)/test394/test.kmz
+
+// Diff the histogram:
+test394.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test394/images/image.his $(OBT_OUT_DIR)/test394/images/image.his
+
+// End test394:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test395:
+// --- 
+
+test395.name: wms-get-map-test395
+test395.description: Test a wms get map call to omar server.
+test395.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test395.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test395
+test395.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test395
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test395.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=68.809428%2C33.708922%2C68.866951%2C33.733796&layers=f896583b198b9b24532429a5914c82c252e15827f3d92cf4812565094c6f9c9b&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test395/test.kmz
+
+// Unzip it:
+test395.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test395 -o $(OBT_EXP_DIR)/test395/test.kmz
+
+// Make a histogram:
+test395.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test395/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test395.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=68.809428%2C33.708922%2C68.866951%2C33.733796&layers=f896583b198b9b24532429a5914c82c252e15827f3d92cf4812565094c6f9c9b&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test395/test.kmz
+
+// Unzip it:
+test395.test_command1: unzip -d $(OBT_OUT_DIR)/test395 -o $(OBT_OUT_DIR)/test395/test.kmz
+
+// Make a histogram:
+test395.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test395/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test395.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test395/test.kmz $(OBT_OUT_DIR)/test395/test.kmz
+
+// Diff the histogram:
+test395.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test395/images/image.his $(OBT_OUT_DIR)/test395/images/image.his
+
+// End test395:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test396:
+// --- 
+
+test396.name: wms-get-map-test396
+test396.description: Test a wms get map call to omar server.
+test396.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test396.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test396
+test396.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test396
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test396.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=70.086333%2C34.952198%2C70.129369%2C34.970809&layers=afc5ad8c65e8f7f816229985ccdf55b775e0c0fa168c968e9395760d1fd78b04&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test396/test.kmz
+
+// Unzip it:
+test396.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test396 -o $(OBT_EXP_DIR)/test396/test.kmz
+
+// Make a histogram:
+test396.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test396/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test396.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=70.086333%2C34.952198%2C70.129369%2C34.970809&layers=afc5ad8c65e8f7f816229985ccdf55b775e0c0fa168c968e9395760d1fd78b04&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test396/test.kmz
+
+// Unzip it:
+test396.test_command1: unzip -d $(OBT_OUT_DIR)/test396 -o $(OBT_OUT_DIR)/test396/test.kmz
+
+// Make a histogram:
+test396.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test396/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test396.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test396/test.kmz $(OBT_OUT_DIR)/test396/test.kmz
+
+// Diff the histogram:
+test396.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test396/images/image.his $(OBT_OUT_DIR)/test396/images/image.his
+
+// End test396:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test397:
+// --- 
+
+test397.name: wms-get-map-test397
+test397.description: Test a wms get map call to omar server.
+test397.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test397.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test397
+test397.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test397
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test397.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-80.73335%2C28.02494%2C-80.70413%2C28.037576&layers=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test397/test.kmz
+
+// Unzip it:
+test397.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test397 -o $(OBT_EXP_DIR)/test397/test.kmz
+
+// Make a histogram:
+test397.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test397/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test397.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-80.73335%2C28.02494%2C-80.70413%2C28.037576&layers=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test397/test.kmz
+
+// Unzip it:
+test397.test_command1: unzip -d $(OBT_OUT_DIR)/test397 -o $(OBT_OUT_DIR)/test397/test.kmz
+
+// Make a histogram:
+test397.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test397/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test397.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test397/test.kmz $(OBT_OUT_DIR)/test397/test.kmz
+
+// Diff the histogram:
+test397.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test397/images/image.his $(OBT_OUT_DIR)/test397/images/image.his
+
+// End test397:
+//
+//===================================================================================================================//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test398:
+// --- 
+
+test398.name: wms-get-map-test398
+test398.description: Test a wms get map call to omar server.
+test398.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test398.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test398
+test398.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test398
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test398.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-80.659042%2C28.095244%2C-80.632401%2C28.106764&layers=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test398/test.kmz
+
+// Unzip it:
+test398.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test398 -o $(OBT_EXP_DIR)/test398/test.kmz
+
+// Make a histogram:
+test398.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test398/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test398.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-80.659042%2C28.095244%2C-80.632401%2C28.106764&layers=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test398/test.kmz
+
+// Unzip it:
+test398.test_command1: unzip -d $(OBT_OUT_DIR)/test398 -o $(OBT_OUT_DIR)/test398/test.kmz
+
+// Make a histogram:
+test398.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test398/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test398.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test398/test.kmz $(OBT_OUT_DIR)/test398/test.kmz
+
+// Diff the histogram:
+test398.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test398/images/image.his $(OBT_OUT_DIR)/test398/images/image.his
+
+// End test398:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test399:
+// --- 
+
+test399.name: wms-get-map-test399
+test399.description: Test a wms get map call to omar server.
+test399.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test399.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test399
+test399.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test399
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test399.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=539&height=360&format=image/png&srs=EPSG%3A4326&bbox=-80.66603%2C28.087969%2C-80.647571%2C28.100286&layers=2d98892d4ced634599f41e0826bd3eb881e5a05dc8e438a3dcc639b392c531d3&transparent=true&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test399/test.kmz
+
+// Unzip it:
+test399.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test399 -o $(OBT_EXP_DIR)/test399/test.kmz
+
+// Make a histogram:
+test399.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test399/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test399.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "wms?width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-80.724812%2C28.028632%2C-80.712668%2C28.033884&layers=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test399/test.kmz
+
+// Unzip it:
+test399.test_command1: unzip -d $(OBT_OUT_DIR)/test399 -o $(OBT_OUT_DIR)/test399/test.kmz
+
+// Make a histogram:
+test399.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test399/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test399.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test399/test.kmz $(OBT_OUT_DIR)/test399/test.kmz
+
+// Diff the histogram:
+test399.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test399/images/image.his $(OBT_OUT_DIR)/test399/images/image.his
+
+// End test399:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test400:
+// --- 
+
+test400.name: wms-get-map-test400
+test400.description: Test a wms get map call to omar server.
+test400.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test400.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test400
+test400.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test400
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test400.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-116.156571%2C36.806703%2C-116.151663%2C36.808826&layers=9eba33cbebfeebf0a3f02ebc165c20fd75fec0454147d884d1170ae1c966eb15&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test400/test.kmz
+
+// Unzip it:
+test400.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test400 -o $(OBT_EXP_DIR)/test400/test.kmz
+
+// Make a histogram:
+test400.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test400/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test400.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-116.156571%2C36.806703%2C-116.151663%2C36.808826&layers=9eba33cbebfeebf0a3f02ebc165c20fd75fec0454147d884d1170ae1c966eb15&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test400/test.kmz
+
+// Unzip it:
+test400.test_command1: unzip -d $(OBT_OUT_DIR)/test400 -o $(OBT_OUT_DIR)/test400/test.kmz
+
+// Make a histogram:
+test400.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test400/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test400.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test400/test.kmz $(OBT_OUT_DIR)/test400/test.kmz
+
+// Diff the histogram:
+test400.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test400/images/image.his $(OBT_OUT_DIR)/test400/images/image.his
+
+// End test400:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test401:
+// --- 
+
+test401.name: wms-get-map-test401
+test401.description: Test a wms get map call to omar server.
+test401.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test401.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test401
+test401.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test401
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test401.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-51.170997%2C-11.073944%2C-50.829003%2C-10.926056&layers=f452fd7061245b34c66f21f473d11b90a706046d12a8842f45f62bdc458a025c&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test401/test.kmz
+
+// Unzip it:
+test401.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test401 -o $(OBT_EXP_DIR)/test401/test.kmz
+
+// Make a histogram:
+test401.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test401/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test401.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-51.170997%2C-11.073944%2C-50.829003%2C-10.926056&layers=f452fd7061245b34c66f21f473d11b90a706046d12a8842f45f62bdc458a025c&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test401/test.kmz
+
+// Unzip it:
+test401.test_command1: unzip -d $(OBT_OUT_DIR)/test401 -o $(OBT_OUT_DIR)/test401/test.kmz
+
+// Make a histogram:
+test401.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test401/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test401.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test401/test.kmz $(OBT_OUT_DIR)/test401/test.kmz
+
+// Diff the histogram:
+test401.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test401/images/image.his $(OBT_OUT_DIR)/test401/images/image.his
+
+// End test401:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test402:
+// --- 
+
+test402.name: wms-get-map-test402
+test402.description: Test a wms get map call to omar server.
+test402.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test402.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test402
+test402.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test402
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test402.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=78.097475%2C38.609719%2C79.902525%2C39.390281&layers=8370d10f178dcd906a04cc8c0bbf7e80e12b4f1dca6e54b6083f8288594a528a&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test402/test.kmz
+
+// Unzip it:
+test402.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test402 -o $(OBT_EXP_DIR)/test402/test.kmz
+
+// Make a histogram:
+test402.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test402/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test402.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=78.097475%2C38.609719%2C79.902525%2C39.390281&layers=8370d10f178dcd906a04cc8c0bbf7e80e12b4f1dca6e54b6083f8288594a528a&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test402/test.kmz
+
+// Unzip it:
+test402.test_command1: unzip -d $(OBT_OUT_DIR)/test402 -o $(OBT_OUT_DIR)/test402/test.kmz
+
+// Make a histogram:
+test402.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test402/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test402.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test402/test.kmz $(OBT_OUT_DIR)/test402/test.kmz
+
+// Diff the histogram:
+test402.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test402/images/image.his $(OBT_OUT_DIR)/test402/images/image.his
+
+// End test402:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test403:
+// --- 
+
+test403.name: wms-get-map-test403
+test403.description: Test a wms get map call to omar server.
+test403.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test403.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test403
+test403.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test403
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test403.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=12.097475%2C-19.390281%2C13.902525%2C-18.609719&layers=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test403/test.kmz
+
+// Unzip it:
+test403.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test403 -o $(OBT_EXP_DIR)/test403/test.kmz
+
+// Make a histogram:
+test403.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test403/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test403.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=12.097475%2C-19.390281%2C13.902525%2C-18.609719&layers=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test403/test.kmz
+
+// Unzip it:
+test403.test_command1: unzip -d $(OBT_OUT_DIR)/test403 -o $(OBT_OUT_DIR)/test403/test.kmz
+
+// Make a histogram:
+test403.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test403/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test403.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test403/test.kmz $(OBT_OUT_DIR)/test403/test.kmz
+
+// Diff the histogram:
+test403.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test403/images/image.his $(OBT_OUT_DIR)/test403/images/image.his
+
+// End test403:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test404:
+// --- 
+
+test404.name: wms-get-map-test404
+test404.description: Test a wms get map call to omar server.
+test404.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test404.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test404
+test404.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test404
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test404.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-74.198754%2C43.824325%2C-74.193858%2C43.826442&layers=4c3f6d19757e3e942a131a00e55c580578cc8b5f4f8c375d3bd6d97561769ec8&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test404/test.kmz
+
+// Unzip it:
+test404.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test404 -o $(OBT_EXP_DIR)/test404/test.kmz
+
+// Make a histogram:
+test404.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test404/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test404.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-74.198754%2C43.824325%2C-74.193858%2C43.826442&layers=4c3f6d19757e3e942a131a00e55c580578cc8b5f4f8c375d3bd6d97561769ec8&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test404/test.kmz
+
+// Unzip it:
+test404.test_command1: unzip -d $(OBT_OUT_DIR)/test404 -o $(OBT_OUT_DIR)/test404/test.kmz
+
+// Make a histogram:
+test404.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test404/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test404.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test404/test.kmz $(OBT_OUT_DIR)/test404/test.kmz
+
+// Diff the histogram:
+test404.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test404/images/image.his $(OBT_OUT_DIR)/test404/images/image.his
+
+// End test404:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test405:
+// --- 
+
+test405.name: wms-get-map-test405
+test405.description: Test a wms get map call to omar server.
+test405.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test405.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test405
+test405.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test405
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test405.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=12.829003%2C-19.073944%2C13.170997%2C-18.926056&layers=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test405/test.kmz
+
+// Unzip it:
+test405.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test405 -o $(OBT_EXP_DIR)/test405/test.kmz
+
+// Make a histogram:
+test405.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test405/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test405.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=12.829003%2C-19.073944%2C13.170997%2C-18.926056&layers=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test405/test.kmz
+
+// Unzip it:
+test405.test_command1: unzip -d $(OBT_OUT_DIR)/test405 -o $(OBT_OUT_DIR)/test405/test.kmz
+
+// Make a histogram:
+test405.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test405/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test405.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test405/test.kmz $(OBT_OUT_DIR)/test405/test.kmz
+
+// Diff the histogram:
+test405.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test405/images/image.his $(OBT_OUT_DIR)/test405/images/image.his
+
+// End test405:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test406:
+// --- 
+
+test406.name: wms-get-map-test406
+test406.description: Test a wms get map call to omar server.
+test406.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test406.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test406
+test406.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test406
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test406.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=44.569746%2C33.220741%2C44.636901%2C33.249781&layers=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default " -O $(OBT_EXP_DIR)/test406/test.kmz
+
+// Unzip it:
+test406.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test406 -o $(OBT_EXP_DIR)/test406/test.kmz
+
+// Make a histogram:
+test406.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test406/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test406.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=44.569746%2C33.220741%2C44.636901%2C33.249781&layers=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default " -O $(OBT_OUT_DIR)/test406/test.kmz
+
+// Unzip it:
+test406.test_command1: unzip -d $(OBT_OUT_DIR)/test406 -o $(OBT_OUT_DIR)/test406/test.kmz
+
+// Make a histogram:
+test406.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test406/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test406.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test406/test.kmz $(OBT_OUT_DIR)/test406/test.kmz
+
+// Diff the histogram:
+test406.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test406/images/image.his $(OBT_OUT_DIR)/test406/images/image.his
+
+// End test406:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test407:
+// --- 
+
+test407.name: wms-get-map-test407
+test407.description: Test a wms get map call to omar server.
+test407.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test407.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test407
+test407.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test407
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test407.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=44.529667%2C33.20341%2C44.67698%2C33.267113&layers=8cebacaa83a453d515d9544cb875a2b90da72eb2e2cf91acbd9579e57d953b21&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test407/test.kmz
+
+// Unzip it:
+test407.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test407 -o $(OBT_EXP_DIR)/test407/test.kmz
+
+// Make a histogram:
+test407.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test407/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test407.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=44.529667%2C33.20341%2C44.67698%2C33.267113&layers=8cebacaa83a453d515d9544cb875a2b90da72eb2e2cf91acbd9579e57d953b21&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test407/test.kmz
+
+// Unzip it:
+test407.test_command1: unzip -d $(OBT_OUT_DIR)/test407 -o $(OBT_OUT_DIR)/test407/test.kmz
+
+// Make a histogram:
+test407.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test407/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test407.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test407/test.kmz $(OBT_OUT_DIR)/test407/test.kmz
+
+// Diff the histogram:
+test407.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test407/images/image.his $(OBT_OUT_DIR)/test407/images/image.his
+
+// End test407:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test408:
+// --- 
+
+test408.name: wms-get-map-test408
+test408.description: Test a wms get map call to omar server.
+test408.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test408.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test408
+test408.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test408
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test408.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.222616%2C-42.877633%2C147.29625%2C-42.845791&layers=ce34f3c591c4c52702bae0dd02837c1eb4bc28a066bd88f07a5dd9fcdb100886&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test408/test.kmz
+
+// Unzip it:
+test408.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test408 -o $(OBT_EXP_DIR)/test408/test.kmz
+
+// Make a histogram:
+test408.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test408/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test408.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.222616%2C-42.877633%2C147.29625%2C-42.845791&layers=ce34f3c591c4c52702bae0dd02837c1eb4bc28a066bd88f07a5dd9fcdb100886&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test408/test.kmz
+
+// Unzip it:
+test408.test_command1: unzip -d $(OBT_OUT_DIR)/test408 -o $(OBT_OUT_DIR)/test408/test.kmz
+
+// Make a histogram:
+test408.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test408/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test408.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test408/test.kmz $(OBT_OUT_DIR)/test408/test.kmz
+
+// Diff the histogram:
+test408.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test408/images/image.his $(OBT_OUT_DIR)/test408/images/image.his
+
+// End test408:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test409:
+// --- 
+
+test409.name: wms-get-map-test409
+test409.description: Test a wms get map call to omar server.
+test409.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test409.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test409
+test409.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test409
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test409.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.217157%2C-42.879987%2C147.301741%2C-42.843411&layers=c3d4c64f26e73807e91fa36a36632636ba53be4adbcbb8ff6cf0ad2f9ed216c0&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test409/test.kmz
+
+// Unzip it:
+test409.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test409 -o $(OBT_EXP_DIR)/test409/test.kmz
+
+// Make a histogram:
+test409.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test409/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test409.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.217157%2C-42.879987%2C147.301741%2C-42.843411&layers=c3d4c64f26e73807e91fa36a36632636ba53be4adbcbb8ff6cf0ad2f9ed216c0&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test409/test.kmz
+
+// Unzip it:
+test409.test_command1: unzip -d $(OBT_OUT_DIR)/test409 -o $(OBT_OUT_DIR)/test409/test.kmz
+
+// Make a histogram:
+test409.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test409/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test409.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test409/test.kmz $(OBT_OUT_DIR)/test409/test.kmz
+
+// Diff the histogram:
+test409.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test409/images/image.his $(OBT_OUT_DIR)/test409/images/image.his
+
+// End test409:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test410:
+// --- 
+
+test410.name: wms-get-map-test410
+test410.description: Test a wms get map call to omar server.
+test410.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test410.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test410
+test410.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test410
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test410.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.172664%2C-42.878954%2C147.257234%2C-42.842383&layers=97a5357615f405956148933c44bf289eca37b5a1a83b66697b51b7b7cc53719f&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test410/test.kmz
+
+// Unzip it:
+test410.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test410 -o $(OBT_EXP_DIR)/test410/test.kmz
+
+// Make a histogram:
+test410.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test410/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test410.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.172664%2C-42.878954%2C147.257234%2C-42.842383&layers=97a5357615f405956148933c44bf289eca37b5a1a83b66697b51b7b7cc53719f&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test410/test.kmz
+
+// Unzip it:
+test410.test_command1: unzip -d $(OBT_OUT_DIR)/test410 -o $(OBT_OUT_DIR)/test410/test.kmz
+
+// Make a histogram:
+test410.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test410/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test410.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test410/test.kmz $(OBT_OUT_DIR)/test410/test.kmz
+
+// Diff the histogram:
+test410.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test410/images/image.his $(OBT_OUT_DIR)/test410/images/image.his
+
+// End test410:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test411:
+// --- 
+
+test411.name: wms-get-map-test411
+test411.description: Test a wms get map call to omar server.
+test411.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test411.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test411
+test411.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test411
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test411.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.262816%2C-42.879443%2C147.347442%2C-42.842848&layers=71be491edf925f55d2b5a49f4b8031462ef722920739e2515cd575c108caa8de&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test411/test.kmz
+
+// Unzip it:
+test411.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test411 -o $(OBT_EXP_DIR)/test411/test.kmz
+
+// Make a histogram:
+test411.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test411/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test411.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.262816%2C-42.879443%2C147.347442%2C-42.842848&layers=71be491edf925f55d2b5a49f4b8031462ef722920739e2515cd575c108caa8de&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test411/test.kmz
+
+// Unzip it:
+test411.test_command1: unzip -d $(OBT_OUT_DIR)/test411 -o $(OBT_OUT_DIR)/test411/test.kmz
+
+// Make a histogram:
+test411.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test411/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test411.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test411/test.kmz $(OBT_OUT_DIR)/test411/test.kmz
+
+// Diff the histogram:
+test411.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test411/images/image.his $(OBT_OUT_DIR)/test411/images/image.his
+
+// End test411:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test412:
+// --- 
+
+test412.name: wms-get-map-test412
+test412.description: Test a wms get map call to omar server.
+test412.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test412.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test412
+test412.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test412
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test412.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.178128%2C-42.876584%2C147.251751%2C-42.844747&layers=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test412/test.kmz
+
+// Unzip it:
+test412.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test412 -o $(OBT_EXP_DIR)/test412/test.kmz
+
+// Make a histogram:
+test412.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test412/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test412.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.178128%2C-42.876584%2C147.251751%2C-42.844747&layers=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test412/test.kmz
+
+// Unzip it:
+test412.test_command1: unzip -d $(OBT_OUT_DIR)/test412 -o $(OBT_OUT_DIR)/test412/test.kmz
+
+// Make a histogram:
+test412.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test412/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test412.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test412/test.kmz $(OBT_OUT_DIR)/test412/test.kmz
+
+// Diff the histogram:
+test412.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test412/images/image.his $(OBT_OUT_DIR)/test412/images/image.his
+
+// End test412:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test413:
+// --- 
+
+test413.name: wms-get-map-test413
+test413.description: Test a wms get map call to omar server.
+test413.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test413.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test413
+test413.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test413
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test413.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.178128%2C-42.876584%2C147.251751%2C-42.844747&layers=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test413/test.kmz
+
+// Unzip it:
+test413.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test413 -o $(OBT_EXP_DIR)/test413/test.kmz
+
+// Make a histogram:
+test413.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test413/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test413.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=147.178128%2C-42.876584%2C147.251751%2C-42.844747&layers=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test413/test.kmz
+
+// Unzip it:
+test413.test_command1: unzip -d $(OBT_OUT_DIR)/test413 -o $(OBT_OUT_DIR)/test413/test.kmz
+
+// Make a histogram:
+test413.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test413/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test413.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test413/test.kmz $(OBT_OUT_DIR)/test413/test.kmz
+
+// Diff the histogram:
+test413.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test413/images/image.his $(OBT_OUT_DIR)/test413/images/image.his
+
+// End test413:
+//
+//===================================================================================================================
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test414:
+// --- 
+
+test414.name: wms-get-map-test414
+test414.description: Test a wms get map call to omar server.
+test414.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test414.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test414
+test414.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test414
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test414.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-71.074084%2C42.725337%2C-71.071934%2C42.726267&layers=ba03d61a94257529a848f09b70520c2107abbde9a63aa245a55b63a3525ce315&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test414/test.kmz
+
+// Unzip it:
+test414.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test414 -o $(OBT_EXP_DIR)/test414/test.kmz
+
+// Make a histogram:
+test414.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test414/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test414.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-71.074084%2C42.725337%2C-71.071934%2C42.726267&layers=ba03d61a94257529a848f09b70520c2107abbde9a63aa245a55b63a3525ce315&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test414/test.kmz
+
+// Unzip it:
+test414.test_command1: unzip -d $(OBT_OUT_DIR)/test414 -o $(OBT_OUT_DIR)/test414/test.kmz
+
+// Make a histogram:
+test414.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test414/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test414.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test414/test.kmz $(OBT_OUT_DIR)/test414/test.kmz
+
+// Diff the histogram:
+test414.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test414/images/image.his $(OBT_OUT_DIR)/test414/images/image.his
+
+// End test414:
+//
+//===================================================================================================================
+//
+//
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test415:
+// --- 
+
+test415.name: wms-get-map-test415
+test415.description: Test a wms get map call to omar server.
+test415.enabled: 1
+
+// Preprocess commands:
+
+// Create sub directory so we can unzip the kmz which has a generic "image" sub dir.
+test415.preprocess_command0: $(MKDIR_CMD) $(OBT_EXP_DIR)/test415
+test415.preprocess_command1: $(MKDIR_CMD) $(OBT_OUT_DIR)/test415
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test415.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-90.450822%2C41.518265%2C-89.346384%2C41.99586&layers=187259ca5374948b56f43941d2e4e89fd59dca41c0faab719f94508e1a258a03&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_EXP_DIR)/test415/test.kmz
+
+// Unzip it:
+test415.expected_results_command1: unzip -d $(OBT_EXP_DIR)/test415 -o $(OBT_EXP_DIR)/test415/test.kmz
+
+// Make a histogram:
+test415.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test415/images/image.png
+
+// The actual commands to test:
+
+// Get the image via wget:
+test415.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wms" --post-data "width=1074&height=465&format=image/jpeg&srs=EPSG%3A4326&bbox=-90.450822%2C41.518265%2C-89.346384%2C41.99586&layers=187259ca5374948b56f43941d2e4e89fd59dca41c0faab719f94508e1a258a03&transparent=false&request=GetKMZ&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&quicklook=false&bands=default" -O $(OBT_OUT_DIR)/test415/test.kmz
+
+// Unzip it:
+test415.test_command1: unzip -d $(OBT_OUT_DIR)/test415 -o $(OBT_OUT_DIR)/test415/test.kmz
+
+// Make a histogram:
+test415.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test415/images/image.png
+
+// Post process commands for diffs and stuff:
+
+// Diff the kml:
+test415.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test415/test.kmz $(OBT_OUT_DIR)/test415/test.kmz
+
+// Diff the histogram:
+test415.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test415/images/image.his $(OBT_OUT_DIR)/test415/images/image.his
+
+// End test415:
+//
+//===================================================================================================================

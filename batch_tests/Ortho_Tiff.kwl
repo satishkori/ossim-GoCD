@@ -1,0 +1,1033 @@
+//
+//
+//
+//This will test the Orthoo Geotiff 8 bit image
+//
+//
+//=======================================================================================================================================================================
+//
+//
+// ---
+// Begin test445:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+//This test has Interpole set to nearest neighbor
+//
+// Sharpen is set to Light
+//
+// DRA is set to Linear_1std
+//
+//Region is set to Global
+//
+//
+//
+//
+
+test445.name: wcs-get-map-test445
+test445.description: Test a wcs get map call to omar server.
+test445.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test445.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0&contrast=1&sharpen_mode=light&stretch_mode=linear_1std_from_mean&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test445.tif
+
+// ossim-info -i (image) dump:
+test445.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test445.tif > $(OBT_EXP_DIR)/test445-info.txt
+
+// Make a histogram:
+test445.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test445.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test445.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0&contrast=1&sharpen_mode=light&stretch_mode=linear_1std_from_mean&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test445.tif
+
+// ossim-info -i (image) dump:
+test445.test_command1: ossim-info -i $(OBT_OUT_DIR)/test445.tif > $(OBT_OUT_DIR)/test445-info.txt
+
+// Make a histogram:
+test445.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test445.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test445.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test445-info.txt $(OBT_OUT_DIR)/test445-info.txt
+
+// Test the histogram:
+test445.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test445.his $(OBT_OUT_DIR)/test445.his
+
+// End test445:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// ---
+// Begin test446:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+// This test has Interpole set to cubic
+//
+// Brightness is set to -0.32
+//
+// Sharpen is set to Heavy
+//
+// DRA is set to  linear_2std
+//
+// Region is set to Global
+//
+// Band set to color - red = 1, Green = 2 , Blue = 0
+//
+//
+
+test446.name: wcs-get-map-test446
+test446.description: Test a wcs get map call to omar server.
+test446.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test446.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0.32&contrast=1&sharpen_mode=heavy&stretch_mode=linear_2std_from_mean&stretch_mode_region=global&interpolation=bilinear&bands=1%2C2%2C0&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test446.tif
+
+// ossim-info -i (image) dump:
+test446.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test446.tif > $(OBT_EXP_DIR)/test446-info.txt
+
+// Make a histogram:
+test446.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test446.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test446.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0.32&contrast=1&sharpen_mode=heavy&stretch_mode=linear_2std_from_mean&stretch_mode_region=global&interpolation=bilinear&bands=1%2C2%2C0&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test446.tif
+
+// ossim-info -i (image) dump:
+test446.test_command1: ossim-info -i $(OBT_OUT_DIR)/test446.tif > $(OBT_OUT_DIR)/test446-info.txt
+
+// Make a histogram:
+test446.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test446.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test446.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test446-info.txt $(OBT_OUT_DIR)/test446-info.txt
+
+// Test the histogram:
+test446.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test446.his $(OBT_OUT_DIR)/test446.his
+
+// End test446:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// ---
+// Begin test447:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to Linear_3std
+//
+//Region is set to Global
+//
+//Band set to color - red = 2, Green = 0 , Blue = 1
+//
+//
+
+test447.name: wcs-get-map-test447
+test447.description: Test a wcs get map call to omar server.
+test447.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test447.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=linear_3std_from_mean&stretch_mode_region=global&interpolation=bilinear&bands=2%2C0%2C1&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test447.tif
+
+// ossim-info -i (image) dump:
+test447.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test447.tif > $(OBT_EXP_DIR)/test447-info.txt
+
+// Make a histogram:
+test447.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test447.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test447.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=linear_3std_from_mean&stretch_mode_region=global&interpolation=bilinear&bands=2%2C0%2C1&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test447.tif
+
+// ossim-info -i (image) dump:
+test447.test_command1: ossim-info -i $(OBT_OUT_DIR)/test447.tif > $(OBT_OUT_DIR)/test447-info.txt
+
+// Make a histogram:
+test447.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test447.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test447.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test447-info.txt $(OBT_OUT_DIR)/test447-info.txt
+
+// Test the histogram:
+test447.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test447.his $(OBT_OUT_DIR)/test447.his
+
+// End test447:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// ---
+// Begin test448:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//Band set to color - red = 0, Green = 1 , Blue = 2
+//
+//
+
+test448.name: wcs-get-map-test448
+test448.description: Test a wcs get map call to omar server.
+test448.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test448.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0%2C1%2C2&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test448.tif
+
+// ossim-info -i (image) dump:
+test448.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test448.tif > $(OBT_EXP_DIR)/test448-info.txt
+
+// Make a histogram:
+test448.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test448.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test448.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0%2C1%2C2&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test448.tif
+
+// ossim-info -i (image) dump:
+test448.test_command1: ossim-info -i $(OBT_OUT_DIR)/test448.tif > $(OBT_OUT_DIR)/test448-info.txt
+
+// Make a histogram:
+test448.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test448.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test448.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test448-info.txt $(OBT_OUT_DIR)/test448-info.txt
+
+// Test the histogram:
+test448.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test448.his $(OBT_OUT_DIR)/test448.his
+
+// End test448:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// ---
+// Begin test450:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//Rotate is set to 166
+//
+//Band set to color - Gray Band 0
+//
+//
+
+test450.name: wcs-get-map-test450
+test450.description: Test a wcs get map call to omar server.
+test450.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test450.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test450.tif
+
+// ossim-info -i (image) dump:
+test450.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test450.tif > $(OBT_EXP_DIR)/test450-info.txt
+
+// Make a histogram:
+test450.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test450.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test450.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test450.tif
+
+// ossim-info -i (image) dump:
+test450.test_command1: ossim-info -i $(OBT_OUT_DIR)/test450.tif > $(OBT_OUT_DIR)/test450-info.txt
+
+// Make a histogram:
+test450.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test450.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test450.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test450-info.txt $(OBT_OUT_DIR)/test450-info.txt
+
+// Test the histogram:
+test450.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test450.his $(OBT_OUT_DIR)/test450.his
+
+// End test450:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+//
+// ---
+// Begin test451:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//
+//Band set to color - Gray Band 1
+//
+//
+
+test451.name: wcs-get-map-test451
+test451.description: Test a wcs get map call to omar server.
+test451.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test451.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=1&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test451.tif
+
+// ossim-info -i (image) dump:
+test451.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test451.tif > $(OBT_EXP_DIR)/test451-info.txt
+
+// Make a histogram:
+test451.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test451.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test451.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=1&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test451.tif
+
+// ossim-info -i (image) dump:
+test451.test_command1: ossim-info -i $(OBT_OUT_DIR)/test451.tif > $(OBT_OUT_DIR)/test451-info.txt
+
+// Make a histogram:
+test451.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test451.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test451.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test451-info.txt $(OBT_OUT_DIR)/test451-info.txt
+
+// Test the histogram:
+test451.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test451.his $(OBT_OUT_DIR)/test451.his
+
+// End test451:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// ---
+// Begin test452:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a Ortho .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//
+//Band set to color - Gray Band 2
+//
+//
+
+test452.name: wcs-get-map-test452
+test452.description: Test a wcs get map call to omar server.
+test452.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test452.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=2&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test452.tif
+
+// ossim-info -i (image) dump:
+test452.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test452.tif > $(OBT_EXP_DIR)/test452-info.txt
+
+// Make a histogram:
+test452.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test452.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test452.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=2&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test452.tif
+
+// ossim-info -i (image) dump:
+test452.test_command1: ossim-info -i $(OBT_OUT_DIR)/test452.tif > $(OBT_OUT_DIR)/test452-info.txt
+
+// Make a histogram:
+test452.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test452.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test452.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test452-info.txt $(OBT_OUT_DIR)/test452-info.txt
+
+// Test the histogram:
+test452.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test452.his $(OBT_OUT_DIR)/test452.his
+
+// End test452:
+//
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//This will test the Orthoo Geotiff 8 bit image
+//
+//
+//====================================================================================================================================================================
+//
+//
+// ---
+// Begin test453:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+//This test has Interpole set to nearest neighbor
+//
+// Sharpen is set to Light
+//
+// DRA is set to Linear_1std
+//
+//Region is set to Global
+//
+//
+//
+
+test453.name: wcs-get-map-test453
+test453.description: Test a wcs get map call to omar server.
+test453.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test453.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0&contrast=1&sharpen_mode=light&stretch_mode=linear_1std_from_mean&stretch_mode_region=global&interpolation=nearest%20neighbo&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test453.tif
+
+// ossim-info -i (image) dump:
+test453.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test453.tif > $(OBT_EXP_DIR)/test453-info.txt
+
+// Make a histogram:
+test453.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test453.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test453.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0&contrast=1&sharpen_mode=light&stretch_mode=linear_1std_from_mean&stretch_mode_region=global&interpolation=nearest%20neighbo&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test453.tif
+
+// ossim-info -i (image) dump:
+test453.test_command1: ossim-info -i $(OBT_OUT_DIR)/test453.tif > $(OBT_OUT_DIR)/test453-info.txt
+
+// Make a histogram:
+test453.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test453.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test453.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test453-info.txt $(OBT_OUT_DIR)/test453-info.txt
+
+// Test the histogram:
+test453.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test453.his $(OBT_OUT_DIR)/test453.his
+
+// End test453:
+//
+//
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//This will test the Orthoo Geotiff 8 bit image
+//
+//
+//============================================================================================================================================================
+//
+//
+// ---
+// Begin test454:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+// This test has Interpole set to cubic
+//
+// Brightness is set to -0.32
+//
+// Sharpen is set to Heavy
+//
+// DRA is set to  linear_2std
+//
+// Region is set to Global
+//
+// Band set to color - red = 1, Green = 2 , Blue = 0
+//
+//
+//
+
+test454.name: wcs-get-map-test454
+test454.description: Test a wcs get map call to omar server.
+test454.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test454.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1&sharpen_mode=heavy&stretch_mode=linear_2std_from_mean&stretch_mode_region=global&interpolation=nearest%20neighbo&bands=1%2C2%2C0&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test454.tif
+
+// ossim-info -i (image) dump:
+test454.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test454.tif > $(OBT_EXP_DIR)/test454-info.txt
+
+// Make a histogram:
+test454.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test454.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test454.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1&sharpen_mode=heavy&stretch_mode=linear_2std_from_mean&stretch_mode_region=global&interpolation=nearest%20neighbo&bands=1%2C2%2C0&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test454.tif
+
+// ossim-info -i (image) dump:
+test454.test_command1: ossim-info -i $(OBT_OUT_DIR)/test454.tif > $(OBT_OUT_DIR)/test454-info.txt
+
+// Make a histogram:
+test454.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test454.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test454.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test454-info.txt $(OBT_OUT_DIR)/test454-info.txt
+
+// Test the histogram:
+test454.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test454.his $(OBT_OUT_DIR)/test454.his
+
+// End test454:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+// ---
+// Begin test455:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to Linear_3std
+//
+//Region is set to Global
+//
+//Band set to color - red = 2, Green = 0 , Blue = 1
+//
+//
+
+test455.name: wcs-get-map-test455
+test455.description: Test a wcs get map call to omar server.
+test455.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test455.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=linear_3std_from_mean&stretch_mode_region=global&interpolation=sinc&bands=2%2C0%2C1&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test455.tif
+
+// ossim-info -i (image) dump:
+test455.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test455.tif > $(OBT_EXP_DIR)/test455-info.txt
+
+// Make a histogram:
+test455.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test455.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test455.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=linear_3std_from_mean&stretch_mode_region=global&interpolation=sinc&bands=2%2C0%2C1&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test455.tif
+
+// ossim-info -i (image) dump:
+test455.test_command1: ossim-info -i $(OBT_OUT_DIR)/test455.tif > $(OBT_OUT_DIR)/test455-info.txt
+
+// Make a histogram:
+test455.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test455.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test455.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test455-info.txt $(OBT_OUT_DIR)/test455-info.txt
+
+// Test the histogram:
+test455.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test455.his $(OBT_OUT_DIR)/test455.his
+
+// End test455:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+// ---
+// Begin test456:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//Band set to color - red = 0, Green = 1 , Blue = 2
+//
+//
+
+test456.name: wcs-get-map-test456
+test456.description: Test a wcs get map call to omar server.
+test456.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test456.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0%2C1%2C2&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test456.tif
+
+// ossim-info -i (image) dump:
+test456.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test456.tif > $(OBT_EXP_DIR)/test456-info.txt
+
+// Make a histogram:
+test456.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test456.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test456.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0%2C1%2C2&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test456.tif
+
+// ossim-info -i (image) dump:
+test456.test_command1: ossim-info -i $(OBT_OUT_DIR)/test456.tif > $(OBT_OUT_DIR)/test456-info.txt
+
+// Make a histogram:
+test456.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test456.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test456.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test456-info.txt $(OBT_OUT_DIR)/test456-info.txt
+
+// Test the histogram:
+test456.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test456.his $(OBT_OUT_DIR)/test456.his
+
+// End test456:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+// ---
+// Begin test457:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//Band set to color - Gray 0
+//
+//
+
+test457.name: wcs-get-map-test457
+test457.description: Test a wcs get map call to omar server.
+test457.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test457.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test457.tif
+
+// ossim-info -i (image) dump:
+test457.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test457.tif > $(OBT_EXP_DIR)/test457-info.txt
+
+// Make a histogram:
+test457.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test457.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test457.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=0&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test457.tif
+
+// ossim-info -i (image) dump:
+test457.test_command1: ossim-info -i $(OBT_OUT_DIR)/test457.tif > $(OBT_OUT_DIR)/test457-info.txt
+
+// Make a histogram:
+test457.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test457.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test457.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test457-info.txt $(OBT_OUT_DIR)/test457-info.txt
+
+// Test the histogram:
+test457.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test457.his $(OBT_OUT_DIR)/test457.his
+
+// End test457:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+// ---
+// Begin test458:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//Band set to color - Gray 1
+//
+//
+
+test458.name: wcs-get-map-test458
+test458.description: Test a wcs get map call to omar server.
+test458.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test458.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=1&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test458.tif
+
+// ossim-info -i (image) dump:
+test458.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test458.tif > $(OBT_EXP_DIR)/test458-info.txt
+
+// Make a histogram:
+test458.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test458.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test458.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=1&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test458.tif
+
+// ossim-info -i (image) dump:
+test458.test_command1: ossim-info -i $(OBT_OUT_DIR)/test458.tif > $(OBT_OUT_DIR)/test458-info.txt
+
+// Make a histogram:
+test458.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test458.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test458.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test458-info.txt $(OBT_OUT_DIR)/test458-info.txt
+
+// Test the histogram:
+test458.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test458.his $(OBT_OUT_DIR)/test458.his
+
+// End test458:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+//
+// ---
+// Begin test459:
+// --- 
+// This will test the Ortho GeoTiff - 8 bit image 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .tif file format
+//
+//
+//
+//This test has Interpole set to sinc
+//
+//Brightness is set to -0.32
+//
+// Contrast is set to 1.34
+//
+// Sharpen is set to none
+//
+// DRA is set to No Adjustment
+//
+//Region is set to Global
+//
+//Band set to color - Gray 2
+//
+//
+
+test459.name: wcs-get-map-test459
+test459.description: Test a wcs get map call to omar server.
+test459.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test459.expected_results_command0: wget "$(OMAR_TEST_URL)//omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=2&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test459.tif
+
+// ossim-info -i (image) dump:
+test459.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test459.tif > $(OBT_EXP_DIR)/test459-info.txt
+
+// Make a histogram:
+test459.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test459.tif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test459.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=geotiff_uint8&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&-0.32&contrast=1.34&sharpen_mode=none&stretch_mode=none&stretch_mode_region=global&interpolation=sinc&bands=2&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test459.tif
+
+// ossim-info -i (image) dump:
+test459.test_command1: ossim-info -i $(OBT_OUT_DIR)/test459.tif > $(OBT_OUT_DIR)/test459-info.txt
+
+// Make a histogram:
+test459.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test459.tif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test459.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test459-info.txt $(OBT_OUT_DIR)/test459-info.txt
+
+// Test the histogram:
+test459.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test459.his $(OBT_OUT_DIR)/test459.his
+
+// End test459:
+//
+//
+//
+//
+//====================================================================================================================================================================
+//

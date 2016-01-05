@@ -96,6 +96,16 @@ if [ $? != 0 ] ; then
   echo "ERROR: Failed data repository rsync of imagery.";
   echo; exit 1;
 fi
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/geoeye1 $OSSIM_BATCH_TEST_DATA;
+if [ $? != 0 ] ; then 
+  echo "ERROR: Failed data repository rsync of imagery.";
+  echo; exit 1;
+fi
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/rbt $OSSIM_BATCH_TEST_DATA;
+if [ $? != 0 ] ; then 
+  echo "ERROR: Failed data repository rsync of imagery.";
+  echo; exit 1;
+fi
   
 #rsync expected results (if exists)
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
