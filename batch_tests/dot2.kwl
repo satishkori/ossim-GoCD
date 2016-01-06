@@ -65,10 +65,10 @@ test1.description: Test oms/joms DataInfoTest and associated bindings.
 test1.enabled: 1
 
 // Commands to generate expected results:
-test1.expected_results_command0: java -cp $(OSSIM_DEV_HOME)/oms/lib/joms.jar org.ossim.oms.apps.DataInfoTest $(OSSIM_BATCH_TEST_DATA)/public/tif/Iowa-utm.tif > $(OBT_EXP_DIR)/info.txt
+test1.expected_results_command0: java -cp $(JAVA_CLASS_PATH)/joms-$(OSSIM_VERSION).jar org.ossim.oms.apps.DataInfoTest $(OSSIM_BATCH_TEST_DATA)/public/tif/Iowa-utm.tif > $(OBT_EXP_DIR)/info.txt
 
 // The actual commands to test:
-test1.test_command0: java -cp $(OSSIM_DEV_HOME)/oms/lib/joms.jar org.ossim.oms.apps.DataInfoTest $(OSSIM_BATCH_TEST_DATA)/public/tif/Iowa-utm.tif > $(OBT_OUT_DIR)/info.txt
+test1.test_command0: java -cp $(JAVA_CLASS_PATH)/joms-$(OSSIM_VERSION).jar org.ossim.oms.apps.DataInfoTest $(OSSIM_BATCH_TEST_DATA)/public/tif/Iowa-utm.tif > $(OBT_OUT_DIR)/info.txt
 
 // Post process commands for diffs and stuff:
 test1.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/info.txt $(OBT_OUT_DIR)/info.txt
@@ -81,10 +81,10 @@ test2.description: Test oms/joms ImageModelTest and associated bindings.
 test2.enabled: 1
 
 // Commands to generate expected results:
-test2.expected_results_command0: java -cp $(OSSIM_DEV_HOME)/oms/lib/joms.jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)/geoeye1/GE1_Hobart_GeoStereo_NITF-NCD/001508507_01000SP00332258/5V090205M0001912264B220000100072M_001508507/Volume1/5V090205M0001912264B220000100072M_001508507.ntf > $(OBT_EXP_DIR)/test2-info.txt
+test2.expected_results_command0: java -cp $(JAVA_CLASS_PATH)/joms-$(OSSIM_VERSION).jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)/geoeye1/GE1_Hobart_GeoStereo_NITF-NCD/001508507_01000SP00332258/5V090205M0001912264B220000100072M_001508507/Volume1/5V090205M0001912264B220000100072M_001508507.ntf > $(OBT_EXP_DIR)/test2-info.txt
 
 // The actual commands to test:
-test2.test_command0: java -cp $(OSSIM_DEV_HOME)/oms/lib/joms.jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)/geoeye1/GE1_Hobart_GeoStereo_NITF-NCD/001508507_01000SP00332258/5V090205M0001912264B220000100072M_001508507/Volume1/5V090205M0001912264B220000100072M_001508507.ntf  > $(OBT_OUT_DIR)/test2-info.txt
+test2.test_command0: java -cp $(JAVA_CLASS_PATH)/joms-$(OSSIM_VERSION).jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)/geoeye1/GE1_Hobart_GeoStereo_NITF-NCD/001508507_01000SP00332258/5V090205M0001912264B220000100072M_001508507/Volume1/5V090205M0001912264B220000100072M_001508507.ntf  > $(OBT_OUT_DIR)/test2-info.txt
 
 // Post process commands for diffs and stuff:
 test2.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/info.txt $(OBT_OUT_DIR)/info.txt
@@ -98,10 +98,10 @@ test3.description: Test oms/joms ImageModelTest and associated bindings.
 test3.enabled: 1
 
 // Commands to generate expected results:
-test3.expected_results_command0: java -cp $(OSSIM_DEV_HOME)/oms/lib/joms.jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)http://71.43.98.140/omar/ogc/wms?request=GetMap&layers=3699&bbox=63.5129,27.0062,63.7034,27.1442&srs=EPSG:4326&width=1024&height=702&format=image/jpeg > $(OBT_EXP_DIR)/test3-info.txt
+test3.expected_results_command0: java -cp $(JAVA_CLASS_PATH)/joms-$(OSSIM_VERSION).jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)http://71.43.98.140/omar/ogc/wms?request=GetMap&layers=3699&bbox=63.5129,27.0062,63.7034,27.1442&srs=EPSG:4326&width=1024&height=702&format=image/jpeg > $(OBT_EXP_DIR)/test3-info.txt
 
 // The actual commands to test:
-test3.test_command0: java -cp $(OSSIM_DEV_HOME)/oms/lib/joms.jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)http://71.43.98.140/omar/ogc/wms?request=GetMap&layers=3699&bbox=63.5129,27.0062,63.7034,27.1442&srs=EPSG:4326&width=1024&height=702&format=image/jpeg  > $(OBT_OUT_DIR)/test3-info.txt
+test3.test_command0: java -cp $(JAVA_CLASS_PATH)/joms-$(OSSIM_VERSION).jar org.ossim.oms.apps.ImageModelTest $(OSSIM_BATCH_TEST_DATA)http://71.43.98.140/omar/ogc/wms?request=GetMap&layers=3699&bbox=63.5129,27.0062,63.7034,27.1442&srs=EPSG:4326&width=1024&height=702&format=image/jpeg  > $(OBT_OUT_DIR)/test3-info.txt
 
 // Post process commands for diffs and stuff:
 test3.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/info.txt $(OBT_OUT_DIR)/info.txt
