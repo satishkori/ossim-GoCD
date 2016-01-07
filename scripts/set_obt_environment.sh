@@ -26,8 +26,7 @@ export JAVA_CLASS_PATH=$OSSIM_INSTALL_DIR/share/java
 echo "Checking for required environment variables..."
 
 if [-z OSSIM_VERSION ]; then
-  echo "ERROR: The environment variable OSSIM_VERSION is not defined. Aborting with error.";
-  exit 1
+   export OSSIM_VERSION=1.9.0
 fi 
 
 if [ -z $OSSIM_DATA ]; then
