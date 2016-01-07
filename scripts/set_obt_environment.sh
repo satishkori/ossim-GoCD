@@ -16,14 +16,19 @@ export OSSIM_DEV_HOME=$PWD
 popd
 
 #export the GoCD-specfic OSSIM runtime env to child processes:
-export OSSIM_VERSION=1.9
+
 export OSSIM_INSTALL_DIR=$OSSIM_DEV_HOME/install
 export PATH=$OSSIM_INSTALL_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib:$OSSIM_INSTALL_DIR/lib64:$LD_LIBRARY_PATH
 export OSSIM_PREFS_FILE=$OSSIM_DEV_HOME/ossim-GoCD/ossim-gocd.prefs
 export JAVA_CLASS_PATH=$OSSIM_INSTALL_DIR/share/java
 
 echo "Checking for required environment variables..."
+
+if [-z OSSIM_VERSION ]; then
+  echo "ERROR: The environment variable OSSIM_VERSION is not defined. Aborting with error.";
+  exit 1
+fi 
 
 if [ -z $OSSIM_DATA ]; then
   echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
