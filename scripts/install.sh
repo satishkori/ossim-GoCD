@@ -26,7 +26,9 @@ ZIP_OPTION=$1
 # Set GoCD-specific environment:
 pushd `dirname $0` >/dev/null
 export SCRIPT_DIR=`pwd -P`
+pushd $SCRIPT_DIR/../.. >/dev/null
 export OSSIM_DEV_HOME=$PWD
+popd > /dev/null
 popd >/dev/null
 
 # Establish CMAKE's install directory:
