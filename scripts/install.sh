@@ -24,36 +24,60 @@
 ZIP_OPTION=$1
 
 # Set GoCD-specific environment:
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-pushd $SCRIPT_DIR/../..
+pushd `dirname $0` >/dev/null
+export SCRIPT_DIR=`pwd -P`
+pushd $SCRIPT_DIR/../.. >/dev/null
 export OSSIM_DEV_HOME=$PWD
-popd
+popd > /dev/null
+popd >/dev/null
 
 # Establish CMAKE's install directory:
 if [ -z "$OSSIM_INSTALL_PREFIX" ]; then
-    OSSIM_INSTALL_PREFIX=$OSSIM_DEV_HOME/install
+    export OSSIM_INSTALL_PREFIX=$OSSIM_DEV_HOME/install
 fi
 
 
 echo "STATUS: Checking presence of env var OSSIM_BUILD_DIR = <$OSSIM_BUILD_DIR>...";
 if [ -z $OSSIM_BUILD_DIR ]; then
-  OSSIM_BUILD_DIR=$OSSIM_DEV_HOME/build;
+  export OSSIM_BUILD_DIR=$OSSIM_DEV_HOME/build;
   if [ ! -d $OSSIM_BUILD_DIR ] ; then
     echo "ERROR: OSSIM_BUILD_DIR = <$OSSIM_BUILD_DIR> does not exist at this location. Cannot install";
     exit 1;
   fi
 fi
 
-pushd $OSSIM_BUILD_DIR
 echo "STATUS: Performing make install to <$OSSIM_INSTALL_PREFIX>"
-make install
+pushd $OSSIM_DEV_HOME/ossim/scripts
+./install.sh
 if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Error encountered during make install. Check the console log and correct."
+  echo; echo "ERROR: Error encountered ossim install. Check the console log and correct."
+  popd >/dev/null
+  exit 1
+fi
+popd >/dev/null
+echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+
+echo "STATUS: Performing OMAR install to <$OSSIM_INSTALL_PREFIX>"
+pushd $OSSIM_DEV_HOME/omar/build_scripts/linux
+./install.sh
+if [ $? -ne 0 ]; then
+  echo; echo "ERROR: Error encountered OMAR install. Check the console log and correct."
+  popd >/dev/null
+  exit 1
+fi
+popd >/dev/null
+echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+
+echo "STATUS: Performing joms install to <$OSSIM_INSTALL_PREFIX>"
+pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
+./install.sh
+if [ $? -ne 0 ]; then
+  echo; echo "ERROR: Error encountered during make install of joms. Check the console log and correct."
   popd
   exit 1
 fi
+popd >/dev/null # out of OSSIM_BUILD_DIR
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
-popd # out of OSSIM_BUILD_DIR
 
 TIMESTAMP=`date +%Y-%m-%d-%H%M`
 

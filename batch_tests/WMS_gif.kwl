@@ -1,0 +1,1149 @@
+//
+//
+// This will test WMS GIF
+//
+//=====================================================================================================================
+//
+//
+//
+// 
+// Test Diretory:/data1/bigtiff/Alger_2005_1024.tif
+//
+//---
+// Begin test54:
+// --- 
+
+test54.name: wms-get-map-test54
+test54.description: Test a wms get map call to omar server.
+test54.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test54.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.015625&width=1074&height=465&x=-175&y=-27&id=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&format=image/gif&pivot=23187%2C13172&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test54.gif
+
+// ossim-info -i (image) dump:
+test54.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test54.gif > $(OBT_EXP_DIR)/test54-info.txt
+
+
+// Make a histogram:
+test54.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test54.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test54.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.015625&width=1074&height=465&x=-175&y=-27&id=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&format=image/gif&pivot=23187%2C13172&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test54.gif
+
+// ossim-info -i (image) dump:
+test54.test_command1: ossim-info -i $(OBT_OUT_DIR)/test54.gif > $(OBT_OUT_DIR)/test54-info.txt
+
+// Make a histogram:
+test54.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test54.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test54.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test54-info.txt $(OBT_OUT_DIR)/test54-info.txt
+
+// Test the histogram:
+test54.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test54.his $(OBT_OUT_DIR)/test54.his
+
+// End test54:
+
+//==================================================================================================================
+//
+/// Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// Image Test Directory /data1/UWARP
+// ---
+// Begin test55:
+// --- 
+
+test55.name: wms-get-map-test55
+test55.description: Test a wms get map call to omar server.
+test55.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test55.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1129&height=539&x=-276&y=-205&id=7a98974f7489f0608e65a8f58c62f9168335045a0b94c2ec3e449afd19ad3819&format=image/gif&pivot=4608%2C1024&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test55.gif
+
+// ossim-info -i (image) dump:
+test55.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test55.gif > $(OBT_EXP_DIR)/test55-info.txt
+
+// Make a histogram:
+test55.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test55.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test55.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1129&height=539&x=-276&y=-205&id=7a98974f7489f0608e65a8f58c62f9168335045a0b94c2ec3e449afd19ad3819&format=image/gif&pivot=4608%2C1024&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test55.gif
+
+// ossim-info -i (image) dump:
+test55.test_command1: ossim-info -i $(OBT_OUT_DIR)/test55.gif > $(OBT_OUT_DIR)/test55-info.txt
+
+// Make a histogram:
+test55.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test55.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test55.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test55-info.txt $(OBT_OUT_DIR)/test55-info.txt
+
+// Test the histogram:
+test55.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test55.his $(OBT_OUT_DIR)/test55.his
+
+// End test55:
+//
+//===================================================================================================================
+//
+// Image Path Drobo:	 /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064946-P1BS-052512129010_05_P009.ntf
+// Image Test Directory:/data1/UWARP
+// ---
+// Begin test56:
+// --- 
+
+test56.name: wms-get-map-test56
+test56.description: Test a wms get map call to omar server.
+test56.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test56.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=356&height=306&x=103&y=49&id=f896583b198b9b24532429a5914c82c252e15827f3d92cf4812565094c6f9c9b&format=image/gif&pivot=4608%2C3072&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test56.gif
+
+// ossim-info -i (image) dump:
+test56.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test56.gif > $(OBT_EXP_DIR)/test56-info.txt
+
+// Make a histogram:
+test56.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test56.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test56.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=356&height=306&x=103&y=49&id=f896583b198b9b24532429a5914c82c252e15827f3d92cf4812565094c6f9c9b&format=image/gif&pivot=4608%2C3072&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test56.gif
+
+// ossim-info -i (image) dump:
+test56.test_command1: ossim-info -i $(OBT_OUT_DIR)/test56.gif > $(OBT_OUT_DIR)/test56-info.txt
+
+// Make a histogram:
+test56.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test56.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test56.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test56-info.txt $(OBT_OUT_DIR)/test56-info.txt
+
+// Test the histogram:
+test56.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test56.his $(OBT_OUT_DIR)/test56.his
+
+// End test56:
+//
+//======================================================================================================================
+//// ---
+// Image Path Drobo:	/Volumes/DroboPro/Data/afghanistan/tiffs/005560763010_01P.tif	 
+// Image Test Directory:/data1/afghanistan
+//
+// Begin test57:
+// --- 
+
+test57.name: wms-get-map-test57
+test57.description: Test a wms get map call to omar server.
+test57.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test57.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.015625&width=1129&height=539&x=-461&y=-112&id=afc5ad8c65e8f7f816229985ccdf55b775e0c0fa168c968e9395760d1fd78b04&format=image/gif&pivot=6603%2C10060&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test57.gif
+
+// ossim-info -i (image) dump:
+test57.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test57.gif > $(OBT_EXP_DIR)/test57-info.txt
+
+// Make a histogram:
+test57.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test57.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test57.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.015625&width=1129&height=539&x=-461&y=-112&id=afc5ad8c65e8f7f816229985ccdf55b775e0c0fa168c968e9395760d1fd78b04&format=image/gif&pivot=6603%2C10060&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test57.gif
+
+// ossim-info -i (image) dump:
+test57.test_command1: ossim-info -i $(OBT_OUT_DIR)/test57.gif > $(OBT_OUT_DIR)/test57-info.txt
+
+// Make a histogram:
+test57.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test57.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test57.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test57-info.txt $(OBT_OUT_DIR)/test57-info.txt
+
+// Test the histogram:
+test57.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test57.his $(OBT_OUT_DIR)/test57.his
+
+// End test57:
+//
+//=====================================================================================================================
+// ---
+// Begin test58:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory: /data1/dennis_test_imagery/public/MLB_ARPT/q3306ne.jp2
+//
+
+test58.name: wms-get-map-test58
+test58.description: Test a wms get map call to omar server.
+test58.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test58.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1129&height=539&x=-369&y=-50&id=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&format=image/gif&pivot=3122%2C3513&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test58.gif
+
+// ossim-info -i (image) dump:
+test58.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test58.gif > $(OBT_EXP_DIR)/test58-info.txt
+
+// Make a histogram:
+test58.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test58.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test58.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1129&height=539&x=-369&y=-50&id=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&format=image/gif&pivot=3122%2C3513&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test58.gif
+
+// ossim-info -i (image) dump:
+test58.test_command1: ossim-info -i $(OBT_OUT_DIR)/test58.gif > $(OBT_OUT_DIR)/test58-info.txt
+
+// Make a histogram:
+test58.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test58.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test58.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test58-info.txt $(OBT_OUT_DIR)/test58-info.txt
+
+// Test the histogram:
+test58.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test58.his $(OBT_OUT_DIR)/test58.his
+
+// End test58:
+//
+//
+//=====================================================================================================================
+//
+//
+// ---
+// Begin test59:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory: /data1/dennis_test_imagery/public/MLB_ARPT/q3306sw.jp2
+//
+
+test59.name: wms-get-map-test59
+test59.description: Test a wms get map call to omar server.
+test59.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test59.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1129&height=539&x=-369&y=-50&id=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&format=image/gif&pivot=3122%2C3512&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0 " -O $(OBT_EXP_DIR)/test59.gif
+
+// ossim-info -i (image) dump:
+test59.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test59.gif > $(OBT_EXP_DIR)/test59-info.txt
+
+// Make a histogram:
+test59.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test59.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test59.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1129&height=539&x=-369&y=-50&id=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&format=image/gif&pivot=3122%2C3512&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test59.gif
+
+// ossim-info -i (image) dump:
+test59.test_command1: ossim-info -i $(OBT_OUT_DIR)/test59.gif > $(OBT_OUT_DIR)/test59-info.txt
+
+// Make a histogram:
+test59.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test59.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test59.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test59-info.txt $(OBT_OUT_DIR)/test59-info.txt
+
+// Test the histogram:
+test59.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test59.his $(OBT_OUT_DIR)/test59.his
+
+// End test59:
+//
+//
+//=====================================================================================================================
+//
+//
+// ---
+// Begin test60:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory: /data1/dennis_test_imagery/public/MLB_ARPT/2cmv-test27.ti
+//
+
+test60.name: wms-get-map-test60
+test60.description: Test a wms get map call to omar server.
+test60.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test60.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.5&width=1129&height=539&x=361&y=178&id=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&format=image/gif&pivot=1851%2C895&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test60.gif
+
+// ossim-info -i (image) dump:
+test60.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test60.gif > $(OBT_EXP_DIR)/test60-info.txt
+
+// Make a histogram:
+test60.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test60.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test60.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.5&width=1129&height=539&x=361&y=178&id=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&format=image/gif&pivot=1851%2C895&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test60.gif
+
+// ossim-info -i (image) dump:
+test60.test_command1: ossim-info -i $(OBT_OUT_DIR)/test60.gif > $(OBT_OUT_DIR)/test60-info.txt
+
+// Make a histogram:
+test60.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test60.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test60.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test60-info.txt $(OBT_OUT_DIR)/test60-info.txt
+
+// Test the histogram:
+test60.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test60.his $(OBT_OUT_DIR)/test60.his
+
+// End test60:
+//
+//
+//=======================================================================================================================================================
+//
+//
+// ---
+// Begin test61:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory: /data1/dennis_test_imagery/public/MLB_ARPT/oldMLB.tif
+//
+
+test61.name: wms-get-map-test61
+test61.description: Test a wms get map call to omar server.
+test61.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test61.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=8&width=1074&height=465&x=1063&y=888&id=9eba33cbebfeebf0a3f02ebc165c20fd75fec0454147d884d1170ae1c966eb15&format=image/gif&pivot=200%2C140&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test61.gif
+
+// ossim-info -i (image) dump:
+test61.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test61.gif > $(OBT_EXP_DIR)/test61-info.txt
+
+// Make a histogram:
+test61.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test61.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test61.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=8&width=1074&height=465&x=1063&y=888&id=9eba33cbebfeebf0a3f02ebc165c20fd75fec0454147d884d1170ae1c966eb15&format=image/gif&pivot=200%2C140&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test61.gif
+
+// ossim-info -i (image) dump:
+test61.test_command1: ossim-info -i $(OBT_OUT_DIR)/test61.gif > $(OBT_OUT_DIR)/test61-info.txt
+
+// Make a histogram:
+test61.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test61.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test61.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test61-info.txt $(OBT_OUT_DIR)/test61-info.txt
+
+// Test the histogram:
+test61.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test61.his $(OBT_OUT_DIR)/test61.his
+
+// End test61:
+//
+//
+//=======================================================================================================================================================
+//
+//
+// ---
+// Begin test62:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory: /data1/dennis_test_imagery/outputs/t1.tif
+//
+
+test62.name: wms-get-map-test62
+test62.description: Test a wms get map call to omar server.
+test62.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test62.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=8&width=1129&height=539&x=1036&y=851&id=f452fd7061245b34c66f21f473d11b90a706046d12a8842f45f62bdc458a025c&format=image/gif&pivot=200%2C140&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test62.gif
+
+// ossim-info -i (image) dump:
+test62.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test62.gif > $(OBT_EXP_DIR)/test62-info.txt
+
+// Make a histogram:
+test62.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test62.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test62.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=8&width=1129&height=539&x=1036&y=851&id=f452fd7061245b34c66f21f473d11b90a706046d12a8842f45f62bdc458a025c&format=image/gif&pivot=200%2C140&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test62.gif
+
+// ossim-info -i (image) dump:
+test62.test_command1: ossim-info -i $(OBT_OUT_DIR)/test62.gif > $(OBT_OUT_DIR)/test62-info.txt
+
+// Make a histogram:
+test62.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test62.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test62.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test62-info.txt $(OBT_OUT_DIR)/test62-info.txt
+
+// Test the histogram:
+test62.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test62.his $(OBT_OUT_DIR)/test62.his
+
+// End test62:
+//
+//
+//=======================================================================================================================================================
+//
+//
+// ---
+// Begin test63:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory: /data1/dennis_test_imagery/landsat7/12S050W.tif
+//
+
+test63.name: wms-get-map-test63
+test63.description: Test a wms get map call to omar server.
+test63.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test63.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.03125&width=304&height=308&x=59&y=88&id=8370d10f178dcd906a04cc8c0bbf7e80e12b4f1dca6e54b6083f8288594a528a&format=image/gif&pivot=7205%2C7205&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test63.gif
+
+// ossim-info -i (image) dump:
+test63.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test63.gif > $(OBT_EXP_DIR)/test63-info.txt
+
+// Make a histogram:
+test63.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test63.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test63.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.03125&width=304&height=308&x=59&y=88&id=8370d10f178dcd906a04cc8c0bbf7e80e12b4f1dca6e54b6083f8288594a528a&format=image/gif&pivot=7205%2C7205&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test63.gif
+
+// ossim-info -i (image) dump:
+test63.test_command1: ossim-info -i $(OBT_OUT_DIR)/test63.gif > $(OBT_OUT_DIR)/test63-info.txt
+
+// Make a histogram:
+test63.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test63.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test63.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test63-info.txt $(OBT_OUT_DIR)/test63-info.txt
+
+// Test the histogram:
+test63.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test63.his $(OBT_OUT_DIR)/test63.his
+
+// End test63:
+//
+//
+//=====================================================================================================================
+//
+//
+// ---
+// Begin test64:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory:data1/dennis_test_imagery/landsat7/38N080E.tif
+//
+
+test64.name: wms-get-map-test64
+test64.description: Test a wms get map call to omar server.
+test64.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test64.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.03125&width=120&height=410&x=128&y=34&id=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&format=image/gif&pivot=7205%2C7205&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test64.gif
+
+// ossim-info -i (image) dump:
+test64.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test64.gif > $(OBT_EXP_DIR)/test64-info.txt
+
+// Make a histogram:
+test64.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test64.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test64.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.03125&width=120&height=410&x=128&y=34&id=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&format=image/gif&pivot=7205%2C7205&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test64.gif
+
+// ossim-info -i (image) dump:
+test64.test_command1: ossim-info -i $(OBT_OUT_DIR)/test64.gif > $(OBT_OUT_DIR)/test64-info.txt
+
+// Make a histogram:
+test64.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test64.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test64.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test64-info.txt $(OBT_OUT_DIR)/test64-info.txt
+
+// Test the histogram:
+test64.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test64.his $(OBT_OUT_DIR)/test64.his
+
+// End test64:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test65:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory:/data1/dennis_test_imagery/landsat7/20S014E.ti
+//
+
+test65.name: wms-get-map-test65
+test65.description: Test a wms get map call to omar server.
+test65.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test65.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.25&width=1074&height=465&x=28&y=136&id=4c3f6d19757e3e942a131a00e55c580578cc8b5f4f8c375d3bd6d97561769ec8&format=image/gif&pivot=2258%2C1474&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test65.gif
+
+// ossim-info -i (image) dump:
+test65.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test65.gif > $(OBT_EXP_DIR)/test65-info.txt
+
+// Make a histogram:
+test65.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test65.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test65.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.25&width=1074&height=465&x=28&y=136&id=4c3f6d19757e3e942a131a00e55c580578cc8b5f4f8c375d3bd6d97561769ec8&format=image/gif&pivot=2258%2C1474&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test65.gif
+
+// ossim-info -i (image) dump:
+test65.test_command1: ossim-info -i $(OBT_OUT_DIR)/test65.gif > $(OBT_OUT_DIR)/test65-info.txt
+
+// Make a histogram:
+test65.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test65.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test65.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test65-info.txt $(OBT_OUT_DIR)/test65-info.txt
+
+// Test the histogram:
+test65.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test65.his $(OBT_OUT_DIR)/test65.his
+
+// End test65:
+//
+//=====================================================================================================================
+//
+//
+// ---
+// Begin test66:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory:/data1/dennis_test_imagery/celtic/015/po_106005_blu_0000000.ntf
+//
+
+test66.name: wms-get-map-test66
+test66.description: Test a wms get map call to omar server.
+test66.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test66.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.5&width=927&height=414&x=249&y=488&id=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&format=image/gif&pivot=1313%2C1313&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test66.gif
+
+// ossim-info -i (image) dump:
+test66.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test66.gif > $(OBT_EXP_DIR)/test66-info.txt
+
+// Make a histogram:
+test66.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test66.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test66.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.5&width=927&height=414&x=249&y=488&id=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&format=image/gif&pivot=1313%2C1313&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test66.gif
+
+// ossim-info -i (image) dump:
+test66.test_command1: ossim-info -i $(OBT_OUT_DIR)/test66.gif > $(OBT_OUT_DIR)/test66-info.txt
+
+// Make a histogram:
+test66.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test66.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test66.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test66-info.txt $(OBT_OUT_DIR)/test66-info.txt
+
+// Test the histogram:
+test66.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test66.his $(OBT_OUT_DIR)/test66.his
+
+// End test66:
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test67:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/applanix2/VNIR008.tif
+//
+
+test67.name: wms-get-map-test67
+test67.description: Test a wms get map call to omar server.
+test67.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test67.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=1&width=373&height=391&x=1746&y=1871&id=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&format=image/gif&pivot=2039%2C2046&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test67.gif
+
+// ossim-info -i (image) dump:
+test67.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test67.gif > $(OBT_EXP_DIR)/test67-info.txt
+
+// Make a histogram:
+test67.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test67.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test67.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=1&width=373&height=391&x=1746&y=1871&id=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&format=image/gif&pivot=2039%2C2046&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test67.gif
+
+// ossim-info -i (image) dump:
+test67.test_command1: ossim-info -i $(OBT_OUT_DIR)/test67.gif > $(OBT_OUT_DIR)/test67-info.txt
+
+// Make a histogram:
+test67.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test67.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test67.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test67-info.txt $(OBT_OUT_DIR)/test67-info.txt
+
+// Test the histogram:
+test67.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test67.his $(OBT_OUT_DIR)/test67.his
+
+// End test67:
+//
+//=====================================================================================================================
+//
+//
+// ---
+// Begin test68:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/celtic/015/po_106005_grn_0000000.ntf
+//
+
+test68.name: wms-get-map-test68
+test68.description: Test a wms get map call to omar server.
+test68.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test68.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=1&width=75&height=130&x=1285&y=1258&id=8cebacaa83a453d515d9544cb875a2b90da72eb2e2cf91acbd9579e57d953b21&format=image/gif&pivot=1313%2C1313&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test68.gif
+
+// ossim-info -i (image) dump:
+test68.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test68.gif > $(OBT_EXP_DIR)/test68-info.txt
+
+// Make a histogram:
+test68.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test68.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test68.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=1&width=75&height=130&x=1285&y=1258&id=8cebacaa83a453d515d9544cb875a2b90da72eb2e2cf91acbd9579e57d953b21&format=image/gif&pivot=1313%2C1313&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test68.gif
+
+// ossim-info -i (image) dump:
+test68.test_command1: ossim-info -i $(OBT_OUT_DIR)/test68.gif > $(OBT_OUT_DIR)/test68-info.txt
+
+// Make a histogram:
+test68.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test68.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test68.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test68-info.txt $(OBT_OUT_DIR)/test68-info.txt
+
+// Test the histogram:
+test68.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test68.his $(OBT_OUT_DIR)/test68.his
+
+// End test68:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test69:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/celtic/015/po_106005_nir_0000000.ntf
+//
+
+test69.name: wms-get-map-test69
+test69.description: Test a wms get map call to omar server.
+test69.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test69.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=4&width=11&height=123&x=3030&y=4596&id=ce34f3c591c4c52702bae0dd02837c1eb4bc28a066bd88f07a5dd9fcdb100886&format=image/gif&pivot=868%2C1198&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0 " -O $(OBT_EXP_DIR)/test69.gif
+
+// ossim-info -i (image) dump:
+test69.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test69.gif > $(OBT_EXP_DIR)/test69-info.txt
+
+// Make a histogram:
+test69.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test69.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test69.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=4&width=11&height=123&x=3030&y=4596&id=ce34f3c591c4c52702bae0dd02837c1eb4bc28a066bd88f07a5dd9fcdb100886&format=image/gif&pivot=868%2C1198&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0 " -O $(OBT_OUT_DIR)/test69.gif
+
+// ossim-info -i (image) dump:
+test69.test_command1: ossim-info -i $(OBT_OUT_DIR)/test69.gif > $(OBT_OUT_DIR)/test69-info.txt
+
+// Make a histogram:
+test69.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test69.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test69.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test69-info.txt $(OBT_OUT_DIR)/test69-info.txt
+
+// Test the histogram:
+test69.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test69.his $(OBT_OUT_DIR)/test69.his
+
+// End test69:
+//
+//
+//======================================================================================================================
+//
+//
+//
+// ---
+// Begin test70:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/celtic/015/po_106005_pan_0000000.ntf
+//
+
+test70.name: wms-get-map-test70
+test70.description: Test a wms get map call to omar server.
+test70.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test70.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=1&width=788&height=220&x=530&y=1003&id=c3d4c64f26e73807e91fa36a36632636ba53be4adbcbb8ff6cf0ad2f9ed216c0&format=image/gif&pivot=868%2C1198&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test70.gif
+
+// ossim-info -i (image) dump:
+test70.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test70.gif > $(OBT_EXP_DIR)/test70-info.txt
+
+// Make a histogram:
+test70.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test70.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test70.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=1&width=788&height=220&x=530&y=1003&id=c3d4c64f26e73807e91fa36a36632636ba53be4adbcbb8ff6cf0ad2f9ed216c0&format=image/gif&pivot=868%2C1198&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test70.gif
+
+// ossim-info -i (image) dump:
+test70.test_command1: ossim-info -i $(OBT_OUT_DIR)/test70.gif > $(OBT_OUT_DIR)/test70-info.txt
+
+// Make a histogram:
+test70.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test70.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test70.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test70-info.txt $(OBT_OUT_DIR)/test70-info.txt
+
+// Test the histogram:
+test70.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test70.his $(OBT_OUT_DIR)/test70.his
+
+// End test70:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test71:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/celtic/015/po_106005_red_0000000.ntf
+//
+
+test71.name: wms-get-map-test71
+test71.description: Test a wms get map call to omar server.
+test71.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test71.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=694&height=401&x=1493&y=1894&id=97a5357615f405956148933c44bf289eca37b5a1a83b66697b51b7b7cc53719f&format=image/gif&pivot=13292%2C16436&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test71.gif
+
+// ossim-info -i (image) dump:
+test71.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test71.gif > $(OBT_EXP_DIR)/test71-info.txt
+
+// Make a histogram:
+test71.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test71.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test71.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=694&height=401&x=1493&y=1894&id=97a5357615f405956148933c44bf289eca37b5a1a83b66697b51b7b7cc53719f&format=image/gif&pivot=13292%2C16436&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test71.gif
+
+// ossim-info -i (image) dump:
+test71.test_command1: ossim-info -i $(OBT_OUT_DIR)/test71.gif > $(OBT_OUT_DIR)/test71-info.txt
+
+// Make a histogram:
+test71.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test71.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test71.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test71-info.txt $(OBT_OUT_DIR)/test71-info.txt
+
+// Test the histogram:
+test71.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test71.his $(OBT_OUT_DIR)/test71.his
+
+// End test71:
+//
+//
+//======================================================================================================================
+//
+//
+//
+// ---
+// Begin test72:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/geoeye1/5V090205M0001912264B220000100072M_001508507.ntf
+//
+
+test72.name: wms-get-map-test72
+test72.description: Test a wms get map call to omar server.
+test72.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test72.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1074&height=465&x=211&y=372&id=71be491edf925f55d2b5a49f4b8031462ef722920739e2515cd575c108caa8de&format=image/gif&pivot=11960%2C9664&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test72.gif
+
+// ossim-info -i (image) dump:
+test72.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test72.gif > $(OBT_EXP_DIR)/test72-info.txt
+
+// Make a histogram:
+test72.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test72.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test72.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.0625&width=1074&height=465&x=211&y=372&id=71be491edf925f55d2b5a49f4b8031462ef722920739e2515cd575c108caa8de&format=image/gif&pivot=11960%2C9664&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test72.gif
+
+// ossim-info -i (image) dump:
+test72.test_command1: ossim-info -i $(OBT_OUT_DIR)/test72.gif > $(OBT_OUT_DIR)/test72-info.txt
+
+// Make a histogram:
+test72.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test72.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test72.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test72-info.txt $(OBT_OUT_DIR)/test72-info.txt
+
+// Test the histogram:
+test72.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test72.his $(OBT_OUT_DIR)/test72.his
+
+// End test72:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test73:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/geoeye1/5V090205P0001912264B220000100282M_001508507.ntf
+//
+
+test73.name: wms-get-map-test73
+test73.description: Test a wms get map call to omar server.
+test73.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test73.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.5&width=1074&height=465&x=707&y=2018&id=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&format=image/gif&pivot=2488%2C4501&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test73.gif
+
+// ossim-info -i (image) dump:
+test73.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test73.gif > $(OBT_EXP_DIR)/test73-info.txt
+
+// Make a histogram:
+test73.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test73.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test73.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.5&width=1074&height=465&x=707&y=2018&id=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&format=image/gif&pivot=2488%2C4501&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test73.gif
+
+// ossim-info -i (image) dump:
+test73.test_command1: ossim-info -i $(OBT_OUT_DIR)/test73.gif > $(OBT_OUT_DIR)/test73-info.txt
+
+// Make a histogram:
+test73.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test73.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test73.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test73-info.txt $(OBT_OUT_DIR)/test73-info.txt
+
+// Test the histogram:
+test73.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test73.his $(OBT_OUT_DIR)/test73.his
+
+// End test73:
+// ---
+//
+//==============================================================================================================================================================
+//
+// Begin test74:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/geoeye1/5V090205P0001912234B220001500292M_001508509.ntf
+//
+
+test74.name: wms-get-map-test74
+test74.description: Test a wms get map call to omar server.
+test74.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test74.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=2&width=1074&height=465&x=5769&y=8177&id=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&format=image/gif&pivot=3153%2C4205&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test74.gif
+
+// ossim-info -i (image) dump:
+test74.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test74.gif > $(OBT_EXP_DIR)/test74-info.txt
+
+// Make a histogram:
+test74.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test74.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test74.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=2&width=1074&height=465&x=5769&y=8177&id=fa3eb075ea082964049a64a3373a8843aa0b2e005539af2c4e24390122b19a12&format=image/gif&pivot=3153%2C4205&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test74.gif
+
+// ossim-info -i (image) dump:
+test74.test_command1: ossim-info -i $(OBT_OUT_DIR)/test74.gif > $(OBT_OUT_DIR)/test74-info.txt
+
+// Make a histogram:
+test74.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test74.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test74.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test74-info.txt $(OBT_OUT_DIR)/test74-info.txt
+
+// Test the histogram:
+test74.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test74.his $(OBT_OUT_DIR)/test74.his
+
+// End test74:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test75:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/geoeye1/5V090205P0001912234B220000100152M_001508509.ntf
+//
+
+test75.name: wms-get-map-test75
+test75.description: Test a wms get map call to omar server.
+test75.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test75.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=465&x=-97&y=344&id=ba03d61a94257529a848f09b70520c2107abbde9a63aa245a55b63a3525ce315&format=image/gif&pivot=3519%2C4612&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test75.gif
+
+// ossim-info -i (image) dump:
+test75.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test75.gif > $(OBT_EXP_DIR)/test75-info.txt
+
+// Make a histogram:
+test75.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test75.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test75.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=465&x=-97&y=344&id=ba03d61a94257529a848f09b70520c2107abbde9a63aa245a55b63a3525ce315&format=image/gif&pivot=3519%2C4612&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test75.gif
+
+// ossim-info -i (image) dump:
+test75.test_command1: ossim-info -i $(OBT_OUT_DIR)/test75.gif > $(OBT_OUT_DIR)/test75-info.txt
+
+// Make a histogram:
+test75.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test75.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test75.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test75-info.txt $(OBT_OUT_DIR)/test75-info.txt
+
+// Test the histogram:
+test75.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test75.his $(OBT_OUT_DIR)/test75.his
+
+// End test75:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test76:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/geoeye1/5V090205M0001912234B220000100042M_001508509.ntf
+//
+
+test76.name: wms-get-map-test76
+test76.description: Test a wms get map call to omar server.
+test76.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test76.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=465&x=-26&y=231&id=187259ca5374948b56f43941d2e4e89fd59dca41c0faab719f94508e1a258a03&format=image/gif&pivot=4091%2C3706&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test76.gif
+
+// ossim-info -i (image) dump:
+test76.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test76.gif > $(OBT_EXP_DIR)/test76-info.txt
+
+// Make a histogram:
+test76.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test76.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test76.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=465&x=-26&y=231&id=187259ca5374948b56f43941d2e4e89fd59dca41c0faab719f94508e1a258a03&format=image/gif&pivot=4091%2C3706&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test76.gif
+
+// ossim-info -i (image) dump:
+test76.test_command1: ossim-info -i $(OBT_OUT_DIR)/test76.gif > $(OBT_OUT_DIR)/test76-info.txt
+
+// Make a histogram:
+test76.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test76.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test76.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test76-info.txt $(OBT_OUT_DIR)/test76-info.txt
+
+// Test the histogram:
+test76.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test76.his $(OBT_OUT_DIR)/test76.his
+
+// End test76:
+//
+//
+//=====================================================================================================================
+//
+//
+//
+// ---
+// Begin test77:
+// --- 
+// Drobo Directory: 
+//
+// Test Diretory/data1/dennis_test_imagery/geoeye1/5V090205M0001912234B220000400082M_001508509.ntf
+//
+
+test77.name: wms-get-map-test77
+test77.description: Test a wms get map call to omar server.
+test77.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test77.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=465&x=1381&y=1947&id=05FEB09OV05010005V090205P0001912264B220000100282M_001508507&format=image/gif&pivot=15347%2C17434&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_EXP_DIR)/test77.gif
+
+// ossim-info -i (image) dump:
+test77.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test77.gif > $(OBT_EXP_DIR)/test77-info.txt
+
+// Make a histogram:
+test77.expected_results_command2: ossim-preproc --ch $(OBT_EXP_DIR)/test77.gif
+
+// The actual commands to test:
+
+// Get the image via wget:
+test77.test_command0: wget "$(OMAR_TEST_URL)/omar/icp/getTile?scale=0.125&width=1074&height=465&x=1381&y=1947&id=05FEB09OV05010005V090205P0001912264B220000100282M_001508507&format=image/gif&pivot=15347%2C17434&sharpen_mode=none&interpolation=bilinear&brightness=0&contrast=1&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&bands=default&rotate=0" -O $(OBT_OUT_DIR)/test77.gif
+
+// ossim-info -i (image) dump:
+test77.test_command1: ossim-info -i $(OBT_OUT_DIR)/test77.gif > $(OBT_OUT_DIR)/test77-info.txt
+
+// Make a histogram:
+test77.test_command2: ossim-preproc --ch $(OBT_OUT_DIR)/test77.gif
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test77.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test77-info.txt $(OBT_OUT_DIR)/test77-info.txt
+
+// Test the histogram:
+test77.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test77.his $(OBT_OUT_DIR)/test77.his
+
+// End test77:
+//
+//
+//=====================================================================================================================
+//

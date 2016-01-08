@@ -54,14 +54,36 @@
 // run as one consolidated "super-test", then use only the following suffixed
 // keywords. Otherwise, REMOVE THESE:
 
-test_config_file0: applanix-test.kwl
-test_config_file1: eq-test.kwl
-test_config_file2: fusion-test1.kw1
-test_config_file3: genras-writer-test.kwl
-test_config_file4: height-info-test.kwl
-test_config_file5: index-to-rgb-lut.kwl
-test_config_file6: test1.kwl
-test_config_file7: wrap-test.kwl
-
-
+//test_config_file0: config-test.kwl
+test_config_file1: applanix-test.kwl
+test_config_file2: oms-test1.kwl
+//test_config_file3: ossimjni-test1.kwl
+test_config_file4: test1.kwl
+test_config_file5: rbt-test1.kwl
+// test_config_file6: wrap-test.kwl
+test_config_file7: fusion-test1.kw1
+test_config_file8: image-geometry.kwl
+test_config_file9: genras-writer-test.kwl
+// test_config_file10: WMS_PNG.kwl
+// test_config_file11: WMS_JPEG.kwl
+// test_config_file12: WMS_gif.kwl
+//test_config_file13: Ortho_Tiff.kwl
+//test_config_file14: Ortho_png.kwl
+//test_config_file15: Ortho_png_8bit.kwl
+//test_config_file16: Ortho_pdf.kwl
+//test_config_file17: Ortho_kmz_transparent.kwl
+//test_config_file18: Ortho_KMZ.kwl
+//test_config_file19: Ortho_jpeg.kwl
+//test_config_file20: Ortho_jpeg_2000.kwl
+//test_config_file21: Ortho_jpeg_2000_8bit.kwl
+//test_config_file22: Ortho_GeoTiff.kwl
+//test_config_file23: Muilt-Layer.kwl
+//test_config_file24: MirSid.kwl
+//test_config_file25: KMZ_Transparent.kwll
+//test_config_file26: KMZ_jpeg.kwl
+//test_config_file27: Image_Adjustments.kwl
+//test_config_file28: all_one_image_test_VIIRS.kwl
+//test_config_file29: all_in_one_Colorado_Springs.kwl
+//test_config_file30: all_In_one_5V090205P0001912264B220000100282M_001508507.kwl
+//test_config_file31: Ortho_GeoTiff_8bit.kwl
 

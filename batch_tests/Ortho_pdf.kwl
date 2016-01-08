@@ -1,0 +1,1171 @@
+//
+//This test will be testing the ortho PDF format
+//
+//=====================================================================================================================================================================
+//
+// ---
+// Begin test264:
+// --- 
+// Drobo Directory: 
+//
+//
+//
+// Copy of do-test-PT1.kwl
+//
+// This test will write the image out into a .pdf - file format
+//
+//
+
+test264.name: wcs-get-map-test264
+test264.description: Test a wcs get map call to omar server.
+test264.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+
+test264.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=application/pdf&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test264.pdf
+
+// ossim-info -i (image) dump:
+test264.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test264.pdf > $(OBT_EXP_DIR)/test264-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test264.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=627&height=342&format=application/pdf&crs=EPSG%3A4326&bbox=3.078049%2C36.727265%2C3.125046%2C36.752866&coverage=af1cda4dd27a4ba0a43a3584a6b947e6a4d94a458c8fd7951cb3a460ff6ffede&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test264.pdf
+
+// ossim-info -i (image) dump:
+test264.test_command1: ossim-info -i $(OBT_OUT_DIR)/test264.pdf > $(OBT_OUT_DIR)/test264-info.txt
+
+//
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test264.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test264-info.txt $(OBT_OUT_DIR)/test264-info.txt
+
+// 
+
+// End test264:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test265:
+// --- 
+// Drobo Directory: 
+//
+//	Image Path: /Volumes/DroboPro/Data/UWARP/01AUG11WV020500011AUG01064947-M1BS-052512129010_05_P010.ntf
+/// 	Image Test Directory /data1/UWARP
+//
+// Copy of do-test-PT2.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test265.name: wcs-get-map-test265
+test265.description: Test a wcs get map call to omar server.
+test265.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test265.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=783&height=391&format=application/pdf&crs=EPSG%3A4326&bbox=63.593143%2C27.002749%2C63.631632%2C27.021944&coverage=7a98974f7489f0608e65a8f58c62f9168335045a0b94c2ec3e449afd19ad3819&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test265.pdf
+
+// ossim-info -i (image) dump:
+test265.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test265.pdf > $(OBT_EXP_DIR)/test265-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test265.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=783&height=391&format=application/pdf&crs=EPSG%3A4326&bbox=63.593143%2C27.002749%2C63.631632%2C27.021944&coverage=7a98974f7489f0608e65a8f58c62f9168335045a0b94c2ec3e449afd19ad3819&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test265.pdf
+
+// ossim-info -i (image) dump:
+test265.test_command1: ossim-info -i $(OBT_OUT_DIR)/test265.pdf > $(OBT_OUT_DIR)/test265-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test265.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test265-info.txt $(OBT_OUT_DIR)/test265-info.txt
+
+// 
+
+// End test265:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test266:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT4.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test266.name: wcs-get-map-test266
+test266.description: Test a wcs get map call to omar server.
+test266.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test266.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=539&format=application/pdf&crs=EPSG%3A4326&bbox=68.809428%2C33.706938%2C68.866951%2C33.73578&coverage=f896583b198b9b24532429a5914c82c252e15827f3d92cf4812565094c6f9c9b&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test266.pdf
+
+// ossim-info -i (image) dump:
+test266.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test266.pdf > $(OBT_EXP_DIR)/test266-info.txt
+
+
+// The actual commands to test:
+
+// Get the image via wget:
+test266.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=539&format=application/pdf&crs=EPSG%3A4326&bbox=68.809428%2C33.706938%2C68.866951%2C33.73578&coverage=f896583b198b9b24532429a5914c82c252e15827f3d92cf4812565094c6f9c9b&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test266.pdf
+
+// ossim-info -i (image) dump:
+test266.test_command1: ossim-info -i $(OBT_OUT_DIR)/test266.pdf > $(OBT_OUT_DIR)/test266-info.txt
+
+//
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test266.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test266-info.txt $(OBT_OUT_DIR)/test266-info.txt
+
+// 
+
+// End test266:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test267:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT5.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test267.name: wcs-get-map-test267
+test267.description: Test a wcs get map call to omar server.
+test267.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test267.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=790&height=425&format=application/pdf&crs=EPSG%3A4326&bbox=-80.667468%2C28.087957%2C-80.645983%2C28.099503&coverage=e13d5154dd8c87ec25ee7a84885497e12e0c0fb8dbffaa3e931f2727fa333240&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test267.pdf
+
+// ossim-info -i (image) dump:
+test267.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test267.pdf > $(OBT_EXP_DIR)/test267-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test267.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=790&height=425&format=application/pdf&crs=EPSG%3A4326&bbox=-80.667468%2C28.087957%2C-80.645983%2C28.099503&coverage=e13d5154dd8c87ec25ee7a84885497e12e0c0fb8dbffaa3e931f2727fa333240&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test267.pdf
+
+// ossim-info -i (image) dump:
+test267.test_command1: ossim-info -i $(OBT_OUT_DIR)/test267.pdf > $(OBT_OUT_DIR)/test267-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test267.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test267-info.txt $(OBT_OUT_DIR)/test267-info.txt
+
+// 
+
+// End test267:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test268:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT6.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test268.name: wcs-get-map-test268
+test268.description: Test a wcs get map call to omar server.
+test268.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test268.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=313&height=435&format=application/pdf&crs=EPSG%3A4326&bbox=-80.71986%2C28.024547%2C-80.711364%2C28.036366&coverage=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test268.pdf
+
+// ossim-info -i (image) dump:
+test268.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test268.pdf > $(OBT_EXP_DIR)/test268-info.txt
+
+//
+
+// The actual commands to test:
+
+// Get the image via wget:
+test268.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=313&height=435&format=application/pdf&crs=EPSG%3A4326&bbox=-80.71986%2C28.024547%2C-80.711364%2C28.036366&coverage=53285fbe709d62e22592fd1667c3a00e81ae3eb219b942de57c26cde55230e96&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test268.pdf
+
+// ossim-info -i (image) dump:
+test268.test_command1: ossim-info -i $(OBT_OUT_DIR)/test268.pdf > $(OBT_OUT_DIR)/test268-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test268.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test268-info.txt $(OBT_OUT_DIR)/test268-info.txt
+
+// 
+
+// End test268:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test269:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT7.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test269.name: wcs-get-map-test269
+test269.description: Test a wcs get map call to omar server.
+test269.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test269.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=946&height=212&format=application/pdf&crs=EPSG%3A4326&bbox=-80.657606%2C28.099069%2C-80.634143%2C28.104307&coverage=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test269.pdf
+
+// ossim-info -i (image) dump:
+test269.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test269.pdf > $(OBT_EXP_DIR)/test269-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test269.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=946&height=212&format=application/pdf&crs=EPSG%3A4326&bbox=-80.657606%2C28.099069%2C-80.634143%2C28.104307&coverage=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test269.pdf
+
+// ossim-info -i (image) dump:
+test269.test_command1: ossim-info -i $(OBT_OUT_DIR)/test269.pdf > $(OBT_OUT_DIR)/test269-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test269.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test269-info.txt $(OBT_OUT_DIR)/test269-info.txt
+
+// 
+
+// End test269:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test270:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT8.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test270.name: wcs-get-map-test270
+test270.description: Test a wcs get map call to omar server.
+test270.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test270.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=704&height=402&format=application/pdf&crs=EPSG%3A4326&bbox=-80.65072%2C28.098106%2C-80.642387%2C28.10286&coverage=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test270.pdf
+
+// ossim-info -i (image) dump:
+test270.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test270.pdf > $(OBT_EXP_DIR)/test270-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test270.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=704&height=402&format=application/pdf&crs=EPSG%3A4326&bbox=-80.65072%2C28.098106%2C-80.642387%2C28.10286&coverage=6f11c1e735830084f310713df0588777eafefa433aeb4294c3ed7fe5f19f4cca&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test270.pdf
+
+// ossim-info -i (image) dump:
+test270.test_command1: ossim-info -i $(OBT_OUT_DIR)/test270.pdf > $(OBT_OUT_DIR)/test270-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test270.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test270-info.txt $(OBT_OUT_DIR)/test270-info.txt
+
+// 
+
+// End test270:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test271:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT9.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test271.name: wcs-get-map-test271
+test271.description: Test a wcs get map call to omar server.
+test271.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test271.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=441&height=288&format=application/pdf&crs=EPSG%3A4326&bbox=-116.156227%2C36.806374%2C-116.152557%2C36.808768&coverage=9eba33cbebfeebf0a3f02ebc165c20fd75fec0454147d884d1170ae1c966eb15&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test271.pdf
+
+// ossim-info -i (image) dump:
+test271.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test271.pdf > $(OBT_EXP_DIR)/test271-info.txt
+
+//
+
+// The actual commands to test:
+
+// Get the image via wget:
+test271.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=441&height=288&format=application/pdf&crs=EPSG%3A4326&bbox=-116.156227%2C36.806374%2C-116.152557%2C36.808768&coverage=9eba33cbebfeebf0a3f02ebc165c20fd75fec0454147d884d1170ae1c966eb15&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test271.pdf
+
+// ossim-info -i (image) dump:
+test271.test_command1: ossim-info -i $(OBT_OUT_DIR)/test271.pdf > $(OBT_OUT_DIR)/test271-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test271.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test271-info.txt $(OBT_OUT_DIR)/test271-info.txt
+
+// 
+
+// End test271:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test272:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT10.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test272.name: wcs-get-map-test272
+test272.description: Test a wcs get map call to omar server.
+test272.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test272.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=613&height=374&format=application/pdf&crs=EPSG%3A4326&bbox=-51.529526%2C-11.385616%2C-50.499991%2C-10.758138&coverage=f452fd7061245b34c66f21f473d11b90a706046d12a8842f45f62bdc458a025c&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test272.pdf
+
+// ossim-info -i (image) dump:
+test272.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test272.pdf > $(OBT_EXP_DIR)/test272-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test272.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=613&height=374&format=application/pdf&crs=EPSG%3A4326&bbox=-51.529526%2C-11.385616%2C-50.499991%2C-10.758138&coverage=f452fd7061245b34c66f21f473d11b90a706046d12a8842f45f62bdc458a025c&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test272.pdf
+
+// ossim-info -i (image) dump:
+test272.test_command1: ossim-info -i $(OBT_OUT_DIR)/test272.pdf > $(OBT_OUT_DIR)/test272-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test272.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test272-info.txt $(OBT_OUT_DIR)/test272-info.txt
+
+// 
+
+// End test272:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test273:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT11.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test273.name: wcs-get-map-test273
+test273.description: Test a wcs get map call to omar server.
+test273.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test273.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=786&height=432&format=application/pdf&crs=EPSG%3A4326&bbox=78.337576%2C38.629524%2C79.65814%2C39.354573&coverage=8370d10f178dcd906a04cc8c0bbf7e80e12b4f1dca6e54b6083f8288594a528a&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test273.pdf
+
+// ossim-info -i (image) dump:
+test273.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test273.pdf > $(OBT_EXP_DIR)/test273-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test273.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=786&height=432&format=application/pdf&crs=EPSG%3A4326&bbox=78.337576%2C38.629524%2C79.65814%2C39.354573&coverage=8370d10f178dcd906a04cc8c0bbf7e80e12b4f1dca6e54b6083f8288594a528a&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test273.pdf
+
+// ossim-info -i (image) dump:
+test273.test_command1: ossim-info -i $(OBT_OUT_DIR)/test273.pdf > $(OBT_OUT_DIR)/test273-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test273.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test273-info.txt $(OBT_OUT_DIR)/test273-info.txt
+
+// 
+
+// End test273:
+//
+//
+//====================================================================================================================================================================
+//
+//
+// ---
+// Begin test274:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT12.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test274.name: wcs-get-map-test274
+test274.description: Test a wcs get map call to omar server.
+test274.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test274.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=780&height=484&format=application/pdf&crs=EPSG%3A4326&bbox=12.436958%2C-19.167002%2C13.007373%2C-18.81333&coverage=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test274.pdf
+
+// ossim-info -i (image) dump:
+test274.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test274.pdf > $(OBT_EXP_DIR)/test274-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test274.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=780&height=484&format=application/pdf&crs=EPSG%3A4326&bbox=12.436958%2C-19.167002%2C13.007373%2C-18.81333&coverage=2f040a24ae4108ec38b92021fd6f6341a2c59e08025fd9637ff052dc62c80a98&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test274.pdf
+
+// ossim-info -i (image) dump:
+test274.test_command1: ossim-info -i $(OBT_OUT_DIR)/test274.pdf > $(OBT_OUT_DIR)/test274-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test274.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test274-info.txt $(OBT_OUT_DIR)/test274-info.txt
+
+// 
+
+// End test274:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test275:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT13.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test275.name: wcs-get-map-test275
+test275.description: Test a wcs get map call to omar server.
+test275.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test275.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=83&height=462&format=application/pdf&crs=EPSG%3A4326&bbox=44.579837%2C33.219953%2C44.584969%2C33.248805&coverage=357defb64729b04daeb1d9158c0f876119b4fb8571fffb96e1a6d4b6b8296737&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test275.pdf
+
+// ossim-info -i (image) dump:
+test275.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test275.pdf > $(OBT_EXP_DIR)/test275-info.txt
+
+//
+
+// The actual commands to test:
+
+// Get the image via wget:
+test275.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=83&height=462&format=application/pdf&crs=EPSG%3A4326&bbox=44.579837%2C33.219953%2C44.584969%2C33.248805&coverage=357defb64729b04daeb1d9158c0f876119b4fb8571fffb96e1a6d4b6b8296737&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test275.pdf
+
+// ossim-info -i (image) dump:
+test275.test_command1: ossim-info -i $(OBT_OUT_DIR)/test275.pdf > $(OBT_OUT_DIR)/test275-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test275.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test275-info.txt $(OBT_OUT_DIR)/test275-info.txt
+
+// 
+
+// End test275:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test276:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT14.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test276.name: wcs-get-map-test276
+test276.description: Test a wcs get map call to omar server.
+test276.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test276.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=518&height=425&format=application/pdf&crs=EPSG%3A4326&bbox=-74.198635%2C43.822902%2C-74.196277%2C43.824836&coverage=4c3f6d19757e3e942a131a00e55c580578cc8b5f4f8c375d3bd6d97561769ec8&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test276.pdf
+
+// ossim-info -i (image) dump:
+test276.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test276.pdf > $(OBT_EXP_DIR)/test276-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test276.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=518&height=425&format=application/pdf&crs=EPSG%3A4326&bbox=-74.198635%2C43.822902%2C-74.196277%2C43.824836&coverage=4c3f6d19757e3e942a131a00e55c580578cc8b5f4f8c375d3bd6d97561769ec8&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test276.pdf
+
+// 
+
+// ossim-info -i (image) dump:
+test276.test_command1: ossim-info -i $(OBT_OUT_DIR)/test276.pdf > $(OBT_OUT_DIR)/test276-info.txt
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test276.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test276-info.txt $(OBT_OUT_DIR)/test276-info.txt
+
+// 
+
+// End test276:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test277:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT15.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test277.name: wcs-get-map-test277
+test277.description: Test a wcs get map call to omar server.
+test277.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test277.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=732&height=383&format=application/pdf&crs=EPSG%3A4326&bbox=44.58015%2C33.223708%2C44.6259%2C33.247616&coverage=ac8ffc7c104234895830f58fd6bf510414b691251437ca491cdb09095bc7a42b&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test277.pdf
+
+// ossim-info -i (image) dump:
+test277.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test277.pdf > $(OBT_EXP_DIR)/test277-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test277.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=732&height=383&format=application/pdf&crs=EPSG%3A4326&bbox=44.58015%2C33.223708%2C44.6259%2C33.247616&coverage=ac8ffc7c104234895830f58fd6bf510414b691251437ca491cdb09095bc7a42b&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test277.pdf
+
+// ossim-info -i (image) dump:
+test277.test_command1: ossim-info -i $(OBT_OUT_DIR)/test277.pdf > $(OBT_OUT_DIR)/test277-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test277.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test277-info.txt $(OBT_OUT_DIR)/test277-info.txt
+
+// 
+
+// End test277:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test278:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT16.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test278.name: wcs-get-map-test278
+test278.description: Test a wcs get map call to omar server.
+test278.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test278.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=917&height=149&format=application/pdf&crs=EPSG%3A4326&bbox=44.579712%2C33.23948%2C44.637041%2C33.248742&coverage=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test278.pdf
+
+// ossim-info -i (image) dump:
+test278.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test278.pdf > $(OBT_EXP_DIR)/test278-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test278.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=917&height=149&format=application/pdf&crs=EPSG%3A4326&bbox=44.579712%2C33.23948%2C44.637041%2C33.248742&coverage=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test278.pdf
+
+// ossim-info -i (image) dump:
+test278.test_command1: ossim-info -i $(OBT_OUT_DIR)/test278.pdf > $(OBT_OUT_DIR)/test278-info.txt
+
+//
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test278.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test278-info.txt $(OBT_OUT_DIR)/test278-info.txt
+
+// 
+
+// End test278:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test279:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT17.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test279.name: wcs-get-map-test279
+test279.description: Test a wcs get map call to omar server.
+test279.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test279.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=461&height=461&format=application/pdf&crs=EPSG%3A4326&bbox=44.602487%2C33.233815%2C44.605214%2C33.236542&coverage=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test279.pdf
+
+// ossim-info -i (image) dump:
+test279.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test279.pdf > $(OBT_EXP_DIR)/test279-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test279.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=461&height=461&format=application/pdf&crs=EPSG%3A4326&bbox=44.602487%2C33.233815%2C44.605214%2C33.236542&coverage=d335c8f697ac7862042d12a37014c2f0bdd9585e3cced8feac0249ba375ff8d4&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test279.pdf
+
+// ossim-info -i (image) dump:
+test279.test_command1: ossim-info -i $(OBT_OUT_DIR)/test279.pdf > $(OBT_OUT_DIR)/test279-info.txt
+
+//
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test279.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test279-info.txt $(OBT_OUT_DIR)/test279-info.txt
+
+// 
+
+// End test279:
+//
+//
+//====================================================================================================================================================================
+//
+// ---
+// Begin test280:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT18.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test280.name: wcs-get-map-test280
+test280.description: Test a wcs get map call to omar server.
+test280.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test280.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=504&height=379&format=application/pdf&crs=EPSG%3A4326&bbox=44.584184%2C33.233363%2C44.598535%2C33.244147&coverage=8cebacaa83a453d515d9544cb875a2b90da72eb2e2cf91acbd9579e57d953b21&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test280.pdf
+
+// ossim-info -i (image) dump:
+test280.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test280.pdf > $(OBT_EXP_DIR)/test280-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test280.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=504&height=379&format=application/pdf&crs=EPSG%3A4326&bbox=44.584184%2C33.233363%2C44.598535%2C33.244147&coverage=8cebacaa83a453d515d9544cb875a2b90da72eb2e2cf91acbd9579e57d953b21&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test280.pdf
+
+// ossim-info -i (image) dump:
+test280.test_command1: ossim-info -i $(OBT_OUT_DIR)/test280.pdf > $(OBT_OUT_DIR)/test280-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test280.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test280-info.txt $(OBT_OUT_DIR)/test280-info.txt
+
+// 
+
+// End test280:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test281:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT19.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test281.name: wcs-get-map-test281
+test281.description: Test a wcs get map call to omar server.
+test281.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test281.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=899&height=383&format=application/pdf&crs=EPSG%3A4326&bbox=147.198023%2C-42.888456%2C147.333207%2C-42.83095&coverage=ce34f3c591c4c52702bae0dd02837c1eb4bc28a066bd88f07a5dd9fcdb100886&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test281.pdf
+
+// ossim-info -i (image) dump:
+test281.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test281.pdf > $(OBT_EXP_DIR)/test281-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test281.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=899&height=383&format=application/pdf&crs=EPSG%3A4326&bbox=147.198023%2C-42.888456%2C147.333207%2C-42.83095&coverage=ce34f3c591c4c52702bae0dd02837c1eb4bc28a066bd88f07a5dd9fcdb100886&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test281.pdf
+
+// ossim-info -i (image) dump:
+test281.test_command1: ossim-info -i $(OBT_OUT_DIR)/test281.pdf > $(OBT_OUT_DIR)/test281-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test281.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test281-info.txt $(OBT_OUT_DIR)/test281-info.txt
+
+//
+
+// End test281:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test282:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT20.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test282.name: wcs-get-map-test282
+test282.description: Test a wcs get map call to omar server.
+test282.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test282.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=749&height=102&format=application/pdf&crs=EPSG%3A4326&bbox=147.239577%2C-42.846481%2C147.298542%2C-42.838519&coverage=c3d4c64f26e73807e91fa36a36632636ba53be4adbcbb8ff6cf0ad2f9ed216c0&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test282.pdf
+
+// ossim-info -i (image) dump:
+test282.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test282.pdf > $(OBT_EXP_DIR)/test282-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test282.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=749&height=102&format=application/pdf&crs=EPSG%3A4326&bbox=147.239577%2C-42.846481%2C147.298542%2C-42.838519&coverage=c3d4c64f26e73807e91fa36a36632636ba53be4adbcbb8ff6cf0ad2f9ed216c0&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test282.pdf
+
+// ossim-info -i (image) dump:
+test282.test_command1: ossim-info -i $(OBT_OUT_DIR)/test282.pdf > $(OBT_OUT_DIR)/test282-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test282.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test282-info.txt $(OBT_OUT_DIR)/test282-info.txt
+
+// 
+
+// End test282:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test283:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT21.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test283.name: wcs-get-map-test283
+test283.description: Test a wcs get map call to omar server.
+test283.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test283.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1013&height=413&format=application/pdf&crs=EPSG%3A4326&bbox=147.180838%2C-42.872813%2C147.2606%2C-42.840341&coverage=97a5357615f405956148933c44bf289eca37b5a1a83b66697b51b7b7cc53719f&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test283.pdf
+
+// ossim-info -i (image) dump:
+test283.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test283.pdf > $(OBT_EXP_DIR)/test283-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test283.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1013&height=413&format=application/pdf&crs=EPSG%3A4326&bbox=147.180838%2C-42.872813%2C147.2606%2C-42.840341&coverage=97a5357615f405956148933c44bf289eca37b5a1a83b66697b51b7b7cc53719f&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test283.pdf
+
+// ossim-info -i (image) dump:
+test283.test_command1: ossim-info -i $(OBT_OUT_DIR)/test283.pdf > $(OBT_OUT_DIR)/test283-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test283.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test283-info.txt $(OBT_OUT_DIR)/test283-info.txt
+
+// 
+
+// End test283:
+//
+//
+//====================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test284:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT22.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test284.name: wcs-get-map-test284
+test284.description: Test a wcs get map call to omar server.
+test284.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test284.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=933&height=400&format=application/pdf&crs=EPSG%3A4326&bbox=147.302323%2C-42.862794%2C147.3076%2C-42.860534&coverage=71be491edf925f55d2b5a49f4b8031462ef722920739e2515cd575c108caa8de&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test284.pdf
+
+// ossim-info -i (image) dump:
+test284.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test284.pdf > $(OBT_EXP_DIR)/test284-info.txt
+
+//
+
+// The actual commands to test:
+
+// Get the image via wget:
+test284.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=933&height=400&format=application/pdf&crs=EPSG%3A4326&bbox=147.302323%2C-42.862794%2C147.3076%2C-42.860534&coverage=71be491edf925f55d2b5a49f4b8031462ef722920739e2515cd575c108caa8de&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=viewport&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test284.pdf
+
+// ossim-info -i (image) dump:
+test284.test_command1: ossim-info -i $(OBT_OUT_DIR)/test284.pdf > $(OBT_OUT_DIR)/test284-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test284.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test284-info.txt $(OBT_OUT_DIR)/test284-info.txt
+
+// 
+
+// End test284:
+//
+//
+//====================================================================================================================================================================
+//
+// ---
+// Begin test285:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT23.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test285.name: wcs-get-map-test285
+test285.description: Test a wcs get map call to omar server.
+test285.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test285.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=465&format=application/pdf&crs=EPSG%3A4326&bbox=-71.074084%2C42.725337%2C-71.071934%2C42.726267&coverage=ba03d61a94257529a848f09b70520c2107abbde9a63aa245a55b63a3525ce315&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test285.pdf
+
+// ossim-info -i (image) dump:
+test285.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test285.pdf > $(OBT_EXP_DIR)/test285-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test285.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=465&format=application/pdf&crs=EPSG%3A4326&bbox=-71.074084%2C42.725337%2C-71.071934%2C42.726267&coverage=ba03d61a94257529a848f09b70520c2107abbde9a63aa245a55b63a3525ce315&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test285.pdf
+
+// ossim-info -i (image) dump:
+test285.test_command1: ossim-info -i $(OBT_OUT_DIR)/test285.pdf > $(OBT_OUT_DIR)/test285-info.txt
+
+//
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+test285.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test285-info.txt $(OBT_OUT_DIR)/test285-info.txt
+
+// 
+
+// End test285:
+//
+//
+//=========================================================================================================================================================================================================================================================================
+//
+//
+//
+// ---
+// Begin test286:
+// --- 
+// Drobo Directory: 
+//
+//	
+//
+// Copy of do-test-PT24.kwl
+//
+// This test will write the image out into a .pdf file format
+//
+//
+
+test286.name: wcs-get-map-test286
+test286.description: Test a wcs get map call to omar server.
+test286.enabled: 1
+
+// Commands to generate expected results:
+
+// Get the image via wget:
+test286.expected_results_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=465&format=application/pdf&crs=EPSG%3A4326&bbox=-90.450822%2C41.518265%2C-89.346384%2C41.99586&coverage=187259ca5374948b56f43941d2e4e89fd59dca41c0faab719f94508e1a258a03&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_EXP_DIR)/test286.pdf
+
+// ossim-info -i (image) dump:
+test286.expected_results_command1: ossim-info -i $(OBT_EXP_DIR)/test286.pdf > $(OBT_EXP_DIR)/test286-info.txt
+
+// 
+
+// The actual commands to test:
+
+// Get the image via wget:
+test286.test_command0: wget "$(OMAR_TEST_URL)/omar/ogc/wcs?width=1074&height=465&format=application/pdf&crs=EPSG%3A4326&bbox=-90.450822%2C41.518265%2C-89.346384%2C41.99586&coverage=187259ca5374948b56f43941d2e4e89fd59dca41c0faab719f94508e1a258a03&brightness=0&contrast=1&sharpen_mode=none&stretch_mode=linear_auto_min_max&stretch_mode_region=global&interpolation=bilinear&bands=default&quicklook=false&request=GetCoverage" -O $(OBT_OUT_DIR)/test286.pdf
+
+// ossim-info -i (image) dump:
+test286.test_command1: ossim-info -i $(OBT_OUT_DIR)/test286.pdf > $(OBT_OUT_DIR)/test286-info.txt
+
+// 
+
+// Post process commands for diffs and stuff:
+
+// Test the info dump:
+//test286.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test286-info.txt $(OBT_OUT_DIR)/test286-info.txt
+
+// 
+
+// End test286:
+//
+//
+//====================================================================================================================================================================
