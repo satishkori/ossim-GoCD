@@ -1,11 +1,8 @@
-### Status of ossimlabs *dev* branch
-
-Resource | GoCD Status
------------- | -------------
-centos6 | ![centos6 Status](http://omar.ossim.org/gocd/centos6_status.png)
-centos7 | ![centos7 Status](http://omar.ossim.org/gocd/centos7_status.png)
-mac | ![mac Status](http://omar.ossim.org/gocd/mac_status.png)
-win7x64 | ![win7x64 Status](http://omar.ossim.org/gocd/win7x64_status.png)
+### GoCD Status builds 
+Resource | *master* | *dev* | 
+------------ | ------------- | -------------
+centos6 | ![centos6 Status](http://omar.ossim.org/gocd/status/centos6_master_status.svg) | ![centos6 Status](http://omar.ossim.org/gocd/status/centos6_dev_status.svg)
+centos7 | ![centos7 Status](http://omar.ossim.org/gocd/status/centos7_master_status.svg) | ![centos7 Status](http://omar.ossim.org/gocd/status/centos7_dev_status.svg)
 
 # ossim-GoCD
 
