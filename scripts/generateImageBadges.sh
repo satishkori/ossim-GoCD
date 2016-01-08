@@ -23,5 +23,6 @@ wget "http://img.shields.io/badge/build-passed-${PASS_COLOR}.svg?style=plastic" 
 wget "http://img.shields.io/badge/test-failed-${FAIL_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/test-failed.svg
 wget "http://img.shields.io/badge/test-passed-${PASS_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/test-passed.svg
 wget "http://img.shields.io/badge/all-passed-${PASS_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/all-passed.svg
-wget "https://img.shields.io/badge/build-started-${INPROGRESS_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/build-started.svg
+wget "http://img.shields.io/badge/build-started-${INPROGRESS_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/build-started.svg
 wget "http://img.shields.io/badge/test-started-${INPROGRESS_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/test-started.svg
+wget "http://img.shields.io/badge/-canceled-${FAIL_COLOR}.svg?style=plastic" -O $ROOT_DIR/images/canceled.svg
