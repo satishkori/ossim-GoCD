@@ -15,4 +15,10 @@ if not exist ossim-deps-%OSSIM_DEPENDENCY_VERSION% (
   7z x -y ossim-deps-%OSSIM_DEPENDENCY_VERSION%.zip
 )
  
+if not exist %OSSIM_DEV_HOME%build (
+  mkdir build
+)
+
+cd build 
+echo cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
 cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
