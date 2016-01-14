@@ -38,7 +38,7 @@ IF %DEVENV%==vs2005 (
     call "C:\Program Files (x86)\Microsoft Visual Studio 8\VC\vcvarsall" x86
   ) ELSE (
     set TARGET_SYSTEM="Visual Studio 8 2005 Win64"
-    call "C:\Program Files (x86)\Microsoft Visual Studio 8\VC\vcvarsall" x64
+    call "C:\Program Files (x86)\Microsoft Visual Studio 8\VC\vcvarsall" amd64
   )
 ) 
 
@@ -48,7 +48,7 @@ IF %DEVENV%==vs2010 (
     call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall" x86
   ) ELSE (
     set TARGET_SYSTEM="Visual Studio 10 Win64"
-    call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall" x64
+    call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall" amd64
   )
 )
 
@@ -58,7 +58,7 @@ IF %DEVENV%==vs2015 (
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall" x86
   ) ELSE (
     set TARGET_SYSTEM="Visual Studio 14 Win64"
-    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall" x64
+    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall" amd64
   )
 )
 
