@@ -1,7 +1,8 @@
 @echo off
 rem setlocal enabledelayedexpansion
 set SCRIPT_DIR=%~dp0
-
+SET TMP=C:\TMP
+if not exist "%TMP%" ( mkdir "%TMP%" )
 
 
 if not defined OSSIM_DEV_HOME (
