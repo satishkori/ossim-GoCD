@@ -22,3 +22,4 @@ if not exist %OSSIM_DEV_HOME%build (
 cd build 
 echo cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
 cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
+
