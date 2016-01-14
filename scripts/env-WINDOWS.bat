@@ -181,7 +181,3 @@ set %1=%~dpnx2
 GOTO :EOF
 
 :done
-exit 0
-
-:error
-exit 1
