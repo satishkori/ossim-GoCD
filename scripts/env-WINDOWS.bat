@@ -173,9 +173,15 @@ set CMAKE_PARAMETERS=^
 %CMAKE_DIR%
 
 
+goto :done
 
 
 :expandPath
 set %1=%~dpnx2
 GOTO :EOF
 
+:done
+exit 0
+
+:error
+exit 1
