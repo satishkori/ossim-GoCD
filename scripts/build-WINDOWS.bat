@@ -8,3 +8,4 @@ echo ************ Extracting dependencies ************
 cd %OSSIM_DEV_HOME%
 7z x -y ossim-deps-%OSSIM_DEPENDENCY_VERSION%.zip
 
+cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
