@@ -1,16 +1,20 @@
 @echo off
 rem setlocal enabledelayedexpansion
 set SCRIPT_DIR=%~dp0
+
+
+
 if not defined OSSIM_DEV_HOME (
-   pushd %SCRIPT_DIR%..\..
-   set OSSIM_DEV_HOME=!CD!
-   popd
+
+  call:expandPath OSSIM_DEV_HOME %SCRIPT_DIR%..\..
+
 )
+
 if not defined VISUAL_STUDIO_VERSION ( 
     set VISUAL_STUDIO_VERSION=14
 )
 if not defined OSSIM_INSTALL_PREFIX ( 
-    set OSSIM_INSTALL_PREFIX=!OSSIM_DEV_HOME!install
+    set OSSIM_INSTALL_PREFIX=%OSSIM_DEV_HOME%install
 )
 if not defined OSSIM_DEPENDENCY_VERSION ( 
     set OSSIM_DEPENDENCY_VERSION=1.0.0
@@ -129,6 +133,8 @@ if not defined BUILD_OSSIM_PLANET (
    set BUILD_OSSIM_PLANET=OFF
 )
 
+set OSSIM_DEPENDENCIES=%OSSIM_DEV_HOME%ossim-deps-%DEPENDENCY_VERSION%
+
 set CMAKE_PARAMETERS=^
 -DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE% ^
 -DOSSIM_DEV_HOME=%OSSIM_DEV_HOME% ^
@@ -157,3 +163,11 @@ set CMAKE_PARAMETERS=^
 -DBUILD_OSSIM_WMS=%BUILD_OSSIM_WMS% ^
 -DBUILD_OSSIM_PLANET=%BUILD_OSSIM_PLANET% ^
 %CMAKE_DIR%
+
+
+
+
+:expandPath
+set %1=%~dpnx2
+GOTO :EOF
+
