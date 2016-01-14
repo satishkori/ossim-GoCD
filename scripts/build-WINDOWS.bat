@@ -2,7 +2,8 @@
 setlocal enabledelayedexpansion
 set SCRIPT_DIR="%~dp0"
 
-call %SCRIPT_DIR%env-WINDOWS
+echo calling script %SCRIPT_DIR%env-WINDOWS.bat
+call %SCRIPT_DIR%env-WINDOWS.bat
 
 echo ************ Extracting dependencies: %OSSIM_DEV_HOME%ossim-deps-%OSSIM_DEPENDENCY_VERSION%.zip ************
 cd %OSSIM_DEV_HOME%
