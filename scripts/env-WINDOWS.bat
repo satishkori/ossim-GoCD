@@ -1,5 +1,5 @@
 @echo off
-setlocal enabledelayedexpansion
+rem setlocal enabledelayedexpansion
 set SCRIPT_DIR=%~dp0
 if not defined OSSIM_DEV_HOME (
    pushd %SCRIPT_DIR%..\..
