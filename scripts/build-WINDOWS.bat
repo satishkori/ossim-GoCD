@@ -13,6 +13,7 @@ if not exist ossim-deps-%OSSIM_DEPENDENCY_VERSION% (
   echo 7z x -y .\ossim-deps-%OSSIM_DEPENDENCY_VERSION%.zip
 
   7z x -y ossim-deps-%OSSIM_DEPENDENCY_VERSION%.zip
+  if ERRORLEVEL 1 exit 1
 )
  
 if not exist %OSSIM_DEV_HOME%build (
@@ -22,4 +23,7 @@ if not exist %OSSIM_DEV_HOME%build (
 cd build 
 echo cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
 cmake -G "NMake Makefiles JOM" %CMAKE_PARAMETERS%
+if ERRORLEVEL 1 exit 1
+jom /J 8
+if ERRORLEVEL 1 exit 1
 
