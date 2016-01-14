@@ -15,5 +15,8 @@ if not defined OSSIM_INSTALL_PREFIX (
 if not defined OSSIM_DEPENDENCY_VERSION ( 
     set OSSIM_DEPENDENCY_VERSION=1.0.0
 )
+if not defined OSSIM_VERSION ( 
+    set OSSIM_VERSION=1.9.0
+)
 
 call "C:\Program Files (x86)\Microsoft Visual Studio %VISUAL_STUDIO_VERSION%\VC\vcvarsall.bat" amd64
