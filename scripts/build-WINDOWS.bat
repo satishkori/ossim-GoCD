@@ -6,5 +6,5 @@ call %SCRIPT_DIR%env-WINDOWS
 
 echo ************ Extracting dependencies ************
 cd %OSSIM_DEV_HOME%
-7z x -y ossim-deps-%OSSIM_DEPENCY_VERSION.zip
+7z x -y ossim-deps-%OSSIM_DEPENCY_VERSION%.zip
 
