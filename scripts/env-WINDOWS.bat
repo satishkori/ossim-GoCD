@@ -39,6 +39,7 @@ set GDAL_DIR=%OSSIM_DEPENDENCIES%
 set OPENTHREADS_DIR=%OSSIM_DEPENDENCIES%
 set KAKADU_AUX_LIBRARY=%OSSIM_DEPENDENCIES%\kakadu\lib\kdu_a75R.lib
 set KAKADU_LIBRARY=%OSSIM_DEPENDENCIES%\kakadu\lib\kdu_75R.lib
+set KAKADU_ROOT_SRC=%OSSIM_DEPENDENCIES%\kakadu
 
 :: Interpret the target system and set up environment:
 IF %DEVENV%==vs2005 (
