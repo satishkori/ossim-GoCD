@@ -21,7 +21,7 @@ set GOCD_RESOURCE_NAME=%1
 
 echo; echo; 
 echo "################################################################################"
-echo "#  Running `basename "$0"` for resource <$1> out of <$PWD>"
+echo "#  Running `basename "%0"` for resource <%1> out of <%CD%>"
 echo "################################################################################"
 
 set RSYNC_CMD="rsync -rlptvz"
@@ -52,7 +52,7 @@ echo; echo "STATUS: Syncing elevation data...";
 
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%/elevation/nadcon %OSSIM_DATA%/elevation;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%\elevation\nadcon %OSSIM_DATA%\elevation;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of nadcon grids.";
 ::  echo; exit 1;
@@ -69,54 +69,54 @@ echo; echo "STATUS: Syncing nadcon data...";
 
 ::# rsync geoid 96 data:
 echo; echo "STATUS: Syncing geoid96 data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid96_little_endian/ $OSSIM_DATA/elevation/geoids/geoid96;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of geoid96 grids.";
-  echo; exit 1;
-fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%\elevation\geoid96_little_endian\ %OSSIM_DATA%\elevation\geoids\geoid96;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of geoid96 grids.";
+::  echo; exit 1;
+::fi
 
 ::# rsync geoid 99 data:
 echo; echo "STATUS: Syncing geoid99 data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid99_little_endian/ $OSSIM_DATA/elevation/geoids/geoid99;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of geoid99 grids.";
-  echo; exit 1;
-fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%\elevation\geoid99_little_endian\ %OSSIM_DATA%\elevation\geoids\geoid99;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of geoid99 grids.";
+::  echo; exit 1;
+::fi
 
 ::#rsync imagery
 echo; echo "STATUS: Syncing image data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_BATCH_TEST_DATA;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of imagery.";
-  echo; exit 1;
-fi
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/geoeye1 $OSSIM_BATCH_TEST_DATA;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of imagery.";
-  echo; exit 1;
-fi
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/rbt $OSSIM_BATCH_TEST_DATA;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of imagery.";
-  echo; exit 1;
-fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%\test\data\public %OSSIM_BATCH_TEST_DATA%;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of imagery.";
+::  echo; exit 1;
+::fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%\test\data\geoeye1 %OSSIM_BATCH_TEST_DATA%;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of imagery.";
+::  echo; exit 1;
+::fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%/test/data/rbt %OSSIM_BATCH_TEST_DATA%;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of imagery.";
+::  echo; exit 1;
+::fi
   
 ::#rsync expected results (if exists)
-REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
-echo; echo "STATUS: Checking for expected results in <$REPO_EXPECTED_RESULTS_DIR>...";
-echo "STATUS: SKIP_EXPECTED_RESULTS_SYNC = $SKIP_EXPECTED_RESULTS_SYNC";
-if [ -d $REPO_EXPECTED_RESULTS_DIR ] && [ -z $SKIP_EXPECTED_RESULTS_SYNC ]; then
-  echo; echo "STATUS: Syncing expected results from <$REPO_EXPECTED_RESULTS_DIR> to <$OSSIM_BATCH_TEST_EXPECTED>...";
-  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OSSIM_BATCH_TEST_EXPECTED/;
-  if [ $? != 0 ] ; then 
-    echo "ERROR: Failed data repository rsync of expected results.";
-  echo; exit 1;
-  fi
-else
-  echo; echo "STATUS: Skipped sync of expected results" 
-fi
+set REPO_EXPECTED_RESULTS_DIR=%OSSIM_DATA_REPOSITORY%\test\expected_results\$GOCD_RESOURCE_NAME
+echo; echo "STATUS: Checking for expected results in <%REPO_EXPECTED_RESULTS_DIR%>...";
+echo "STATUS: SKIP_EXPECTED_RESULTS_SYNC = %SKIP_EXPECTED_RESULTS_SYNC%";
+::if [ -d $REPO_EXPECTED_RESULTS_DIR ] && [ -z $SKIP_EXPECTED_RESULTS_SYNC ]; then
+::  echo; echo "STATUS: Syncing expected results from <$REPO_EXPECTED_RESULTS_DIR> to <$OSSIM_BATCH_TEST_EXPECTED>...";
+::  $RSYNC_CMD $REPO_EXPECTED_RESULTS_DIR/ $OSSIM_BATCH_TEST_EXPECTED/;
+::  if [ $? != 0 ] ; then 
+::    echo "ERROR: Failed data repository rsync of expected results.";
+::  echo; exit 1;
+::  fi
+::else
+::  echo; echo "STATUS: Skipped sync of expected results" 
+::fi
 
-echo 
-exit 0;
+::echo 
+::exit 0;
 
 
