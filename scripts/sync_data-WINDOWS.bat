@@ -24,7 +24,7 @@ echo "##########################################################################
 echo "#  Running `basename "%0"` for resource <%1> out of <%CD%>"
 echo "################################################################################"
 
-set RSYNC_CMD="rsync -rlptvz"
+set RSYNC_CMD=rsync -rlptvz
 set SCRIPT_DIR=%~dp0
 
 ::Convert to cygdrive format.  The rsync on windows is a a cygwin port
@@ -38,7 +38,7 @@ set OSSIM_DATA_REPOSITORY_CYGDRIVE=/cygdrive/%DRIVE_ONLY%%FILE_NO_DRIVE%
 
 
 ::# Set GoCD-specific environment:
-call $SCRIPT_DIR/set_obt_environment-WINDOWS.bat
+call %SCRIPT_DIR%\set_obt_environment-WINDOWS.bat
 
 ::# Should already be there but create if not:
 if not exist "%OSSIM_DATA%\elevation" ( mkdir "%OSSIM_DATA%\elevation" )
