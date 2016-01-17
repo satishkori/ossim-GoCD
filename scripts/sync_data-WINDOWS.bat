@@ -1,21 +1,3 @@
-::#####################################################################################
-::#
-::# Synchronizes the local GoCD agent machine with the OBT test data on repository
-::#
-::# Usage:  sync_data.sh <gocd_resource_name>
-::#
-::# Required ENV vars:
-::#
-::#   OSSIM_DATA_REPOSITORY -- local NFS mount point for data repository
-::#   OSSIM_DATA -- Local directory to contain elevation, imagery, and expected results
-::#
-::# Optional referenced  env var:
-::#
-::#   SKIP_EXPECTED_RESULTS_SYNC -- if defined, implies the data sync is for 
-::#      *generating* expected results, therefore prior expected results are not synced
-::#      from the repo (they are ignored).
-::#
-::#####################################################################################
 @echo off
 set GOCD_RESOURCE_NAME=%1
 

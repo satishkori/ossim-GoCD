@@ -1,5 +1,4 @@
 @echo off
-rem setlocal enabledelayedexpansion
 set SCRIPT_DIR=%~dp0
 
 echo calling script %SCRIPT_DIR%env-WINDOWS.bat
