@@ -12,15 +12,24 @@ cd %SCRIPT_DIR%\..\..
 set OSSIM_DEV_HOME=%CD%
 
 
-set OSSIM_INSTALL_DIR=%OSSIM_DEV_HOME%\install
-set PATH=%OSSIM_DEPENDENCIES%\bin:%OSSIM_INSTALL_DIR%\bin:%PATH%
 set OSSIM_PREFS_FILE=%OSSIM_DEV_HOME%\ossim-GoCD\ossim-gocd.prefs
-set JAVA_CLASS_PATH=%OSSIM_INSTALL_DIR%\share\java
+set JAVA_CLASS_PATH=%OSSIM_INSTALL_PREFIX%\share\java
+
+if "%OSSIM_INSTALL_PREFIX"=="" ( 
+   set OSSIM_INSTALL_PREFIX=%OSSIM_DEV_HOME%\install
+)
+
+if "%OSSIM_DEPENDENCIES"=="" ( 
+   set OSSIM_DEPENDENCIES=%OSSIM_DEV_HOME%\ossim-deps-%DEPENDENCY_VERSION%
+)
+
+set PATH=%OSSIM_DEPENDENCIES%\bin:%OSSIM_INSTALL_PREFIX%\bin:%PATH%
 
 echo "Checking for required environment variables..."
 
 if "%OSSIM_VERSION%"=="" (set OSSIM_VERSION=1.9.0)
 
+if "%OSSIM_DATA%"=="" (exit 1)
 ::if [ -z $OSSIM_DATA ]; then
 ::  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
 ::  exit 1;
