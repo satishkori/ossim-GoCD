@@ -27,10 +27,10 @@ echo "##########################################################################
 set RSYNC_CMD="rsync -rlptvz"
 set SCRIPT_DIR=%~dp0
 
-# Set GoCD-specific environment:
+::# Set GoCD-specific environment:
 call $SCRIPT_DIR/set_obt_environment-WINDOWS.bat
 
-# Should already be there but create if not:
+::# Should already be there but create if not:
 if not exist "%OSSIM_DATA%\elevation" ( mkdir "%OSSIM_DATA%\elevation" )
 if not exist "%OSSIM_BATCH_TEST_DATA%\elevation" ( mkdir "%OSSIM_BATCH_TEST_DATA%\elevation" )
 if not exist "%OSSIM_BATCH_TEST_EXPECTED%\elevation" ( mkdir "%OSSIM_BATCH_TEST_EXPECTED%\elevation" )
@@ -42,15 +42,15 @@ if not exist "%OSSIM_BATCH_TEST_EXPECTED%\elevation" ( mkdir "%OSSIM_BATCH_TEST_
 ::  echo; exit 1;
 ::fi
 
-# rsync elevation data:
+::# rsync elevation data:
 echo; echo "STATUS: Syncing elevation data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/dted/level0 $OSSIM_DATA/elevation/dted;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of elevation.";
-  echo; exit 1;
-fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%\elevation\dted\level0 %OSSIM_DATA%\elevation\dted;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of elevation.";
+::  echo; exit 1;
+::fi
 
-# rsync nadcon data:
+::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/nadcon $OSSIM_DATA/elevation;
 if [ $? != 0 ] ; then 
@@ -67,7 +67,7 @@ if [ ! -d $OSSIM_DATA/elevation/geoids ] ; then
   fi
 fi
 
-# rsync geoid 96 data:
+::# rsync geoid 96 data:
 echo; echo "STATUS: Syncing geoid96 data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid96_little_endian/ $OSSIM_DATA/elevation/geoids/geoid96;
 if [ $? != 0 ] ; then 
@@ -75,7 +75,7 @@ if [ $? != 0 ] ; then
   echo; exit 1;
 fi
 
-# rsync geoid 99 data:
+::# rsync geoid 99 data:
 echo; echo "STATUS: Syncing geoid99 data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/geoid99_little_endian/ $OSSIM_DATA/elevation/geoids/geoid99;
 if [ $? != 0 ] ; then 
@@ -83,7 +83,7 @@ if [ $? != 0 ] ; then
   echo; exit 1;
 fi
 
-#rsync imagery
+::#rsync imagery
 echo; echo "STATUS: Syncing image data...";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/public $OSSIM_BATCH_TEST_DATA;
 if [ $? != 0 ] ; then 
@@ -101,7 +101,7 @@ if [ $? != 0 ] ; then
   echo; exit 1;
 fi
   
-#rsync expected results (if exists)
+::#rsync expected results (if exists)
 REPO_EXPECTED_RESULTS_DIR=$OSSIM_DATA_REPOSITORY/test/expected_results/$GOCD_RESOURCE_NAME
 echo; echo "STATUS: Checking for expected results in <$REPO_EXPECTED_RESULTS_DIR>...";
 echo "STATUS: SKIP_EXPECTED_RESULTS_SYNC = $SKIP_EXPECTED_RESULTS_SYNC";
