@@ -52,20 +52,20 @@ echo; echo "STATUS: Syncing elevation data...";
 
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/nadcon $OSSIM_DATA/elevation;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of nadcon grids.";
-  echo; exit 1;
-fi
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY%/elevation/nadcon %OSSIM_DATA%/elevation;
+::if [ $? != 0 ] ; then 
+::  echo "ERROR: Failed data repository rsync of nadcon grids.";
+::  echo; exit 1;
+::fi
 
-if [ ! -d $OSSIM_DATA/elevation/geoids ] ; then
-  echo; echo "STATUS: Creating missing geoids subdirectory";
-  mkdir $OSSIM_DATA/elevation/geoids; 
-  if [ $? != 0 ] ; then 
-    echo "ERROR: Failed creatiion of geoids directory at <$OSSIM_DATA/elevation/geoids>.";
-    echo; exit 1;
-  fi
-fi
+::if [ ! -d $OSSIM_DATA/elevation/geoids ] ; then
+::  echo; echo "STATUS: Creating missing geoids subdirectory";
+::  mkdir $OSSIM_DATA/elevation/geoids; 
+::  if [ $? != 0 ] ; then 
+::    echo "ERROR: Failed creatiion of geoids directory at <$OSSIM_DATA/elevation/geoids>.";
+::    echo; exit 1;
+::  fi
+::fi
 
 ::# rsync geoid 96 data:
 echo; echo "STATUS: Syncing geoid96 data...";
