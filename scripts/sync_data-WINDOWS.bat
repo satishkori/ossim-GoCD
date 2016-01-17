@@ -18,6 +18,9 @@ set DRIVE_ONLY=%OSSIM_DATA_REPOSITORY:~0,1%
 set FILE_NO_DRIVE=%OSSIM_DATA_REPOSITORY:~2,10000%
 set OSSIM_DATA_REPOSITORY_CYGDRIVE=/cygdrive/%DRIVE_ONLY%%FILE_NO_DRIVE%
 
+::Let's make sure we are all forward slashes
+set OSSIM_DATA_REPOSITORY_CYGDRIVE=%OSSIM_DATA_REPOSITORY_CYGDRIVE:\=/%
+set OSSIM_DATA_CYGDRIVE=%OSSIM_DATA_CYGDRIVE:\=/%
 
 ::# Set GoCD-specific environment:
 call %SCRIPT_DIR%\set_obt_environment-WINDOWS.bat
@@ -36,7 +39,7 @@ if not exist "%OSSIM_BATCH_TEST_EXPECTED%\elevation" ( mkdir "%OSSIM_BATCH_TEST_
 
 ::# rsync elevation data:
 echo; echo "STATUS: Syncing elevation data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of elevation.";
 ::  echo; exit 1;
@@ -44,7 +47,7 @@ echo; echo "STATUS: Syncing elevation data...";
 
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of nadcon grids.";
 ::  echo; exit 1;
@@ -61,7 +64,7 @@ echo; echo "STATUS: Syncing nadcon data...";
 
 ::# rsync geoid 96 data:
 echo; echo "STATUS: Syncing geoid96 data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of geoid96 grids.";
 ::  echo; exit 1;
@@ -69,7 +72,7 @@ echo; echo "STATUS: Syncing geoid96 data...";
 
 ::# rsync geoid 99 data:
 echo; echo "STATUS: Syncing geoid99 data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid99_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid99;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/geoid99_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid99;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of geoid99 grids.";
 ::  echo; exit 1;
@@ -77,24 +80,24 @@ echo; echo "STATUS: Syncing geoid99 data...";
 
 ::#rsync imagery
 echo; echo "STATUS: Syncing image data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/public %OSSIM_BATCH_TEST_DATA_CYGDRIVE%;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%test/data/public %OSSIM_BATCH_TEST_DATA_CYGDRIVE%;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of imagery.";
 ::  echo; exit 1;
 ::fi
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/geoeye1 %OSSIM_BATCH_TEST_DATA_CYGDRIVE%;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%test/data/geoeye1 %OSSIM_BATCH_TEST_DATA_CYGDRIVE%;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of imagery.";
 ::  echo; exit 1;
 ::fi
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/rbt %OSSIM_BATCH_TEST_DATA_CYGDRIVE%;
+%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%test/data/rbt %OSSIM_BATCH_TEST_DATA_CYGDRIVE%;
 ::if [ $? != 0 ] ; then 
 ::  echo "ERROR: Failed data repository rsync of imagery.";
 ::  echo; exit 1;
 ::fi
   
 ::#rsync expected results (if exists)
-set REPO_EXPECTED_RESULTS_DIR=%OSSIM_DATA_REPOSITORY%/test/expected_results/$GOCD_RESOURCE_NAME
+set REPO_EXPECTED_RESULTS_DIR=%OSSIM_DATA_REPOSITORY%test/expected_results/$GOCD_RESOURCE_NAME
 echo; echo "STATUS: Checking for expected results in <%REPO_EXPECTED_RESULTS_DIR%>...";
 echo "STATUS: SKIP_EXPECTED_RESULTS_SYNC = %SKIP_EXPECTED_RESULTS_SYNC%";
 ::if [ -d $REPO_EXPECTED_RESULTS_DIR ] && [ -z $SKIP_EXPECTED_RESULTS_SYNC ]; then
