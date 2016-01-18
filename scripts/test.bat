@@ -29,6 +29,7 @@ call ossim-info --config --plugins
 echo "STATUS: Passed ossim-info --config test.";
 echo; echo "STATUS: Running ossim-info --version test...";
 set SUBSTRING=1.9
+echo "ossim-info --version | FINDSTR /C:%SUBSTRING% >nul & IF ERRORLEVEL 1"
 ossim-info --version | FINDSTR /C:%SUBSTRING% >nul & IF ERRORLEVEL 1 (
      echo Testing against wrong version
      exit 1
