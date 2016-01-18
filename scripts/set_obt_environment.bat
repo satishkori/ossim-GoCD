@@ -44,22 +44,22 @@ if "%OSSIM_DATA%"=="" (
    exit 1
 )  
 
-if not exist %OSSIM_DATA%(
+if not exist %OSSIM_DATA% (
    echo "ERROR: directory %OSSIM_DATA% does not exist!"
    exit 1
 )
 
-if "%OSSIM_BATCH_TEST_DATA%"==""(
+if "%OSSIM_BATCH_TEST_DATA%"=="" (
    echo "ERROR: OSSIM_BATCH_TEST_DATA not defined!"
    exit 1
 )
 
-if "%OSSIM_BATCH_TEST_RESULTS%"==""(
+if "%OSSIM_BATCH_TEST_RESULTS%"=="" (
    echo "ERROR: OSSIM_BATCH_TEST_RESULTS not defined!"
    exit 1
 )
 
-if "%OSSIM_BATCH_TEST_EXPECTED%"==""(
+if "%OSSIM_BATCH_TEST_EXPECTED%"=="" (
    echo "ERROR: OSSIM_BATCH_TEST_EXPECTED not defined!"
    exit 1
 )
