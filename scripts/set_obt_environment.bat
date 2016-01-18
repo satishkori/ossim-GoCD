@@ -12,7 +12,7 @@ cd %SCRIPT_DIR%\..\..
 set OSSIM_DEV_HOME=%CD%
 
 
-set OSSIM_PREFS_FILE=%OSSIM_DEV_HOME%\ossim-GoCD\ossim-gocd.prefs
+set OSSIM_PREFS_FILE=%OSSIM_DEV_HOME%\ossim-GoCD\ossim-gocd-WINDWOS.prefs
 
 if "%OSSIM_INSTALL_PREFIX%"=="" ( 
 set OSSIM_INSTALL_PREFIX=%OSSIM_DEV_HOME%\install
