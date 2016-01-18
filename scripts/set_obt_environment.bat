@@ -14,15 +14,15 @@ set OSSIM_DEV_HOME=%CD%
 
 set OSSIM_PREFS_FILE=%OSSIM_DEV_HOME%\ossim-GoCD\ossim-gocd.prefs
 
-if "%OSSIM_INSTALL_PREFIX"=="" ( 
-   set OSSIM_INSTALL_PREFIX=%OSSIM_DEV_HOME%\install
+if "%OSSIM_INSTALL_PREFIX%"=="" ( 
+set OSSIM_INSTALL_PREFIX=%OSSIM_DEV_HOME%\install
 )
 
-if "%DEPENDENCY_VERSION"=="" ( 
+if "%DEPENDENCY_VERSION%"=="" ( 
    set DEPENDENCY_VERSION=1.0.0
 )
-if "%OSSIM_DEPENDENCIES"=="" ( 
-   set OSSIM_DEPENDENCIES=%OSSIM_DEV_HOME%\ossim-deps-%DEPENDENCY_VERSION%
+if "%OSSIM_DEPENDENCIES%"=="" ( 
+set OSSIM_DEPENDENCIES=%OSSIM_DEV_HOME%\ossim-deps-%DEPENDENCY_VERSION%
 )
 set JAVA_CLASS_PATH=%OSSIM_INSTALL_PREFIX%\share\java
 
@@ -58,6 +58,8 @@ if "%OSSIM_DATA%"=="" (exit 1)
 
 echo; echo "Test Environment:"
 echo "  OSSIM_DEV_HOME            = %OSSIM_DEV_HOME%"
+echo "  OSSIM_INSTALL_PREFIX      = %OSSIM_INSTALL_PREFIX%"
+echo "  OSSIM_DEPENDENCIES        = %OSSIM_DEPENDENCIES%"
 echo "  OSSIM_DATA                = %OSSIM_DATA%"
 echo "  OSSIM_INSTALL_DIR         = %OSSIM_INSTALL_DIR%"
 echo "  OSSIM_PREFS_FILE          = %OSSIM_PREFS_FILE%"
