@@ -15,8 +15,8 @@ if not exist %OSSIM_DEV_HOME%\build (
 cd build 
 if ERRORLEVEL 1 exit 1
 jom install
-%OSSIM_DEV_HOME%\ossim-GoCD\scripts\embed-manifests-WINDOWS.bat %OSSIM_INSTALL_PREFIX%\bin
-%OSSIM_DEV_HOME%\ossim-GoCD\scripts\embed-manifests-WINDOWS.bat %OSSIM_INSTALL_PREFIX%\lib
+%OSSIM_DEV_HOME%\ossim-GoCD\scripts\embed-manifests.bat %OSSIM_INSTALL_PREFIX%\bin
+%OSSIM_DEV_HOME%\ossim-GoCD\scripts\embed-manifests.bat %OSSIM_INSTALL_PREFIX%\lib
 
 if ERRORLEVEL 1 exit 1
 
