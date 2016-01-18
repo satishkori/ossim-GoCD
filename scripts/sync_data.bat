@@ -39,6 +39,8 @@ if not exist "%OSSIM_BATCH_TEST_EXPECTED%\elevation" ( mkdir "%OSSIM_BATCH_TEST_
 
 ::# rsync elevation data:
 echo; echo "STATUS: Syncing elevation data...";
+echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted;
+
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted;
 if ERRORLEVEL 1 exit 1
 
