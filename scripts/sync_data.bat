@@ -46,6 +46,7 @@ if ERRORLEVEL 1 exit 1
 
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
+echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation;
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation;
 if ERRORLEVEL 1 exit 1
 
@@ -55,6 +56,7 @@ if not exist %OSSIM_DATA%\elevation\geoids (
 
 ::# rsync geoid 96 data:
 echo; echo "STATUS: Syncing geoid96 data...";
+echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96;
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96;
 if ERRORLEVEL 1 exit 1
 
