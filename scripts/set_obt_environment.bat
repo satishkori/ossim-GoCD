@@ -30,9 +30,9 @@ set PATH=%OSSIM_DEPENDENCIES%\bin;%OSSIM_INSTALL_PREFIX%\bin;%PATH%
 
 echo "Checking for required environment variables..."
 
-if "%OSSIM_VERSION%"=="" (set OSSIM_VERSION=1.9.0)
-
-if "%OSSIM_DATA%"=="" (exit 1)
+if "%OSSIM_VERSION%"=="" (
+   set OSSIM_VERSION=1.9.0
+)
 
 ::if [ -z $OSSIM_DATA ]; then
 ::  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
