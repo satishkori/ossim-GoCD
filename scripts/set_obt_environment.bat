@@ -38,23 +38,31 @@ if "%OSSIM_DATA%"=="" (exit 1)
 ::  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
 ::  exit 1;
 ::fi
-  
-::if [ ! -d $OSSIM_DATA ] || [ ! -w $OSSIM_DATA ]; then
-::  echo "ERROR: The directory <$OSSIM_DATA> does not exist or is not writable. Make sure the user has write permissions.";
-::  exit 1;
-::fi
 
-::if [ -z $OSSIM_BATCH_TEST_DATA ]; then
-::  export OSSIM_BATCH_TEST_DATA=$OSSIM_DATA/data
-::fi
+if "%OSSIM_DATA%"=="" ( 
+   echo "ERROR: OSSIM_DATA directory is not defined!"
+   exit 1
+)  
 
-::if [ -z $OSSIM_BATCH_TEST_EXPECTED ]; then
-::  export OSSIM_BATCH_TEST_EXPECTED=$OSSIM_DATA/expected_results
-::fi
+if not exist %OSSIM_DATA%(
+   echo "ERROR: directory %OSSIM_DATA% does not exist!"
+   exit 1
+)
 
-::if [ -z $OSSIM_BATCH_TEST_RESULTS ]; then
-::  export OSSIM_BATCH_TEST_RESULTS=$OSSIM_DEV_HOME/results
-::fi
+if "%OSSIM_BATCH_TEST_DATA%"==""(
+   echo "ERROR: OSSIM_BATCH_TEST_DATA not defined!"
+   exit 1
+)
+
+if "%OSSIM_BATCH_TEST_RESULTS%"==""(
+   echo "ERROR: OSSIM_BATCH_TEST_RESULTS not defined!"
+   exit 1
+)
+
+if "%OSSIM_BATCH_TEST_EXPECTED%"==""(
+   echo "ERROR: OSSIM_BATCH_TEST_EXPECTED not defined!"
+   exit 1
+)
 
 echo; echo "Test Environment:"
 echo "  OSSIM_DEV_HOME            = %OSSIM_DEV_HOME%"
