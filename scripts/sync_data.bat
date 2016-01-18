@@ -23,7 +23,7 @@ set OSSIM_DATA_REPOSITORY_CYGDRIVE=%OSSIM_DATA_REPOSITORY_CYGDRIVE:\=/%
 set OSSIM_DATA_CYGDRIVE=%OSSIM_DATA_CYGDRIVE:\=/%
 
 ::# Set GoCD-specific environment:
-call %SCRIPT_DIR%\set_obt_environment-WINDOWS.bat
+call %SCRIPT_DIR%\set_obt_environment.bat
 
 ::# Should already be there but create if not:
 if not exist "%OSSIM_DATA%\elevation" ( mkdir "%OSSIM_DATA%\elevation" )
