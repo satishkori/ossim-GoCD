@@ -46,7 +46,6 @@ echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_D
 
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted
 if ERRORLEVEL 1 exit 1
-
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data..."
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation
@@ -102,12 +101,13 @@ goto :done
 
 
 :convertToRsync
-setlocal 
-set DRIVE_ONLY=%2:~0,1%
-set FILE_NO_DRIVE=%2:~2,10000%
-set tempVar = /cygdrive/%DRIVE_ONLY%%FILE_NO_DRIVE%
-set tempVar = %tempVar:\=/%
-if "%tempVar:~-1"=="/" (set tempVar=%tempVar:~0,-1% )
+setlocal enableextensions enabledelayedexpansion
+set arg2=%2
+set DRIVE_ONLY=%arg2:~0,1%
+set FILE_NO_DRIVE=%arg2:~2,10000%
+set tempVar=/cygdrive/%DRIVE_ONLY%%FILE_NO_DRIVE%
+set tempVar=%tempVar:\=/%
+if "%tempVar:~-1%"=="/" (set tempVar=%tempVar:~0,-1%)
 endlocal  & SET %1=%tempVar%
 GOTO :EOF
 
