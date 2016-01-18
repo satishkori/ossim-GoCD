@@ -44,12 +44,12 @@ if not exist "%OSSIM_BATCH_TEST_EXPECTED%\elevation" ( mkdir "%OSSIM_BATCH_TEST_
 echo; echo "STATUS: Syncing elevation data...";
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted
 
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted
 rem if ERRORLEVEL 1 exit 1
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data..."
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation
 rem if ERRORLEVEL 1 exit 1
 
 if not exist %OSSIM_DATA%\elevation\geoids (
@@ -59,23 +59,23 @@ if not exist %OSSIM_DATA%\elevation\geoids (
 ::# rsync geoid 96 data:
 echo; echo "STATUS: Syncing geoid96 data..."
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96
 rem if ERRORLEVEL 1 exit 1
 
 ::# rsync geoid 99 data:
 echo; echo "STATUS: Syncing geoid99 data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid99_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid99
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid99_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid99
 rem if ERRORLEVEL 1 exit 1
 
 ::#rsync imagery
 echo; echo "STATUS: Syncing image data...";
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/public %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/public %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
 rem if ERRORLEVEL 1 exit 1
 
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/geoeye1 %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/geoeye1 %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
 rem if ERRORLEVEL 1 exit 1
 
-%RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/rbt %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
+call %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/rbt %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
 rem if ERRORLEVEL 1 exit 1
   
 ::#rsync expected results (if exists)
