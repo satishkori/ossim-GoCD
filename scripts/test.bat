@@ -32,7 +32,7 @@ if ERRORLEVEL 1 exit 1
 
 ::# TEST 1: Check ossim-info version:
 echo; echo "STATUS: Running ossim-info --config test...";
-::COMMAND1="ossim-info --config --plugins"
+call ossim-info --config --plugins
 ::$COMMAND1
 ::if [ $? -ne 0 ]; then
 ::  echo; echo "ERROR: Failed while attempting to run <$COMMAND1>."
@@ -41,7 +41,7 @@ echo; echo "STATUS: Running ossim-info --config test...";
 echo "STATUS: Passed ossim-info --config test.";
 
 echo; echo "STATUS: Running ossim-info --version test...";
-::ossim-info --version
+call ossim-info --version
 ::COUNT="$(ossim-info --version | grep --count 'version: 1.9')"
 ::echo "COUNT = <$COUNT>"
 ::if [ $COUNT != "1" ]; then
