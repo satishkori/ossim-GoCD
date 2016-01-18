@@ -34,6 +34,7 @@ if "%OSSIM_VERSION%"=="" (
    set OSSIM_VERSION=1.9.0
 )
 
+
 ::if [ -z $OSSIM_DATA ]; then
 ::  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
 ::  exit 1;
@@ -49,19 +50,16 @@ if not exist %OSSIM_DATA% (
    exit 1
 )
 
-if "%OSSIM_BATCH_TEST_DATA%"=="" (
-   echo "ERROR: OSSIM_BATCH_TEST_DATA not defined!"
-   exit 1
+if [%OSSIM_BATCH_TEST_DATA%]==[] (
+  set OSSIM_BATCH_TEST_DATA=%OSSIM_DATA%\data
 )
 
-if "%OSSIM_BATCH_TEST_RESULTS%"=="" (
-   echo "ERROR: OSSIM_BATCH_TEST_RESULTS not defined!"
-   exit 1
+if [%OSSIM_BATCH_TEST_EXPECTED%]==[] (
+  set OSSIM_BATCH_TEST_EXPECTED=%OSSIM_DATA%\expected_results
 )
 
-if "%OSSIM_BATCH_TEST_EXPECTED%"=="" (
-   echo "ERROR: OSSIM_BATCH_TEST_EXPECTED not defined!"
-   exit 1
+if [%OSSIM_BATCH_TEST_RESULTS%]==[] (
+  set OSSIM_BATCH_TEST_RESULTS=%OSSIM_DEV_HOME%/results
 )
 
 echo; echo "Test Environment:"
