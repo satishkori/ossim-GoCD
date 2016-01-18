@@ -18,5 +18,8 @@ jom install
 %OSSIM_DEV_HOME%\ossim-GoCD\scripts\embed-manifests.bat %OSSIM_INSTALL_PREFIX%\bin
 %OSSIM_DEV_HOME%\ossim-GoCD\scripts\embed-manifests.bat %OSSIM_INSTALL_PREFIX%\lib
 
+del %OSSIM_INSTALL_PREFIX%\bin\*.manifest
+del %OSSIM_INSTALL_PREFIX%\lib\*.manifest
+
 if ERRORLEVEL 1 exit 1
 
