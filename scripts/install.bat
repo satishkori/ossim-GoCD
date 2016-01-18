@@ -8,8 +8,8 @@ echo ************ Extracting dependencies: %OSSIM_DEV_HOME%\ossim-deps-%OSSIM_DE
 echo cd %OSSIM_DEV_HOME%
 cd %OSSIM_DEV_HOME%
  
-if not exist %OSSIM_DEV_HOME%build (
-  mkdir build
+if not exist %OSSIM_DEV_HOME%\build (
+  mkdir %OSSIM_DEV_HOME%\build
 )
 
 cd build 

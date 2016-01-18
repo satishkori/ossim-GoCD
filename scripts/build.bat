@@ -15,8 +15,8 @@ if not exist ossim-deps-%OSSIM_DEPENDENCY_VERSION% (
   if ERRORLEVEL 1 exit 1
 )
  
-if not exist %OSSIM_DEV_HOME%build (
-  mkdir build
+if not exist %OSSIM_DEV_HOME%\build (
+  mkdir %OSSIM_DEV_HOME%\build
 )
 
 cd build 
