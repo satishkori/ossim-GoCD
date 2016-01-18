@@ -45,12 +45,12 @@ echo; echo "STATUS: Syncing elevation data...";
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted
 
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/dted/level0 %OSSIM_DATA_CYGDRIVE%/elevation/dted
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
 ::# rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data..."
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/nadcon %OSSIM_DATA_CYGDRIVE%/elevation
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
 
 if not exist %OSSIM_DATA%\elevation\geoids (
    mkdir %OSSIM_DATA%\elevation\geoids
@@ -60,23 +60,23 @@ if not exist %OSSIM_DATA%\elevation\geoids (
 echo; echo "STATUS: Syncing geoid96 data..."
 echo %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid96_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid96
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
 
 ::# rsync geoid 99 data:
 echo; echo "STATUS: Syncing geoid99 data...";
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/elevation/geoid99_little_endian/ %OSSIM_DATA_CYGDRIVE%/elevation/geoids/geoid99
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
 
 ::#rsync imagery
 echo; echo "STATUS: Syncing image data...";
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/public %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
 
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/geoeye1 %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
 
 %RSYNC_CMD% %OSSIM_DATA_REPOSITORY_CYGDRIVE%/test/data/rbt %OSSIM_BATCH_TEST_DATA_CYGDRIVE%/
-if ERRORLEVEL 1 exit 1
+rem if ERRORLEVEL 1 exit 1
   
 ::#rsync expected results (if exists)
 set REPO_EXPECTED_RESULTS_DIR=%OSSIM_DATA_REPOSITORY%/test/expected_results/%GOCD_RESOURCE_NAME%
