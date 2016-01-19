@@ -1,6 +1,5 @@
 @echo off
 set GOCD_RESOURCE_NAME=%1
-
 echo; echo; 
 echo "################################################################################"
 echo "#  Running `basename "%0"` for resource <%1> out of <%CD%>"

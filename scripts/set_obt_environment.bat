@@ -39,19 +39,13 @@ if "%OSSIM_VERSION%"=="" (
 )
 
 
-::if [ -z $OSSIM_DATA ]; then
-::  echo "ERROR: The environment variable OSSIM_DATA is not defined. Aborting with error.";
-::  exit 1;
-::fi
-
 if "%OSSIM_DATA%"=="" ( 
    echo "ERROR: OSSIM_DATA directory is not defined!"
    exit 1
 )  
 
 if not exist %OSSIM_DATA% (
-   echo "ERROR: directory %OSSIM_DATA% does not exist!"
-   exit 1
+   mkdir %OSSIM_DATA%
 )
 
 if [%OSSIM_BATCH_TEST_DATA%]==[] (
