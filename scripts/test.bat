@@ -44,20 +44,20 @@ echo "STATUS: Passed ossim-info --config test.";
 ::     exit 1
 ::)
 
-if not exist %OSSIM_BATCH_TEST_EXPECTED%(
-  echo "ERROR: No expected results were detected in <%OSSIM_BATCH_TEST_EXPECTED%>. Cannot continue.";
-  echo; exit 1;
-)
+::if not exist %OSSIM_BATCH_TEST_EXPECTED% (
+::  echo "ERROR: No expected results were detected in <%OSSIM_BATCH_TEST_EXPECTED%>. Cannot continue.";
+::  echo; exit 1;
+::)
 
-if not exist %OSSIM_BATCH_TEST_RESULTS%(
-   mkdir %OSSIM_BATCH_TEST_RESULTS%
-)
+::if not exist %OSSIM_BATCH_TEST_RESULTS% (
+::   mkdir %OSSIM_BATCH_TEST_RESULTS%
+::)
 
 ::# Run batch tests
-cd %OSSIM_DEV_HOME%\ossim-GoCD\batch_tests;
-echo; echo "STATUS: Running batch tests in <%CD%>..."
-ossim-batch-test super-test.kwl
-echo "STATUS: Passed all tests."
-echo
+::cd %OSSIM_DEV_HOME%\ossim-GoCD\batch_tests;
+::echo; echo "STATUS: Running batch tests in <%CD%>..."
+::ossim-batch-test super-test.kwl
+::echo "STATUS: Passed all tests."
+::echo
 
 
