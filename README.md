@@ -32,15 +32,15 @@ This repository also maintains the ossim-preferences file used by the GoCD agent
 
 # GoCD Pipelines
 
-As of Dec 2015, the primary pipelines in use are 
-* `ossimlabs-dev` -- Build and test of dev branch
-* `ossimlabs-master` -- Build and test of master branch
-* `OSSIM_Core-dev-build` -- Builds only ossim and ossim-plugins repos. Installs to a sandbox and uploads the zipped sandbox to the Go server as an artifact.
-* `generate-test-expected` -- Generates expected results using the sandbox artifact created by OSSIM_Core-dev-build.
-* `OSSIM_Core-dev-test` -- Runs tests using the sandbox artifact created by `OSSIM_Core-dev-build`.
-* 
-As described above, the following environment variables need to be defined in the GoCD pipeline environment test-stage:
+As of Jan 2016, the primary pipelines in use are 
+* `ossimlabs-dev` -- Build and test of dev branch for linux
+* `ossimlabs-dev-win7x64` -- Build and test of dev branch for windows
+* `ossimlabs-master` -- Build and test of master branch for linux
+* `generate-test-expected` -- Generates expected results using the sandbox artifact created by ossimlabs-dev.
 
+TODO: Need to consolidate windows and linux builds/tests into a single pipeline.
+
+As described above, the following environment variables need to be defined in the GoCD pipeline environment test-stage:
    * OSSIM_DATA -- Location on the GoCD agent outside of the pipeline where the test data resides. It is syncronized against a master data repository each time the pipeline is executed.
    * OSSIM_DATA_REPOSITORY -- The NFS mount location for the remote data repository. 
 
