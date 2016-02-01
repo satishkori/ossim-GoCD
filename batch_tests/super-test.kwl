@@ -56,7 +56,7 @@
 
 //test_config_file0: config-test.kwl
 test_config_file1: applanix-test.kwl
-test_config_file2: oms-test1.kwl
+//test_config_file2: oms-test1.kwl
 //test_config_file3: ossimjni-test1.kwl
 test_config_file4: test1.kwl
 test_config_file5: rbt-test1.kwl

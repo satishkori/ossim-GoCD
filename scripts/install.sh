@@ -17,7 +17,7 @@
 # folder containing all OSSIM repositories (including this one).
 #
 # For customized output location, you can define the env var OSSIM_INSTALL_PREFIX
-# prior to building Makefiles, and the output will be written there.
+# prior to building Makefiles, and the output will be written there. 
 #
 ###############################################################################
 
