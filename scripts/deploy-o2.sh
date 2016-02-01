@@ -26,7 +26,7 @@ if [ ! -d "${OSSIM_INSTALL_PREFIX}" ]; then
 fi
 
 if [ -d "${OSSIM_INSTALL_PREFIX}" ]; then
-   scp "${OSSIM_INSTALL_PREFIX}/share/omar/omar-app-${O2_APP_VERSION}.jar" omar.ossim.org:/tmp/omar-app-${O2_APP_VERSION}-${GIT_BRANCH}.jar
+   scp "${OSSIM_INSTALL_PREFIX}/share/omar/omar-app-${O2_APP_VERSION}.jar" $DEPLOY_SITE:/tmp/omar-app-${O2_APP_VERSION}-${GIT_BRANCH}.jar
    ssh $DEPLOY_SITE "~/bin/deploy-o2.sh ${GIT_BRANCH} ${O2_APP_VERSION}"
 else
    echo "ERROR: No O2 Application jar found!!!"
