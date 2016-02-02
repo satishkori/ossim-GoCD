@@ -27,7 +27,10 @@ if [ ! -d rpmbuild ] ; then
         mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 fi
 
-if [ ! -d "ossim-$OSSIM_VERSION" ] ; then
+if [ -d "ossim-$OSSIM_VERSION" ] ; then
+   # Clean if out...
+   rm -rf ossim-$OSSIM_VERSION/*
+else
    mkdir ossim-$OSSIM_VERSION
 fi
 cp ossim/support/linux/rpm_specs/*.spec rpmbuild/SPECS
