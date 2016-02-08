@@ -42,6 +42,7 @@ tar cvfz ossim-$OSSIM_VERSION.tar.gz ossim-$OSSIM_VERSION
 mv $ROOT_DIR/ossim-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES
 
 echo "building ossim rpms..."
+echo "rpm spec file: ossim-all-${OSSIM_SPEC}.spec"
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
 
