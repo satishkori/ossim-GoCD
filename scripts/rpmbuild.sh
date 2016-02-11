@@ -51,18 +51,22 @@ rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION
 #---
 echo "building oldmar rpms..."
 
-export JAVA_HOME=/usr/lib/jvm/java
-export GRAILS_VERSION=2.5.2
-export GROOVY_VERSION=2.3.7
-export GRAILS_HOME=/home/rpmusr/.sdkman/grails/$GRAILS_VERSION
-export GROOVY_HOME=/home/rpmusr/.sdkman/groovy/$GROOVY_VERSION
-export GIT_OMAR_VERSION=v1.8.20
-export PATH=$GRAILS_HOME/bin:$PATH
-export GRAILS_CACHE_DIR=$HOME/.grails
+# Rename:
+mv $ROOT_DIR/oldmar oldmar-$OSSIM_VERSION
 
-cp ossim/support/linux/rpm_specs/*.spec rpmbuild/SPECS
+# copy the joms jar from rpm build of ossim-oms from the maven repo to the plugins.
+cp ~/.m2/repository/org/ossim/joms/${OSSIM_VERSION}/joms-${OSSIM_VERSION}.jar oldmar-$OSSIM_VERSION/plugins/omar-oms/lib/joms-${OSSIM_VERSION}.jar
 
-rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
+# Make the source tarball.
+tar cvfz oldmar-$OSSIM_VERSION.tar.gz oldmar-$OSSIM_VERSION
+
+# Move to rpmbuild/SOURCES dir.
+mv $ROOT_DIR/ossim-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES
+
+# Copy the spec file:
+cp omar/support/linux/rpm_specs/*.spec rpmbuild/SPECS/.
+
+rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/oldmar-${OSSIM_SPEC}.spec
 
 
 # ossim kakadu plugin:
