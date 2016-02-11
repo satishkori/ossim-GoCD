@@ -46,6 +46,25 @@ echo "rpm spec file: ossim-all-${OSSIM_SPEC}.spec"
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
 
+#---
+# Build oldmar rpm:
+#---
+echo "building oldmar rpms..."
+
+export JAVA_HOME=/usr/lib/jvm/java
+export GRAILS_VERSION=2.5.2
+export GROOVY_VERSION=2.3.7
+export GRAILS_HOME=/home/rpmusr/.sdkman/grails/$GRAILS_VERSION
+export GROOVY_HOME=/home/rpmusr/.sdkman/groovy/$GROOVY_VERSION
+export GIT_OMAR_VERSION=v1.8.20
+export PATH=$GRAILS_HOME/bin:$PATH
+export GRAILS_CACHE_DIR=$HOME/.grails
+
+cp ossim/support/linux/rpm_specs/*.spec rpmbuild/SPECS
+
+rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
+
+
 # ossim kakadu plugin:
 
 # Requires ossim-lib and ossim-devel rpms.
