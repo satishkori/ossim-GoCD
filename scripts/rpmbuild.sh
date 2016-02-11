@@ -61,10 +61,10 @@ cp ~/.m2/repository/org/ossim/joms/${OSSIM_VERSION}/joms-${OSSIM_VERSION}.jar ol
 tar cvfz oldmar-$OSSIM_VERSION.tar.gz oldmar-$OSSIM_VERSION
 
 # Move to rpmbuild/SOURCES dir.
-mv $ROOT_DIR/ossim-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES
+mv $ROOT_DIR/oldmar-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES/omar-$OSSIM_VERSION.tar.gz
 
 # Copy the spec file:
-cp omar/support/linux/rpm_specs/*.spec rpmbuild/SPECS/.
+cp $ROOT_DIR/omar/support/linux/rpm_specs/*.spec rpmbuild/SPECS/.
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/oldmar-${OSSIM_SPEC}.spec
 
