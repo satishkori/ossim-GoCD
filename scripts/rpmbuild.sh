@@ -66,7 +66,7 @@ mv $ROOT_DIR/oldmar-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES/omar-$OSSIM
 # Copy the spec file:
 cp $ROOT_DIR/omar/support/linux/rpm_specs/*.spec rpmbuild/SPECS/.
 
-rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/oldmar-${OSSIM_SPEC}.spec
+rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/oldmar.spec
 
 
 # ossim kakadu plugin:
