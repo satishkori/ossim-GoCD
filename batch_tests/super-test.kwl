@@ -64,9 +64,11 @@ test_config_file5: rbt-test1.kwl
 test_config_file7: fusion-test1.kw1
 test_config_file8: image-geometry.kwl
 test_config_file9: genras-writer-test.kwl
-// test_config_file10: WMS_PNG.kwl
-// test_config_file11: WMS_JPEG.kwl
-// test_config_file12: WMS_gif.kwl
+test_config_file10: hlz-test.kwl
+
+//test_config_file10: WMS_PNG.kwl
+//test_config_file11: WMS_JPEG.kwl
+//test_config_file12: WMS_gif.kwl
 //test_config_file13: Ortho_Tiff.kwl
 //test_config_file14: Ortho_png.kwl
 //test_config_file15: Ortho_png_8bit.kwl
