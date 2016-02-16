@@ -65,6 +65,7 @@ test_config_file7: fusion-test1.kw1
 test_config_file8: image-geometry.kwl
 test_config_file9: genras-writer-test.kwl
 test_config_file10: hlz-test.kwl
+test_config_file11: viewshed-test.kwl
 
 //test_config_file10: WMS_PNG.kwl
 //test_config_file11: WMS_JPEG.kwl
