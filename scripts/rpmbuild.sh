@@ -56,6 +56,7 @@ fi
 #---
 if [ -d "$ROOT_DIR/oldmar" ] ; then
    echo "building oldmar rpms..."
+   cp $ROOT_DIR/oldmar/support/linux/rpm_specs/omar.spec rpmbuild/SPECS/oldmar.spec
 
    # Rename:
    mv $ROOT_DIR/oldmar omar-$OSSIM_VERSION
@@ -82,12 +83,6 @@ if [ -d "$ROOT_DIR/oldmar" ] ; then
    fi
 
    # Copy the spec file:
-   cp $ROOT_DIR/oldmar/support/linux/rpm_specs/omar.spec rpmbuild/SPECS/oldmar.spec
-   if [ $? != 0 ] ; then 
-     echo "ERROR: cp fialed for omar spec file.";
-     echo; exit 1;
-   fi
-
    rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/oldmar.spec
    if [ $? != 0 ] ; then 
      echo "ERROR: rpmbuild failed for old omar spec";
