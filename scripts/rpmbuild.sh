@@ -55,20 +55,40 @@ if [ -d "$ROOT_DIR/oldomar"] ; then
 
    # Rename:
    mv $ROOT_DIR/oldmar omar-$OSSIM_VERSION
+   if [ $? != 0 ] ; then 
+     echo "ERROR: Unable to move the oldmar version";
+     echo; exit 1;
+   fi
 
    # copy the joms jar from rpm build of ossim-oms from the maven repo to the plugins.
    # cp ~/.m2/repository/org/ossim/joms/${OSSIM_VERSION}/joms-${OSSIM_VERSION}.jar omar-$OSSIM_VERSION/plugins/omar-oms/lib/joms-${OSSIM_VERSION}.jar
 
    # Make the source tarball.
    tar cvfz omar-$OSSIM_VERSION.tar.gz omar-$OSSIM_VERSION
+   if [ $? != 0 ] ; then 
+     echo "ERROR: tar failed for omar source";
+     echo; exit 1;
+   fi
 
    # Move to rpmbuild/SOURCES dir.
    mv $ROOT_DIR/omar-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES/omar-$OSSIM_VERSION.tar.gz
+   if [ $? != 0 ] ; then 
+     echo "ERROR: move failed for SOURCES";
+     echo; exit 1;
+   fi
 
    # Copy the spec file:
    cp $ROOT_DIR/oldmar/support/linux/rpm_specs/omar.spec rpmbuild/SPECS/oldmar.spec
+   if [ $? != 0 ] ; then 
+     echo "ERROR: cp fialed for omar spec file.";
+     echo; exit 1;
+   fi
 
    rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/oldmar.spec
+   if [ $? != 0 ] ; then 
+     echo "ERROR: rpmbuild failed for old omar spec";
+     echo; exit 1;
+   fi
 fi
 
 
