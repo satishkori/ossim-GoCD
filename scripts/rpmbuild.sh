@@ -54,7 +54,7 @@ fi
 #---
 # Build oldmar rpm:
 #---
-if [ -d "$ROOT_DIR/oldomar"] ; then
+if [ -d "$ROOT_DIR/oldomar" ] ; then
    echo "building oldmar rpms..."
 
    # Rename:
