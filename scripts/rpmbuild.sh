@@ -50,7 +50,7 @@ rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION
 #---
 # Build oldmar rpm:
 #---
-if [-d "$ROOT_DIR/oldomar"] ; then
+if [ -d "$ROOT_DIR/oldomar"] ; then
    echo "building oldmar rpms..."
 
    # Rename:
