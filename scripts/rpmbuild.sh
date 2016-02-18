@@ -111,7 +111,7 @@ getOsAndVersion os major_version
 #popd >/dev/null
 rpmdir=${ROOT_DIR}/rpmbuild/RPMS/$os/$major_version/$GIT_BRANCH/x86_64
 mkdir -p $rpmdir
-pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
+pushd ${ROOT_DIR}/rpmbuild/RPMS/x86_64 >/dev/null
 mv *.rpm $rpmdir
   pushd $rpmdir >/dev/null
     createrepo .
