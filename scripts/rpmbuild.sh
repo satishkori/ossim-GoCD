@@ -10,6 +10,20 @@ OSSIM_BUILD_RELEASE=$3
 OSSIM_SPEC=$4 
 ############################################################
 
+function getOsAndVersion {
+# Determine OS platform
+#        UNAME=$(uname | tr "[:upper:]" "[:lower:]")
+        local DISTRO=
+        local majorVersion=
+        if [ -f /etc/redhat-release ] ; then
+                DISTRO=`cat /etc/redhat-release | cut -d' ' -f1`
+                temp=`cat /etc/redhat-release | cut -d' ' -f3`
+                majorVersion=`echo $temp | cut -d'.' -f1`
+        fi
+        eval "$1=$DISTRO"
+        eval "$2=$majorVersion"
+}
+
 
 pushd `dirname $0` >/dev/null
 SCRIPT_DIR=$PWD
@@ -90,6 +104,20 @@ if [ -d "$ROOT_DIR/oldmar" ] ; then
    fi
 fi
 
+getOsAndVersion os major_version
+
+#pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
+#createrepo .
+#popd >/dev/null
+rpmdir=${ROOT_DIR}/rpmbuild/RPMS/$os/$major_version/$GIT_BRANCH/x86_64
+mkdir -p $rpmdir
+pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
+mv *.rpm $rpmdir
+  pushd $rpmdir >/dev/null
+    createrepo .
+  popd
+tar cvfz rpms.tgz $os
+popd > /dev/null
 
 # ossim kakadu plugin:
 
