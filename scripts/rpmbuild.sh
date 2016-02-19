@@ -15,13 +15,15 @@ function getOsAndVersion {
 #        UNAME=$(uname | tr "[:upper:]" "[:lower:]")
         local DISTRO=
         local majorVersion=
+        local osArch=`uname -i`
         if [ -f /etc/redhat-release ] ; then
                 DISTRO=`cat /etc/redhat-release | cut -d' ' -f1`
                 temp=`cat /etc/redhat-release | cut -d' ' -f3`
                 majorVersion=`echo $temp | cut -d'.' -f1`
         fi
-        eval "$1=$DISTRO"
-        eval "$2=$majorVersion"
+        eval "$1=${DISTRO}"
+        eval "$2=${majorVersion}"
+        eval "$3=${osArch}"
 }
 
 
@@ -104,18 +106,18 @@ if [ -d "$ROOT_DIR/oldmar" ] ; then
    fi
 fi
 
-getOsAndVersion os major_version
+getOsInfo os major_version os_arch
 
 #pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
 #createrepo .
 #popd >/dev/null
-rpmdir=${ROOT_DIR}/rpmbuild/RPMS/$os/$major_version/$GIT_BRANCH/x86_64
+rpmdir=${ROOT_DIR}/rpmbuild/RPMS/${os}/${major_version}/${GIT_BRANCH}/${os_arch}
 if [ -d "$rpmdir" ] ; then
   rm -rf $rpmdir/*
 fi
 mkdir -p $rpmdir
-pushd ${ROOT_DIR}/rpmbuild/RPMS/x86_64 >/dev/null
-mv `find . -name "*.rpm"` $rpmdir/
+pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
+mv `find ./${os_arch} -name "*.rpm"` $rpmdir/
   pushd $rpmdir >/dev/null
     createrepo .
   popd
