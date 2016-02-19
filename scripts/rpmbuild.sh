@@ -122,6 +122,7 @@ mv `find ./${os_arch} -name "*.rpm"` $rpmdir/
     createrepo .
   popd
 tar cvfz rpms.tgz $os
+mv rpms.tgz ${ROOT_DIR}/
 popd > /dev/null
 
 # ossim kakadu plugin:
