@@ -10,7 +10,7 @@ OSSIM_BUILD_RELEASE=$3
 OSSIM_SPEC=$4 
 ############################################################
 
-function getOsAndVersion {
+function getOsInfo {
 # Determine OS platform
 #        UNAME=$(uname | tr "[:upper:]" "[:lower:]")
         local DISTRO=
