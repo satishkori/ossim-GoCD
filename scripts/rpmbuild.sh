@@ -110,9 +110,12 @@ getOsAndVersion os major_version
 #createrepo .
 #popd >/dev/null
 rpmdir=${ROOT_DIR}/rpmbuild/RPMS/$os/$major_version/$GIT_BRANCH/x86_64
+if [ -d "$rpmdir" ] ; then
+  rm -rf $rpmdir/*
+fi
 mkdir -p $rpmdir
 pushd ${ROOT_DIR}/rpmbuild/RPMS/x86_64 >/dev/null
-mv *.rpm $rpmdir
+mv `find . -name "*.rpm"` $rpmdir/
   pushd $rpmdir >/dev/null
     createrepo .
   popd
