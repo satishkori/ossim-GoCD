@@ -125,7 +125,7 @@ if [ -d "$ROOT_DIR/omar" ] ; then
      echo; exit 1;
    fi
    # Copy the spec file:
-   rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${O2_VERSION}" --define "O2_BUILD_RELEASE ${O2_BUILD_RELEASE}" rpmbuild/SPECS/omar.spec
+   rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "O2_VERSION ${O2_VERSION}" --define "O2_BUILD_RELEASE ${O2_BUILD_RELEASE}" rpmbuild/SPECS/omar.spec
    if [ $? != 0 ] ; then 
      echo "ERROR: rpmbuild failed for old omar spec";
      echo; exit 1;
