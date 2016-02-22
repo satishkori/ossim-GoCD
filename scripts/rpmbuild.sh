@@ -4,10 +4,10 @@
 #
 # example: rpmbuild.sh dev 1.9.0 1 el6
 #
+# Usage rpmbuild.sh <git_branch> <OSSIM_VERSION> 
+#
 GIT_BRANCH=$1
-OSSIM_VERSION=$2
-OSSIM_BUILD_RELEASE=$3
-OSSIM_SPEC=$4 
+OSSIM_SPEC=$2 
 ############################################################
 
 function getOsInfo {
@@ -118,6 +118,9 @@ fi
 mkdir -p $rpmdir
 pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
 mv `find ./${os_arch} -name "*.rpm"` $rpmdir/
+if [ -d "${OSSIM_DEPS_RPMS}" ] ; then
+  cp $OSSIM_DEPS_RPMS/*.rpm $rpmdir/
+fi
   pushd $rpmdir >/dev/null
     createrepo .
   popd
