@@ -109,7 +109,7 @@ fi
 # build new omar services
 #
 if [ -d "$ROOT_DIR/omar" ] ; then
-   cp $ROOT_DIR/oldmar/support/linux/rpm_specs/omar.spec rpmbuild/SPECS/omar.spec
+   cp $ROOT_DIR/omar/support/linux/rpm_specs/omar.spec rpmbuild/SPECS/omar.spec
 
    mv omar o2-$O2_VERSION
 
