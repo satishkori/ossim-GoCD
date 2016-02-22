@@ -106,6 +106,33 @@ if [ -d "$ROOT_DIR/oldmar" ] ; then
    fi
 fi
 
+# build new omar services
+#
+if [ -d "$ROOT_DIR/omar" ] ; then
+   cp $ROOT_DIR/oldmar/support/linux/rpm_specs/omar.spec rpmbuild/SPECS/omar.spec
+
+   mv omar o2-$O2_VERSION
+
+   tar cvfz o2-$O2_VERSION.tar.gz o2-$O2_VERSION
+   if [ $? != 0 ] ; then 
+     echo "ERROR: tar failed for omar source";
+     echo; exit 1;
+   fi
+   # Move to rpmbuild/SOURCES dir.
+   mv $ROOT_DIR/o2-$O2_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES/o2-$O2_VERSION.tar.gz
+   if [ $? != 0 ] ; then 
+     echo "ERROR: move failed for SOURCES";
+     echo; exit 1;
+   fi
+   # Copy the spec file:
+   rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${O2_VERSION}" --define "O2_BUILD_RELEASE ${O2_BUILD_RELEASE}" rpmbuild/SPECS/omar.spec
+   if [ $? != 0 ] ; then 
+     echo "ERROR: rpmbuild failed for old omar spec";
+     echo; exit 1;
+   fi
+
+fi
+
 getOsInfo os major_version os_arch
 
 #pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
