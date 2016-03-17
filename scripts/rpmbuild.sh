@@ -18,8 +18,7 @@ function getOsInfo {
         local osArch=`uname -i`
         if [ -f /etc/redhat-release ] ; then
                 DISTRO=`cat /etc/redhat-release | cut -d' ' -f1`
-                temp=`cat /etc/redhat-release | cut -d' ' -f3`
-                majorVersion=`echo $temp | cut -d'.' -f1`
+                majorVersion=`cat /etc/redhat-release | grep  -o "[0-9]*\.[0-9]*\.*[0-9]*" | cut -d'.' -f1`
         fi
         eval "$1=${DISTRO}"
         eval "$2=${majorVersion}"
