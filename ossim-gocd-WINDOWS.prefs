@@ -8,6 +8,7 @@ plugin.file3: $(OSSIM_INSTALL_DIR)\bin\ossim\plugins\ossim_kml_plugin.dll
 plugin.file4: $(OSSIM_INSTALL_DIR)\bin\ossim\plugins\ossim_sqlite_plugin.dll
 plugin.file5: $(OSSIM_INSTALL_DIR)\bin\ossim\plugins\ossim_cnes_plugin.dll
 plugin.file6: $(OSSIM_INSTALL_DIR)\bin\ossim\plugins\ossim_gdal_plugin.dll
+plugin.file7: $(OSSIM_INSTALL_DIR)\bin\ossim\plugins\ossim_potrace_plugin.dll
 
 default_elevation_path:  $(OSSIM_DATA)\elevation
 elevation_manager.default_height_above_ellipsoid: 0.0
