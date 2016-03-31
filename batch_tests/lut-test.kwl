@@ -52,8 +52,9 @@ test2.test_command0: ossim-band-lut-test $(OBT_OUT_DIR) > $(OBT_OUT_DIR)/band-lu
 // The post-processing (comparison) commands. Typically these involve a file 
 // comparison of last run command against expected results.
 //---------------------------------------
-test2.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/bandLutTest-literal.tif $(OBT_OUT_DIR)/bandLutTest-literal.tif
-test2.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/bandLutTest-interpolated.tif $(OBT_OUT_DIR)/bandLutTest-interpolated.tif
+test2.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/literal-lut.tif $(OBT_OUT_DIR)/literal-lut.tif
+test2.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/interpolated-lut.tif $(OBT_OUT_DIR)/interpolated-lut.tif
+test2.postprocess_command2: $(DIFF_CMD) $(OBT_EXP_DIR)/thresholded-lut.tif $(OBT_OUT_DIR)/thresholded-lut.tif
 
 
 
