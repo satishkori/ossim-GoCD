@@ -36,6 +36,15 @@ if [ -z "$OSSIM_INSTALL_PREFIX" ]; then
     export OSSIM_INSTALL_PREFIX=$OSSIM_DEV_HOME/install
 fi
 
+if [ -z $KAKADU_LIBRARY ]; then
+   echo "ERROR: KAKADU_LIBRARY environment var not set."
+   exit 1;
+fi
+
+if [ -z $KAKADU_AUX_LIBRARY ]; then
+   echo "ERROR: KAKADU_AUX_LIBRARY environment var not set."
+   exit 1;
+fi
 
 echo "STATUS: Checking presence of env var OSSIM_BUILD_DIR = <$OSSIM_BUILD_DIR>...";
 if [ -z $OSSIM_BUILD_DIR ]; then
@@ -78,6 +87,12 @@ if [ $? -ne 0 ]; then
 fi
 popd >/dev/null # out of OSSIM_BUILD_DIR
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+
+# Need Kakadu shared libs for jpip server. drb - 20160414
+echo "STATUS: Performing install of $KAKADU_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
+cp $KAKADU_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
+echo "STATUS: Performing install of $KAKADU_AUX_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
+cp $KAKADU_AUX_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
 
 TIMESTAMP=`date +%Y-%m-%d-%H%M`
 
