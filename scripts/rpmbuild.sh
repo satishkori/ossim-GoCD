@@ -59,7 +59,7 @@ mv $ROOT_DIR/ossim-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES
 echo "building ossim rpms..."
 echo "rpm spec file: ossim-all-${OSSIM_SPEC}.spec"
 
-rpmbuild -bb --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
+rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
 if [ $? != 0 ] ; then 
   echo "ERROR: rpmbuild failed for OSSIM core";
   echo; exit 1;
