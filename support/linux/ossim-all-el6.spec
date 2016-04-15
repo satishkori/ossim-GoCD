@@ -22,32 +22,31 @@ Group:          System Environment/Libraries
 #TODO: Which version?
 License:        LGPLv2+
 URL:            https://github.com/orgs/ossimlabs/dashboard
-Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
+#Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
 
 
-BuildRequires: ant
-BuildRequires: cmake
-BuildRequires: ffmpeg-devel
-BuildRequires: gdal-devel
-BuildRequires: geos-devel
-# BuildRequires: hdf4-devel
-BuildRequires: hdf5a-devel
-BuildRequires: java-devel
-BuildRequires: libcurl-devel
-BuildRequires: libgeotiff-devel
-BuildRequires: libjpeg-devel
-BuildRequires: libpng-devel
-BuildRequires: libtiff4-devel
-#BuildRequires: libRaw-devel
-BuildRequires: minizip-devel
-BuildRequires: opencv-devel
-BuildRequires: OpenSceneGraph-devel
-BuildRequires: OpenThreads-devel
-BuildRequires: podofo-devel
-BuildRequires: qt4-devel
-BuildRequires: sqlite-devel
-BuildRequires: gpstk-devel
-BuildRequires: openjpeg2-devel
+#BuildRequires: ant
+#BuildRequires: cmake
+
+#Requires: ffmpeg
+#Requires: gdal
+#Requires: geos
+#BuildRequires: hdf5a-devel
+#Requires: java
+#BuildRequires: libcurl-devel
+#BuildRequires: libgeotiff-devel
+#BuildRequires: libjpeg-devel
+#BuildRequires: libpng-devel
+#BuildRequires: libtiff4-devel
+#BuildRequires: minizip-devel
+#BuildRequires: opencv-devel
+#BuildRequires: OpenSceneGraph-devel
+#BuildRequires: OpenThreads-devel
+#BuildRequires: podofo-devel
+#BuildRequires: qt4-devel
+#BuildRequires: sqlite-devel
+#BuildRequires: gpstk-devel
+#BuildRequires: openjpeg2-devel
 #BuildRequires: swig
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -291,6 +290,7 @@ rm -rf ossim_plugins/libraw/LibRaw-0.9.0/
 
 
 %build
+echo "********************** $OSSIM_DEV_HOME ***********************"
 
 %install
 
