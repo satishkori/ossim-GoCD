@@ -37,7 +37,8 @@ if [ ! -d rpmbuild ] ; then
         mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 fi
 
-mv install.zip rpmbuild/BUILD
+cp ossim-GoCD/support/linux/rpm_specs/*.spec rpmbuild/SPECS
+mv $ROOT_DIR/install.zip $ROOT_DIR/rpmbuild/BUILD
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
 
