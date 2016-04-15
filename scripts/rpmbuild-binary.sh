@@ -32,3 +32,8 @@ popd > /dev/null
 pushd $SCRIPT_DIR/../.. >/dev/null
 ROOT_DIR=$PWD
 popd
+
+
+if [ ! -d rpmbuild ] ; then
+        mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+fi
