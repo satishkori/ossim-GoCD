@@ -293,8 +293,11 @@ rm -rf ossim_plugins/libraw/LibRaw-0.9.0/
 echo "********************** $OSSIM_DEV_HOME ***********************"
 
 %install
-
+echo "************************BUILDDIR: %{_builddir}*************** "
+echo "************************BUILDROOT: %{buildroot}*************** "
 export DESTDIR=%{buildroot}
+pushd $DESTDIR
+unzip %{_builddir}/install.zip
 popd
 
 #install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh #%{buildroot}%{_sysconfdir}/profile.d/ossim.sh
