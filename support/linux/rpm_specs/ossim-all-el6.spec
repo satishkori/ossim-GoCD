@@ -279,6 +279,10 @@ echo "********************** $OSSIM_DEV_HOME ***********************"
 %install
 echo "************************BUILDDIR: %{_builddir}*************** "
 echo "************************BUILDROOT: %{buildroot}*************** "
+pushd %{_builddir}/../..
+export ROOT_DIR=$PWD
+popd > /dev/null
+
 export DESTDIR=%{buildroot}
 mkdir -p %{_bindir}
 mkdir -p %{_libdir}
@@ -292,9 +296,9 @@ mkdir usr
 mv %{_builddir}/install/* usr/  
 popd
 
-install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
-install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.csh #%{buildroot}%{_sysconfdir}/profile.d/ossim.csh
-install -p -m644 -D ossim/share/ossim/templates/ossim_preferences_template #%{buildroot}%{_datadir}/ossim/ossim-preferences-template
+#install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
+#install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.csh #%{buildroot}%{_sysconfdir}/profile.d/ossim.csh
+#install -p -m644 -D ossim/share/ossim/templates/ossim_preferences_template #%{buildroot}%{_datadir}/ossim/ossim-preferences-template
 
 # Exports for java builds:
 #export JAVA_HOME=/usr/lib/jvm/java
@@ -387,8 +391,8 @@ rm -f %{_javadir}/joms.jar
 %doc ossim/LICENSE.txt
 %{_libdir}/libossim.so*
 %{_libdir}/pkgconfig/ossim.pc
-%{_sysconfdir}/profile.d/ossim.sh
-%{_sysconfdir}/profile.d/ossim.csh
+#%{_sysconfdir}/profile.d/ossim.sh
+#%{_sysconfdir}/profile.d/ossim.csh
 
 %files geocell
 %{_bindir}/ossim-geocell
