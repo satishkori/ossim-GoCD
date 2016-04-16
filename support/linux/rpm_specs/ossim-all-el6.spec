@@ -388,7 +388,7 @@ rm -f %{_javadir}/joms.jar
 
 %files libs
 %{_datadir}/ossim/
-%doc ossim/LICENSE.txt
+#%doc ossim/LICENSE.txt
 %{_libdir}/libossim.so*
 %{_libdir}/pkgconfig/ossim.pc
 #%{_sysconfdir}/profile.d/ossim.sh
