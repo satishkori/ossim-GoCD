@@ -280,8 +280,16 @@ echo "********************** $OSSIM_DEV_HOME ***********************"
 echo "************************BUILDDIR: %{_builddir}*************** "
 echo "************************BUILDROOT: %{buildroot}*************** "
 export DESTDIR=%{buildroot}
+mkdir -p %{_bindir}
+mkdir -p %{_libdir}
+
+pushd %{_builddir}
+unzip ./install.zip
+popd
+
 pushd $DESTDIR
-unzip %{_builddir}/install.zip
+mkdir usr
+mv %{_builddir}/install/* usr/  
 popd
 
 #install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh #%{buildroot}%{_sysconfdir}/profile.d/ossim.sh
