@@ -292,9 +292,9 @@ mkdir usr
 mv %{_builddir}/install/* usr/  
 popd
 
-#install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh #%{buildroot}%{_sysconfdir}/profile.d/ossim.sh
-#install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.csh #%{buildroot}%{_sysconfdir}/profile.d/ossim.csh
-#install -p -m644 -D ossim/share/ossim/templates/ossim_preferences_template #%{buildroot}%{_datadir}/ossim/ossim-preferences-template
+install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
+install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.csh #%{buildroot}%{_sysconfdir}/profile.d/ossim.csh
+install -p -m644 -D ossim/share/ossim/templates/ossim_preferences_template #%{buildroot}%{_datadir}/ossim/ossim-preferences-template
 
 # Exports for java builds:
 #export JAVA_HOME=/usr/lib/jvm/java
