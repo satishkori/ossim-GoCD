@@ -273,22 +273,6 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 This sub-package contains the web ossim plugin for interfacing with http via
 curl library. 
 
-%prep
-
-#---
-# Notes for debugging:
-# Using the "%setup -q -D -T" is handy debugging.
-# -D on setup = Do not delete the directory before unpacking.
-# -T on setup = Disable the automatic unpacking of the archives.
-#---
-# %setup -q -D -T
-# %setup -q -D
-%setup -q
-
-# Delete bundled libraw
-rm -rf ossim_plugins/libraw/LibRaw-0.9.0/
-
-
 %build
 echo "********************** $OSSIM_DEV_HOME ***********************"
 
