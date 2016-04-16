@@ -454,10 +454,10 @@ rm -f %{_javadir}/joms.jar
 %{_libdir}/libkdu_a75R.so
 %{_libdir}/libkdu_v75R.so
 
-%files mrsid-plugin
-%{_libdir}/ossim/plugins/libossim_mrsid_plugin.so
-%{_libdir}/liblti_lidar_dsdk.so
-%{_libdir}/libltidsdk.so
+#%files mrsid-plugin
+#%{_libdir}/ossim/plugins/libossim_mrsid_plugin.so
+#%{_libdir}/liblti_lidar_dsdk.so
+#%{_libdir}/libltidsdk.so
 
 %files opencv-plugin
 %{_libdir}/ossim/plugins/libossim_opencv_plugin.so
