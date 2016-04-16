@@ -33,6 +33,8 @@ pushd $SCRIPT_DIR/../.. >/dev/null
 ROOT_DIR=$PWD
 popd
 
+pushd $ROOT_DIR >/dev/null
+
 if [ ! -d $ROOT_DIR/rpmbuild ] ; then
         mkdir -p $ROOT_DIR/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 fi
@@ -40,5 +42,6 @@ fi
 cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 mv $ROOT_DIR/install.zip $ROOT_DIR/rpmbuild/BUILD
 
-rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
+rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
 
+popd >/dev/null
