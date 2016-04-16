@@ -43,5 +43,10 @@ cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 mv $ROOT_DIR/install.zip $ROOT_DIR/rpmbuild/BUILD
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
+f [ $? -ne 0 ]; then
+  echo; echo "ERROR: Build failed for rpm binary build."
+  popd >/dev/null
+  exit 1
+fi
 
 popd >/dev/null
