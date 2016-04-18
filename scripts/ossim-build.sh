@@ -21,4 +21,9 @@ pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
 ./build.sh
 popd
 
-pushd $OSSIM_DEV_HOME/omar/build_scripts/linux
+if [ -d $OSSIM_DEV_HOME/oldomar ]; then
+   pushd $OSSIM_DEV_HOME/oldomar/build_scripts/linux
+   ./build.sh
+   popd
+fi
+

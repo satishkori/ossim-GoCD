@@ -51,8 +51,17 @@ if [ "$BUILD_KAKADU_PLUGIN" = "ON" ]; then
    cp $KAKADU_AUX_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
 fi 
 
+echo "STATUS: Performing joms install to <$OSSIM_INSTALL_PREFIX>"
+pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
+./install.sh
+if [ $? -ne 0 ]; then
+  echo; echo "ERROR: Error encountered during make install of joms. Check the console log and correct."
+  popd
+  exit 1
+fi
+
 pushd $OSSIM_INSTALL_PREFIX
-zip -r $OSSIM_DEV_HOME/ossim-install.zip .
+zip -r $OSSIM_DEV_HOME/install.zip .
 popd
 
 # TIMESTAMP=`date +%Y-%m-%d-%H%M`
