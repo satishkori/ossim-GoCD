@@ -51,33 +51,38 @@ if [ "$BUILD_KAKADU_PLUGIN" = "ON" ]; then
    cp $KAKADU_AUX_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
 fi 
 
-TIMESTAMP=`date +%Y-%m-%d-%H%M`
-
-echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
 pushd $OSSIM_INSTALL_PREFIX
-INSTALL_DIRNAME=${PWD##*/}
-echo "
-Build timestamp: $TIMESTAMP  
-Pipeline Name:   $GO_PIPELINE_NAME
-Job Name:        $GO_JOB_NAME
-" > gocd_install.info
-cd ..
+zip -r $OSSIM_DEV_HOME/ossim-install.zip .
+popd
 
-if [ "$ZIP_OPTION" == "-z" ]; then
-  echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
-  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
-  zip -r $FILENAME_TS $INSTALL_DIRNAME
-  if [ $? -ne 0 ]; then
-    echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
-    popd
-    exit 1
-  fi
+# TIMESTAMP=`date +%Y-%m-%d-%H%M`
 
-  # Create a link that can be used as artifact of latest build/install. This will    
-  # overwrite previous sandbox's so only the latest is used for testing (standalone)
-  # or generating expected results
-  ln -s $FILENAME_TS "install.zip"
-  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
-fi
+# echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
+# pushd $OSSIM_INSTALL_PREFIX
+# INSTALL_DIRNAME=${PWD##*/}
+# echo "
+# Build timestamp: $TIMESTAMP  
+# Pipeline Name:   $GO_PIPELINE_NAME
+# Job Name:        $GO_JOB_NAME
+# " > gocd_install.info
+# cd ..
 
-popd # Out of dir containing install subdir
+
+# if [ "$ZIP_OPTION" == "-z" ]; then
+#   echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
+#   FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
+#   zip -r $FILENAME_TS $INSTALL_DIRNAME
+#   if [ $? -ne 0 ]; then
+#     echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
+#     popd
+#     exit 1
+#   fi
+
+#   # Create a link that can be used as artifact of latest build/install. This will    
+#   # overwrite previous sandbox's so only the latest is used for testing (standalone)
+#   # or generating expected results
+#   ln -s $FILENAME_TS "ossim-install.zip"
+#   echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
+# fi
+
+#popd # Out of dir containing install subdir
