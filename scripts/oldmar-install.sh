@@ -19,7 +19,16 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+pushd $ROOT_DIR
+
 if [ "$ZIP_OPTION" == "-z" ]; then
-zip -r omar-install.zip omar-install
+   zip -r omar-install.zip omar-install
+   if [ $? -ne 0 ]; then
+      echo; echo "ERROR: Failed zipping the OMAR binaries."
+      popd
+      exit 1
+   fi
+
 fi
 
+popd
