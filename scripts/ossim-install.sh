@@ -32,3 +32,52 @@ if [ $? -ne 0 ]; then
 fi
 popd >/dev/null
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+
+if [ "$BUILD_KAKADU_PLUGIN" = "ON" ]; then
+   if [ -z $KAKADU_LIBRARY ]; then
+      echo "ERROR: KAKADU_LIBRARY env variable not set for install"
+      exit 1
+   fi
+
+   if [ -z $KAKADU_AUX_LIBRARY ]; then
+      echo "ERROR: KAKADU_AUX_LIBRARY env variable not set for install"
+      exit 1
+   fi
+
+   # Need Kakadu shared libs for jpip server. drb - 20160414
+   echo "STATUS: Performing install of $KAKADU_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
+   cp $KAKADU_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
+   echo "STATUS: Performing install of $KAKADU_AUX_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
+   cp $KAKADU_AUX_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
+fi 
+
+TIMESTAMP=`date +%Y-%m-%d-%H%M`
+
+echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
+pushd $OSSIM_INSTALL_PREFIX
+INSTALL_DIRNAME=${PWD##*/}
+echo "
+Build timestamp: $TIMESTAMP  
+Pipeline Name:   $GO_PIPELINE_NAME
+Job Name:        $GO_JOB_NAME
+" > gocd_install.info
+cd ..
+
+if [ "$ZIP_OPTION" == "-z" ]; then
+  echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
+  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
+  zip -r $FILENAME_TS $INSTALL_DIRNAME
+  if [ $? -ne 0 ]; then
+    echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
+    popd
+    exit 1
+  fi
+
+  # Create a link that can be used as artifact of latest build/install. This will    
+  # overwrite previous sandbox's so only the latest is used for testing (standalone)
+  # or generating expected results
+  ln -s $FILENAME_TS "install.zip"
+  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
+fi
+
+popd # Out of dir containing install subdir
