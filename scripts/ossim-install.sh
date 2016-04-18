@@ -60,38 +60,33 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+TIMESTAMP=`date +%Y-%m-%d-%H%M`
+
+echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
 pushd $OSSIM_INSTALL_PREFIX
-zip -r $OSSIM_DEV_HOME/install.zip .
-popd
+INSTALL_DIRNAME=${PWD##*/}
+echo "
+Build timestamp: $TIMESTAMP  
+Pipeline Name:   $GO_PIPELINE_NAME
+Job Name:        $GO_JOB_NAME
+" > gocd_install.info
+cd ..
 
-# TIMESTAMP=`date +%Y-%m-%d-%H%M`
+if [ "$ZIP_OPTION" == "-z" ]; then
+  echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
+  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
+  zip -r $FILENAME_TS $INSTALL_DIRNAME
+  if [ $? -ne 0 ]; then
+    echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
+    popd
+    exit 1
+  fi
 
-# echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
-# pushd $OSSIM_INSTALL_PREFIX
-# INSTALL_DIRNAME=${PWD##*/}
-# echo "
-# Build timestamp: $TIMESTAMP  
-# Pipeline Name:   $GO_PIPELINE_NAME
-# Job Name:        $GO_JOB_NAME
-# " > gocd_install.info
-# cd ..
+  # Create a link that can be used as artifact of latest build/install. This will    
+  # overwrite previous sandbox's so only the latest is used for testing (standalone)
+  # or generating expected results
+  ln -s $FILENAME_TS "install.zip"
+  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
+fi
 
-
-# if [ "$ZIP_OPTION" == "-z" ]; then
-#   echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
-#   FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
-#   zip -r $FILENAME_TS $INSTALL_DIRNAME
-#   if [ $? -ne 0 ]; then
-#     echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
-#     popd
-#     exit 1
-#   fi
-
-#   # Create a link that can be used as artifact of latest build/install. This will    
-#   # overwrite previous sandbox's so only the latest is used for testing (standalone)
-#   # or generating expected results
-#   ln -s $FILENAME_TS "ossim-install.zip"
-#   echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
-# fi
-
-#popd # Out of dir containing install subdir
+popd # Out of dir containing install subdir
