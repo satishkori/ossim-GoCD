@@ -80,6 +80,11 @@ if [ -z BUILD_OPENJPEG_PLUGIN ] ; then
    export BUILD_OPENJPEG_PLUGIN=ON
 fi
 
+
+if [ -z OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then
+   export OSSIM_BUILD_ADDITIONAL_DIRECTORIES=/var/lib/go-agent/pipelines/ossimlabs-dev/ossim-private/ossim-kakadu-jpip-server
+fi
+
 pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
 ./setup.sh
 popd
