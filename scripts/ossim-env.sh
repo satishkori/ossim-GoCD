@@ -1,5 +1,9 @@
 #!/bin/bash 
 # Set GoCD-specific environment:
+if [ -z $OSSIM_DEPENDENCY_VERSION ]; then
+   export OSSIM_DEPENDENCY_VERSION=1.0.0
+fi
+
 if [ -z $JAVA_HOME ]; then
    export JAVA_HOME=/usr/lib/jvm/java
 fi
