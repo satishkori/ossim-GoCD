@@ -80,13 +80,15 @@ if [ -z BUILD_OPENJPEG_PLUGIN ] ; then
    export BUILD_OPENJPEG_PLUGIN=ON
 fi
 
+pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
+./setup.sh
+popd
 
 pushd $OSSIM_DEV_HOME/ossim/scripts
 ./build.sh
 popd
 
 pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
-./setup.sh
 ./build.sh
 popd
 

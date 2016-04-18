@@ -9,23 +9,6 @@
 GIT_BRANCH=$1
 OSSIM_SPEC=$2 
 ############################################################
-
-function getOsInfo {
-# Determine OS platform
-#        UNAME=$(uname | tr "[:upper:]" "[:lower:]")
-        local DISTRO=
-        local majorVersion=
-        local osArch=`uname -i`
-        if [ -f /etc/redhat-release ] ; then
-                DISTRO=`cat /etc/redhat-release | cut -d' ' -f1`
-                majorVersion=`cat /etc/redhat-release | grep  -o "[0-9]*\.[0-9]*\.*[0-9]*" | cut -d'.' -f1`
-        fi
-        eval "$1=${DISTRO}"
-        eval "$2=${majorVersion}"
-        eval "$3=${osArch}"
-}
-
-
 pushd `dirname $0` >/dev/null
 SCRIPT_DIR=$PWD
 popd > /dev/null
@@ -33,6 +16,9 @@ popd > /dev/null
 pushd $SCRIPT_DIR/../.. >/dev/null
 ROOT_DIR=$PWD
 popd
+
+. $SCRIPT_DIR/functions.sh
+
 
 pushd $ROOT_DIR > /dev/null
 echo "REMOVING .git directories"
