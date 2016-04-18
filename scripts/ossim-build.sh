@@ -69,20 +69,20 @@ if [ -z BUILD_POTRACE_PLUGIN ] ; then
 fi
 
 if [ -z BUILD_GEOPDF_PLUGIN ] ; then
-   export BUILD_GEOPDF_PLUGIN=ON
+export BUILD_GEOPDF_PLUGIN=ON
 fi
 
 if [ -z BUILD_OPENCV_PLUGIN ] ; then
-   export BUILD_OPENCV_PLUGIN=ON
+export BUILD_OPENCV_PLUGIN=ON
 fi
 
 if [ -z BUILD_OPENJPEG_PLUGIN ] ; then
-   export BUILD_OPENJPEG_PLUGIN=ON
+export BUILD_OPENJPEG_PLUGIN=ON
 fi
 
 
 if [ -z OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then
-   export OSSIM_BUILD_ADDITIONAL_DIRECTORIES=/var/lib/go-agent/pipelines/ossimlabs-dev/ossim-private/ossim-kakadu-jpip-server
+export OSSIM_BUILD_ADDITIONAL_DIRECTORIES=/var/lib/go-agent/pipelines/ossimlabs-dev/ossim-private/ossim-kakadu-jpip-server
 fi
 
 
