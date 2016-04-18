@@ -18,3 +18,10 @@ function getOsInfo {
         eval "$2=${majorVersion}"
         eval "$3=${osArch}"
 }
+
+##
+# Example use: getTimeStamp TIMESTAMP
+#
+function getTimeStamp {
+        eval $1=`date +%Y-%m-%d-%H%M`
+}
