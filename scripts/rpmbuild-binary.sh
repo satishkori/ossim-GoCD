@@ -21,9 +21,9 @@ popd
 
 pushd $ROOT_DIR >/dev/null
 
-if [ ! -d $ROOT_DIR/rpmbuild ] ; then
-        mkdir -p $ROOT_DIR/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-fi
+#if [ ! -d $ROOT_DIR/rpmbuild ] ; then
+mkdir -p $ROOT_DIR/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+#fi
 
 cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 
