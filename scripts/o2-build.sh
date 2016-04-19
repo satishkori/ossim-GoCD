@@ -15,6 +15,7 @@ if [ ! -f $OSSIM_DEV_HOME/install/share/java/joms-$OSSIM_VERSION.jar ]; then
 fi
 # make sure the joms jar is in the local maven repo
 mvn install:install-file -Dfile=$OSSIM_DEV_HOME/install/share/java/joms-$OSSIM_VERSION.jar -DgroupId=org.ossim -DartifactId=joms -Dversion=$OSSIM_VERSION -Dpackaging=jar
+mv $OSSIM_DEV_HOME/install ossim-install
 
 if [ $? -ne 0 ]; then
  echo; echo "ERROR: MVN install failed for joms."
