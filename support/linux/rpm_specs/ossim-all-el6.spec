@@ -288,7 +288,7 @@ mkdir -p %{_bindir}
 mkdir -p %{_libdir}
 
 pushd %{_builddir}
-unzip ./install.zip
+unzip ossim-install.zip
 popd
 
 pushd $DESTDIR
