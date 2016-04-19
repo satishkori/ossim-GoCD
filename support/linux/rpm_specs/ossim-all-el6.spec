@@ -295,10 +295,6 @@ export DESTDIR=%{buildroot}
 mkdir -p %{_bindir}
 mkdir -p %{_libdir}
 
-pushd %{_builddir}
-unzip ossim-install.zip
-popd
-
 pushd $DESTDIR
 mkdir usr
 mv %{_builddir}/install/* usr/  
