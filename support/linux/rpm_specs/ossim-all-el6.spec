@@ -269,14 +269,14 @@ Summary:        web ossim plugin
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
+%description web-plugin
+This sub-package contains the web ossim plugin for interfacing with http via
+curl library. 
+
 %package    potrace-plugin
 Summary:        potrace plugin
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-
-%description web-plugin
-This sub-package contains the web ossim plugin for interfacing with http via
-curl library. 
 
 %description potrace-plugin
 This sub-package contains the potrace plugin. 
