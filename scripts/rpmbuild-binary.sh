@@ -33,6 +33,8 @@ popd
 
 #unzip -o $ROOT_DIR/oldmar-install/install.zip 
 #unzip -o $ROOT_DIR/o2-install/install.zip 
+echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
+
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec
 if [ $? -ne 0 ]; then
   echo; echo "ERROR: Build failed for rpm binary build."
@@ -45,6 +47,8 @@ pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
 unzip -o $ROOT_DIR/oldmar-install/install.zip 
 popd
+echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/omar-all-${OSSIM_SPEC}.spec
+
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/omar-all-${OSSIM_SPEC}.spec
 
 
