@@ -30,7 +30,7 @@ rm -f %{_builddir}/install/share/omar.war
 
 %install
 
-install -p -m644 -D %{_builddir}/install/share/* %{buildroot}%{_datadir}
+install -p -m644 -D %{_builddir}/install/share/* %{buildroot}%{_datadir}/
 pushd %{buildroot}%{_datadir}/omar
 rm -f omar.war
 ln -s omar-%{version}.war omar.war
