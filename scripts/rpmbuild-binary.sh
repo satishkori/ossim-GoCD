@@ -29,8 +29,8 @@ cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 
 pushd $ROOT_DIR/rpmbuild/BUILD/
 unzip -o $ROOT_DIR/ossim-install/install.zip 
-unzip -o $ROOT_DIR/oldmar-install/install.zip 
-unzip -o $ROOT_DIR/o2-install/install.zip 
+#unzip -o $ROOT_DIR/oldmar-install/install.zip 
+#unzip -o $ROOT_DIR/o2-install/install.zip 
 
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/ossim-all-${OSSIM_SPEC}.spec

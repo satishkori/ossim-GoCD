@@ -10,7 +10,6 @@ export ROOT_DIR=$PWD
 popd > /dev/null
 popd >/dev/null
 source $SCRIPT_DIR/ossim-env.sh
-export INSTALL_PREFIX=$ROOT_DIR/omar-install
 
 $ROOT_DIR/omar/build_scripts/linux/install.sh
 
@@ -22,7 +21,8 @@ fi
 pushd $ROOT_DIR
 
 if [ "$ZIP_OPTION" == "-z" ]; then
-   zip -r install.zip omar-install
+   rm -f install.zip
+   zip -r install.zip install
    if [ $? -ne 0 ]; then
       echo; echo "ERROR: Failed zipping the OMAR binaries."
       popd

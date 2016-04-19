@@ -297,7 +297,10 @@ mkdir -p %{_libdir}
 
 pushd $DESTDIR
 mkdir usr
-mv %{_builddir}/install/* usr/  
+mv %{_builddir}/install/include usr/  
+mv %{_builddir}/install/share usr/  
+mv %{_builddir}/install/bin usr/  
+mv %{_builddir}/install/lib64 usr/  
 popd
 
 #install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
