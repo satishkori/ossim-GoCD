@@ -298,7 +298,7 @@ mkdir -p %{_libdir}
 pushd $DESTDIR
 mkdir usr
 mv %{_builddir}/install/include usr/  
-mv %{_builddir}/install/share usr/  
+mv %{_builddir}/install/share/ossim usr/  
 mv %{_builddir}/install/bin usr/  
 mv %{_builddir}/install/lib64 usr/  
 popd
