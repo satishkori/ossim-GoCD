@@ -56,7 +56,7 @@ OSSIM is a powerful suite of geospatial libraries and applications
 used to process remote sensing imagery, maps, terrain, and vector data.
 
 %package    devel
-Summary:        Develelopment files for ossim
+Summary:        Development files for ossim
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
@@ -64,7 +64,7 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 Development files for ossim.
 
 %package    libs
-Summary:        Develelopment files for ossim
+Summary:        Development files for ossim
 Group:          System Environment/Libraries
 
 %description libs
@@ -481,8 +481,8 @@ rm -f %{_javadir}/joms.jar
 %files web-plugin
 %{_libdir}/ossim/plugins/libossim_web_plugin.so
 
-#%files potrace-plugin
-#%{_libdir}/ossim/plugins/libossim_potrace_plugin.so
+%files potrace-plugin
+%{_libdir}/ossim/plugins/libossim_potrace_plugin.so
 
 
 %changelog
