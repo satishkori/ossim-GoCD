@@ -269,9 +269,17 @@ Summary:        web ossim plugin
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
+%package    potrace-plugin
+Summary:        potrace plugin
+Group:          System Environment/Libraries
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
 %description web-plugin
 This sub-package contains the web ossim plugin for interfacing with http via
 curl library. 
+
+%description potrace-plugin
+This sub-package contains the potrace plugin. 
 
 %build
 echo "********************** $OSSIM_DEV_HOME ***********************"
@@ -474,6 +482,8 @@ rm -f %{_javadir}/joms.jar
 %files web-plugin
 %{_libdir}/ossim/plugins/libossim_web_plugin.so
 
+#%files potrace-plugin
+#%{_libdir}/ossim/plugins/libossim_potrace_plugin.so
 
 
 %changelog
