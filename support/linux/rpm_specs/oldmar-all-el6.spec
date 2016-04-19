@@ -25,11 +25,18 @@ OMAR Image server
 
 
 %build
-
+# remove the unversioned for this will get sym linked later
+rm -f %{_builddir}/install/share/omar.war
 
 %install
 
 install -p -m644 -D %{_builddir}/install/share/* %{buildroot}%{_datadir}/omar/omar.war
+
+%post omar-server
+rm -f %{_datadir}/omar/omar.war
+pushd %{_datadir}/omar
+ln -s omar-%{version}.war omar.war
+
 
 %files
 %{_datadir}/*
