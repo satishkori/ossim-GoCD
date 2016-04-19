@@ -21,7 +21,7 @@ fi
 pushd $ROOT_DIR
 
 if [ "$ZIP_OPTION" == "-z" ]; then
-   zip -r omar-install.zip omar-install
+   zip -r install.zip omar-install
    if [ $? -ne 0 ]; then
       echo; echo "ERROR: Failed zipping the OMAR binaries."
       popd
