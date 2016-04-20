@@ -53,8 +53,13 @@ Summary:        Swipe Services
 Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
 
+%package    jpip-app
+Summary:        JPIP Services
+Version:        %{O2_VERSION}
+Group:          System Environment/Libraries
+
 %package    wmts-app
-Summary:        Swipe Services
+Summary:        WMTS Services
 Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
 
@@ -79,6 +84,9 @@ Stager service for the O2 distribution.  Will support Google Earth's KML superov
 
 %description  swipe-app
 Swipe application
+
+%description  jpip-app
+JPIP application
 
 %description  wmts-app
 WMTS application
