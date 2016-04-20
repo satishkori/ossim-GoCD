@@ -32,6 +32,11 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 popd >/dev/null
+
+install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
+install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+
+
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 
 if [ "$BUILD_KAKADU_PLUGIN" = "ON" ]; then
