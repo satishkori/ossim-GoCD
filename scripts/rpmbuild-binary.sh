@@ -64,4 +64,10 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+pushd $ROOT_DIR/rpmbuild/BUILD/
+rm -rf *
+unzip -o $ROOT_DIR/o2-install/install.zip 
+popd
+
+
 popd >/dev/null
