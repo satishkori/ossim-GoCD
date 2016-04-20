@@ -6,8 +6,16 @@ if [ -z $OSSIM_DEPENDENCY_VERSION ]; then
    export OSSIM_DEPENDENCY_VERSION=1.0.0
 fi
 
+# for packaging and general version number 
+#
 if [ -z $OSSIM_VERSION ] ; then
    export OSSIM_VERSION=1.9.0
+fi
+
+# For RPM packaging
+#
+if [ -z $OSSIM_BUILD_RELEASE ] ; then
+   export OSSIM_BUILD_RELEASE=1
 fi
 
 if [ -z $JAVA_HOME ]; then

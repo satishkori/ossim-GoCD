@@ -295,17 +295,44 @@ export DESTDIR=%{buildroot}
 mkdir -p %{_bindir}
 mkdir -p %{_libdir}
 
-pushd $DESTDIR
-mkdir usr
-mv %{_builddir}/install/include usr/  
-mv %{_builddir}/install/share/ossim usr/share/  
-mv %{_builddir}/install/bin usr/  
-mv %{_builddir}/install/lib64 usr/  
-popd
+pushd %{_builddir}/install
+echo off
+  for x in `find include`; do
+    if [ -f $x ] ; then
+      install -p -m644 -D $x %{buildroot}/usr/$x;
+    fi
+  done
+  for x in `find share`; do
+    if [ -f $x ] ; then
+      install -p -m644 -D $x %{buildroot}/usr/$x;
+    fi
+  done
 
-#install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
-#install -p -m644 -D ossim/support/linux/etc/profile.d/ossim.csh #%{buildroot}%{_sysconfdir}/profile.d/ossim.csh
-#install -p -m644 -D ossim/share/ossim/templates/ossim_preferences_template #%{buildroot}%{_datadir}/ossim/ossim-preferences-template
+  for x in `find lib64`; do
+    if [ -f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/usr/$x;
+    fi
+  done
+
+  for x in `find bin`; do
+    if [ -f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/usr/$x;
+    fi
+  done
+
+  if [ -f ./etc/profile.d/ossim.sh ] ; then
+    install -p -m644 -D ./etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
+  fi
+
+  if [ -f ./etc/profile.d/ossim.csh ] ; then
+    install -p -m644 -D ./etc/profile.d/ossim.csh %{buildroot}%{_sysconfdir}/profile.d/ossim.csh
+  fi
+
+  if [ -f ./etc/profile.d/ossim.csh ] ; then
+    install -p -m644 -D ./etc/profile.d/ossim.csh %{buildroot}%{_sysconfdir}/profile.d/ossim.csh
+  fi
+popd
+echo on
 
 # Exports for java builds:
 #export JAVA_HOME=/usr/lib/jvm/java

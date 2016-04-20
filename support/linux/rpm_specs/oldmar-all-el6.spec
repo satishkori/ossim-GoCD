@@ -6,7 +6,6 @@ Group:          System Environment/Libraries
 #TODO: Which version?
 License:        LGPLv2+
 #URL:            http://github
-Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
 
 
 Requires: ossim
@@ -25,15 +24,26 @@ OMAR Image server
 
 
 %build
-# remove the unversioned for this will get sym linked later
-rm -f %{_builddir}/install/share/omar.war
 
 %install
 
-install -p -m644 -D %{_builddir}/install/share/* %{buildroot}%{_datadir}/
-pushd %{buildroot}%{_datadir}/omar
-rm -f omar.war
-ln -s omar-%{version}.war omar.war
+pushd %{_builddir}/install
+  for x in `find share`; do
+    if [ -f $x ] ; then
+      install -p -m644 -D $x %{buildroot}/usr/$x;
+    fi
+  done
+popd
+
+%post
+pushd %{_datadir}/omar
+if [ -L omar.war ]; then
+  unlink omar.war
+fi
+if [ ! -f omar.war ]; then
+  ln -s omar-${version}.war omar.war
+fi
+popd
 
 %files
 %{_datadir}/*

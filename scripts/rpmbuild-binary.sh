@@ -17,7 +17,8 @@ pushd $SCRIPT_DIR/../.. >/dev/null
 ROOT_DIR=$PWD
 popd
 
-. $SCRIPT_DIR/functions.sh
+source $SCRIPT_DIR/ossim-env.sh
+source $SCRIPT_DIR/functions.sh
 
 pushd $ROOT_DIR >/dev/null
 
@@ -28,6 +29,7 @@ mkdir -p $ROOT_DIR/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 
 pushd $ROOT_DIR/rpmbuild/BUILD/
+rm -rf *
 unzip -o $ROOT_DIR/ossim-install/install.zip 
 popd
 
