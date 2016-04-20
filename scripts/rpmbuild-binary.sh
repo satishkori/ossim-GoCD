@@ -68,6 +68,8 @@ pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
 unzip -o $ROOT_DIR/o2-install/install.zip 
 popd
+echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${OSSIM_VERSION}" --define "O2_BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/oldmar-all.spec
+rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${OSSIM_VERSION}" --define "O2_BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/oldmar-all.spec
 
 
 popd >/dev/null
