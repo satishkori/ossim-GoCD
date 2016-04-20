@@ -1,10 +1,8 @@
 #---
-# File: ossim-all-el6.spec
+# File: ossim-all.spec
 #
 # Spec file for building ossim rpms with rpmbuild.
 #
-# NOTE: This files differs from ossim-all-el7.spec in that it needs libtiff4
-# to pick up bigtiff support.
 #
 # Example usage:
 # rpmbuild -ba --define 'RPM_OSSIM_VERSION 1.9.0' --define 'BUILD_RELEASE 1' ossim-el7.spec
@@ -425,8 +423,8 @@ rm -f %{_javadir}/joms.jar
 #%doc ossim/LICENSE.txt
 %{_libdir}/libossim.so*
 %{_libdir}/pkgconfig/ossim.pc
-#%{_sysconfdir}/profile.d/ossim.sh
-#%{_sysconfdir}/profile.d/ossim.csh
+%{_sysconfdir}/profile.d/ossim.sh
+%{_sysconfdir}/profile.d/ossim.csh
 
 %files geocell
 %{_bindir}/ossim-geocell
