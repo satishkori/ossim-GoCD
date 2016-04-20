@@ -43,7 +43,7 @@ echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VE
 
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/ossim-all.spec
 if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Build failed for rpm binary build."
+  echo; echo "ERROR: Build failed for OSSIM rpm binary build."
   popd >/dev/null
   exit 1
 fi
@@ -59,7 +59,7 @@ rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION
 
 
 if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Build failed for rpm binary build."
+  echo; echo "ERROR: Build failed for OLDMAR rpm binary build."
   popd >/dev/null
   exit 1
 fi
@@ -70,6 +70,11 @@ unzip -o $ROOT_DIR/o2-install/install.zip
 popd
 echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${OSSIM_VERSION}" --define "O2_BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/o2-all.spec
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${OSSIM_VERSION}" --define "O2_BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/o2-all.spec
+if [ $? -ne 0 ]; then
+  echo; echo "ERROR: Build failed for O2 rpm binary build."
+  popd >/dev/null
+  exit 1
+fi
 
 
 popd >/dev/null
