@@ -7,7 +7,11 @@
 # Usage rpmbuild.sh <git_branch> <spec> 
 #
 GIT_BRANCH=$1
-OSSIM_SPEC=$2 
+OSSIM_SPEC=$2
+
+if [ -z $OSSIM_DPEC ]; then
+  export OSSIM_SPEC = `uname -r | grep -o el[0-9]`
+fi 
 ############################################################
 pushd `dirname $0` >/dev/null
 SCRIPT_DIR=$PWD
