@@ -36,7 +36,7 @@ popd >/dev/null
 install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
 install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
 
-pushd $OSSIM_DEV_HOME/ossim/share
+pushd $OSSIM_DEV_HOME/ossim/share/ossim
 for x in `find geoids`; do
   if [ -f $x ] ; then
     install -p -m644 -D $x ${OSSIM_INSTALL_PREFIX}/share/ossim/$x;
