@@ -325,10 +325,6 @@ echo off
   if [ -f ./etc/profile.d/ossim.csh ] ; then
     install -p -m644 -D ./etc/profile.d/ossim.csh %{buildroot}%{_sysconfdir}/profile.d/ossim.csh
   fi
-
-  if [ -f ./etc/profile.d/ossim.csh ] ; then
-    install -p -m644 -D ./etc/profile.d/ossim.csh %{buildroot}%{_sysconfdir}/profile.d/ossim.csh
-  fi
 popd
 echo on
 

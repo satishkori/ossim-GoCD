@@ -36,6 +36,21 @@ popd >/dev/null
 install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
 install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
 
+pushd $OSSIM_DEV_HOME/ossim/share
+for x in `find geoids`; do
+  if [ -f $x ] ; then
+    install -p -m644 -D $x ${OSSIM_INSTALL_PREFIX}/share/ossim/$x;
+  fi
+done
+
+for x in `find projection`; do
+  if [ -f $x ] ; then
+    install -p -m644 -D $x ${OSSIM_INSTALL_PREFIX}/share/ossim/$x;
+  fi
+done
+
+install -p -m644 -D templates/ossim_preferences_template ${OSSIM_INSTALL_PREFIX}/share/ossim/ossim-preferences-template;
+popd
 
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 
