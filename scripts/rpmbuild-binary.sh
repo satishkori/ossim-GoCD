@@ -96,7 +96,7 @@ if [ -d "${OSSIM_DEPS_RPMS}" ] ; then
   cp $OSSIM_DEPS_RPMS/*.rpm $rpmdir/
 fi
   pushd $rpmdir >/dev/null
-    createrepo .
+    createrepo --simple-md-filenames .
   popd
 tar cvfz rpms.tgz $os
 mv rpms.tgz ${ROOT_DIR}/
