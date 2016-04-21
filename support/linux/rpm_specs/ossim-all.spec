@@ -479,8 +479,7 @@ rm -f %{_javadir}/joms.jar
 
 %files kakadu-plugin
 %{_libdir}/ossim/plugins/libossim_kakadu_plugin.so
-%{_libdir}/libkdu_a75R.so
-%{_libdir}/libkdu_v75R.so
+%{_libdir}/libkdu_*.so
 
 #%files mrsid-plugin
 #%{_libdir}/ossim/plugins/libossim_mrsid_plugin.so
