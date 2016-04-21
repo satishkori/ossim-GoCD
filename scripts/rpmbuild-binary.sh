@@ -24,14 +24,14 @@ popd
 source $SCRIPT_DIR/ossim-env.sh
 source $SCRIPT_DIR/functions.sh
 
-pushd $ROOT_DIR >/dev/null
-
 #if [ ! -d $ROOT_DIR/rpmbuild ] ; then
 mkdir -p $ROOT_DIR/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 #fi
 
 cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 
+# Setup the ossim binaries for packaging
+#
 pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
 unzip -o $ROOT_DIR/ossim-install/install.zip 
@@ -49,6 +49,8 @@ if [ $? -ne 0 ]; then
 fi
 
 
+# Setup the oldmar for packaging
+#
 pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
 unzip -o $ROOT_DIR/oldmar-install/install.zip 
@@ -64,6 +66,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# Setup and package the new O2 distribution
 pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
 unzip -o $ROOT_DIR/o2-install/install.zip 
@@ -76,5 +79,25 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# now create the yum repo artifact tgz file
+#
+getOsInfo os major_version os_arch
 
-popd >/dev/null
+# create the RPM dir
+rpmdir=${ROOT_DIR}/rpmbuild/RPMS/${os}/${major_version}/${GIT_BRANCH}/${os_arch}
+if [ -d "$rpmdir" ] ; then
+  rm -rf $rpmdir/*
+fi
+mkdir -p $rpmdir
+
+pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
+mv `find ./${os_arch} -name "*.rpm"` $rpmdir/
+if [ -d "${OSSIM_DEPS_RPMS}" ] ; then
+  cp $OSSIM_DEPS_RPMS/*.rpm $rpmdir/
+fi
+  pushd $rpmdir >/dev/null
+    createrepo .
+  popd
+tar cvfz rpms.tgz $os
+mv rpms.tgz ${ROOT_DIR}/
+popd > /dev/null
