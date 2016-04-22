@@ -1,6 +1,6 @@
 //===================================================================================
 // 
-// File: potrace-test.kwl
+// File: kmeans-test.kwl
 //
 // Description: ossim-batch-test template config file.
 // 
@@ -23,19 +23,17 @@
 // 
 //===================================================================================
 
-test1.description: Test of potrace plugin
+test1.description: Test of ossimKmeansFilter class
 
 // Commands to generate expected results.
-test1.expected_results_command0: ossim-cli potrace $(OSSIM_BATCH_TEST_DATA)/public/potrace/simulated.tif $(OBT_EXP_DIR)/simulated.json > $(OBT_EXP_DIR)/potrace-plugin-test.txt
+test1.expected_results_command0: ossim-kmeans-filter-test -i $(OSSIM_BATCH_TEST_DATA)/public/kmeans/kmeans-input.tif > $(OBT_EXP_DIR)/kmeans-test.txt
 
 // The actual commands to test.
-test1.test_command0: ossim-cli potrace $(OSSIM_BATCH_TEST_DATA)/public/potrace/simulated.tif $(OBT_OUT_DIR)/simulated.json > $(OBT_OUT_DIR)/potrace-plugin-test.txt
+test1.test_command0: ossim-kmeans-filter-test -i $(OSSIM_BATCH_TEST_DATA)/public/kmeans/kmeans-input.tif > $(OBT_OUT_DIR)/kmeans-test.txt
 
 // The post-processing (comparison) commands. Typically these involve a file 
 // comparison of last run command against expected results.
-test1.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/simulated.json $(OBT_OUT_DIR)/simulated.json
-test1.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/potrace-plugin-test.txt $(OBT_OUT_DIR)/potrace-plugin-test.txt
-
+test1.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/kmeans-test.txt $(OBT_OUT_DIR)/kmeans-test.txt
 
 
 

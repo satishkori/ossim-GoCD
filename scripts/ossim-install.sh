@@ -1,29 +1,5 @@
 #!/bin/bash 
-###############################################################################
-#
-# Install script for ossimlabs
-#
-# Usage: install.sh [-z]
-#
-# This script can be run from anywhere. It performs two functions:
-# 
-#   1. performs a make install, and
-#   2. Optionally zips the install directory for use as sandbox or artifact,
-#      and creates a link to the zipped install that does not contain
-#      a timestamp or pipeline name, so it is easily accessible by other pipelines.
-#
-# No env vars need to be predefined. The install output will be written to
-# $OSSIM_DEV_HOME/install where $OSSIM_DEV_HOME is the top-level
-# folder containing all OSSIM repositories (including this one).
-#
-# For customized output location, you can define the env var OSSIM_INSTALL_PREFIX
-# prior to building Makefiles, and the output will be written there. 
-#
-###############################################################################
-
 ZIP_OPTION=$1
-
-# Set GoCD-specific environment:
 pushd `dirname $0` >/dev/null
 export SCRIPT_DIR=`pwd -P`
 pushd $SCRIPT_DIR/../.. >/dev/null
@@ -31,19 +7,11 @@ export OSSIM_DEV_HOME=$PWD
 popd > /dev/null
 popd >/dev/null
 
+source $SCRIPT_DIR/ossim-env.sh
+
 # Establish CMAKE's install directory:
 if [ -z "$OSSIM_INSTALL_PREFIX" ]; then
     export OSSIM_INSTALL_PREFIX=$OSSIM_DEV_HOME/install
-fi
-
-if [ -z $KAKADU_LIBRARY ]; then
-   echo "ERROR: KAKADU_LIBRARY environment var not set."
-   exit 1;
-fi
-
-if [ -z $KAKADU_AUX_LIBRARY ]; then
-   echo "ERROR: KAKADU_AUX_LIBRARY environment var not set."
-   exit 1;
 fi
 
 echo "STATUS: Checking presence of env var OSSIM_BUILD_DIR = <$OSSIM_BUILD_DIR>...";
@@ -64,18 +32,29 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 popd >/dev/null
+
+install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
+install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 
-echo "STATUS: Performing OMAR install to <$OSSIM_INSTALL_PREFIX>"
-pushd $OSSIM_DEV_HOME/omar/build_scripts/linux
-./install.sh
-if [ $? -ne 0 ]; then
-  echo; echo "ERROR: Error encountered OMAR install. Check the console log and correct."
-  popd >/dev/null
-  exit 1
-fi
-popd >/dev/null
-echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
+if [ "$BUILD_KAKADU_PLUGIN" = "ON" ]; then
+   if [ -z $KAKADU_LIBRARY ]; then
+      echo "ERROR: KAKADU_LIBRARY env variable not set for install"
+      exit 1
+   fi
+
+   if [ -z $KAKADU_AUX_LIBRARY ]; then
+      echo "ERROR: KAKADU_AUX_LIBRARY env variable not set for install"
+      exit 1
+   fi
+
+   # Need Kakadu shared libs for jpip server. drb - 20160414
+   echo "STATUS: Performing install of $KAKADU_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
+   cp $KAKADU_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
+   echo "STATUS: Performing install of $KAKADU_AUX_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
+   cp $KAKADU_AUX_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
+fi 
 
 echo "STATUS: Performing joms install to <$OSSIM_INSTALL_PREFIX>"
 pushd $OSSIM_DEV_HOME/ossim-oms/joms/build_scripts/linux
@@ -85,14 +64,6 @@ if [ $? -ne 0 ]; then
   popd
   exit 1
 fi
-popd >/dev/null # out of OSSIM_BUILD_DIR
-echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
-
-# Need Kakadu shared libs for jpip server. drb - 20160414
-echo "STATUS: Performing install of $KAKADU_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
-cp $KAKADU_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
-echo "STATUS: Performing install of $KAKADU_AUX_LIBRARY to <$OSSIM_INSTALL_PREFIX>"
-cp $KAKADU_AUX_LIBRARY $OSSIM_INSTALL_PREFIX/lib64
 
 TIMESTAMP=`date +%Y-%m-%d-%H%M`
 
@@ -124,5 +95,3 @@ if [ "$ZIP_OPTION" == "-z" ]; then
 fi
 
 popd # Out of dir containing install subdir
-exit 0
-

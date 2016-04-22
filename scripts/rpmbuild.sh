@@ -9,23 +9,6 @@
 GIT_BRANCH=$1
 OSSIM_SPEC=$2 
 ############################################################
-
-function getOsInfo {
-# Determine OS platform
-#        UNAME=$(uname | tr "[:upper:]" "[:lower:]")
-        local DISTRO=
-        local majorVersion=
-        local osArch=`uname -i`
-        if [ -f /etc/redhat-release ] ; then
-                DISTRO=`cat /etc/redhat-release | cut -d' ' -f1`
-                majorVersion=`cat /etc/redhat-release | grep  -o "[0-9]*\.[0-9]*\.*[0-9]*" | cut -d'.' -f1`
-        fi
-        eval "$1=${DISTRO}"
-        eval "$2=${majorVersion}"
-        eval "$3=${osArch}"
-}
-
-
 pushd `dirname $0` >/dev/null
 SCRIPT_DIR=$PWD
 popd > /dev/null
@@ -33,6 +16,9 @@ popd > /dev/null
 pushd $SCRIPT_DIR/../.. >/dev/null
 ROOT_DIR=$PWD
 popd
+
+. $SCRIPT_DIR/functions.sh
+
 
 pushd $ROOT_DIR > /dev/null
 echo "REMOVING .git directories"
@@ -48,7 +34,7 @@ if [ -d "ossim-$OSSIM_VERSION" ] ; then
 else
    mkdir ossim-$OSSIM_VERSION
 fi
-cp ossim/support/linux/rpm_specs/*.spec rpmbuild/SPECS
+cp ossim-GoCD/support/linux/rpm_specs/*.spec rpmbuild/SPECS
 
 mv ossim $ROOT_DIR/ossim-$OSSIM_VERSION
 mv ossim-* $ROOT_DIR/ossim-$OSSIM_VERSION
@@ -134,9 +120,7 @@ fi
 
 getOsInfo os major_version os_arch
 
-#pushd ${ROOT_DIR}/rpmbuild/RPMS >/dev/null
-#createrepo .
-#popd >/dev/null
+
 rpmdir=${ROOT_DIR}/rpmbuild/RPMS/${os}/${major_version}/${GIT_BRANCH}/${os_arch}
 if [ -d "$rpmdir" ] ; then
   rm -rf $rpmdir/*
@@ -153,21 +137,3 @@ fi
 tar cvfz rpms.tgz $os
 mv rpms.tgz ${ROOT_DIR}/
 popd > /dev/null
-
-# ossim kakadu plugin:
-
-# Requires ossim-lib and ossim-devel rpms.
-
-# if [ ! -d "ossim-kakadu-plugin-$OSSIM_VERSION" ] ; then
-#    mkdir ossim-kakadu-plugin-$OSSIM_VERSION
-# fi
-
-# cp -r ossim-$OSSIM_VERSION/ossim/cmake/CMakeModules ossim-kakadu-plugin-$OSSIM_VERSION/. > /dev/null
-# cp -r ossim-$OSSIM_VERSION/ossim-plugins/kakadu ossim-kakadu-plugin-$OSSIM_VERSION/. > /dev/null
-# cp -r /opt/kakadu/kakadu_src ossim-kakadu-plugin-$OSSIM_VERSION/. > /dev/null
-
-# tar cvfz ossim-kakadu-plugin-$OSSIM_VERSION.tar.gz ossim-kakadu-plugin-$OSSIM_VERSION
-# mv $ROOT_DIR/ossim-kakadu-plugin-$OSSIM_VERSION.tar.gz $ROOT_DIR/rpmbuild/SOURCES
-
-# rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" rpmbuild/SPECS/ossim-kakadu-plugin-${OSSIM_SPEC}.spec
-

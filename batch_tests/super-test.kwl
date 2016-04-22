@@ -68,6 +68,8 @@ test_config_file10: hlz-test.kwl
 test_config_file11: viewshed-test.kwl
 test_config_file12: lut-test.kwl
 test_config_file13: potrace-test.kwl
+test_config_file13: vertices-test.kwl
+test_config_file14: kmeans-test.kwl
 
 //test_config_file10: WMS_PNG.kwl
 //test_config_file11: WMS_JPEG.kwl
