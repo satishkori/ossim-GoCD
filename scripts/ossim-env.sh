@@ -105,5 +105,7 @@ fi
 
 
 if [ -z $OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then
-   export OSSIM_BUILD_ADDITIONAL_DIRECTORIES=/var/lib/go-agent/pipelines/ossimlabs-dev/ossim-private/ossim-kakadu-jpip-server
+   if [ -d $OSSIM_DEV_HOME/ossim-private/ossim-kakadu-jpip-server ]; then
+     export OSSIM_BUILD_ADDITIONAL_DIRECTORIES=$OSSIM_DEV_HOME/ossim-private/ossim-kakadu-jpip-server
+   fi
 fi
