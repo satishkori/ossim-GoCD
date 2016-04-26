@@ -104,20 +104,85 @@ pushd %{_builddir}/install
   done
 popd
 
-%post
+%post omar-app
+pushd %{_datadir}/omar/omar-app
+if [ -L omar-app.jar ]; then
+ unlink omar-app.jar
+fi
+if [ ! -f omar-app.jar ]; then
+  ln -s omar-app-*.jar omar-app.jar
+fi
+popd
 
-O2_APPS=( "omar-app" "wfs-app" "wms-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
+%post wfs-app
+pushd %{_datadir}/omar/wfs-app
+if [ -L wfs-app.jar ]; then
+ unlink wfs-app.jar
+fi
+if [ ! -f wfs-app.jar ]; then
+  ln -s wfs-app-*.jar wfs-app.jar
+fi
+popd
 
-for app in ${O2_APPS[@]} ; do 
-   pushd %{_datadir}/omar/${app}
-      if [ -L ${app}.jar ]; then
-         unlink ${app}.jar
-      fi
-      if [ ! -f ${app}.jar ]; then
-        ln -s ${app}*.jar ${app}.jar
-      fi
-   popd
-done
+%post wms-app
+pushd %{_datadir}/omar/wms-app
+if [ -L wms-app.jar ]; then
+ unlink wms-app.jar
+fi
+if [ ! -f wms-app.jar ]; then
+  ln -s wms-app-*.jar wms-app.jar
+fi
+popd
+
+%post stager-app
+pushd %{_datadir}/omar/stager-app
+if [ -L stager-app.jar ]; then
+ unlink stager-app.jar
+fi
+if [ ! -f stager-app.jar ]; then
+  ln -s stager-app-*.jar stager-app.jar
+fi
+popd
+
+%post swipe-app
+pushd %{_datadir}/omar/swipe-app
+if [ -L swipe-app.jar ]; then
+ unlink swipe-app.jar
+fi
+if [ ! -f swipe-app.jar ]; then
+  ln -s swipe-app-*.jar swipe-app.jar
+fi
+popd
+
+%post superoverlay-app
+pushd %{_datadir}/omar/superoverlay-app
+if [ -L superoverlay-app.jar ]; then
+ unlink superoverlay-app.jar
+fi
+if [ ! -f superoverlay-app.jar ]; then
+  ln -s superoverlay-app-*.jar superoverlay-app.jar
+fi
+popd
+
+%post jpip-app
+pushd %{_datadir}/omar/jpip-app
+if [ -L jpip-app.jar ]; then
+ unlink jpip-app.jar
+fi
+if [ ! -f jpip-app.jar ]; then
+  ln -s jpip-app-*.jar jpip-app.jar
+fi
+popd
+
+%post wmts-app
+pushd %{_datadir}/omar/wmts-app
+if [ -L wmts-app.jar ]; then
+ unlink wmts-app.jar
+fi
+if [ ! -f wmts-app.jar ]; then
+  ln -s wmts-app-*.jar wmts-app.jar
+fi
+popd
 
 
 %files omar-app
