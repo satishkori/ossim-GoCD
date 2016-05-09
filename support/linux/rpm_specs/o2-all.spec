@@ -169,9 +169,10 @@ popd
 
 
 %post wms-app
-echo "POST INSTALLATION SETUP WMS-APP"
 export APP_NAME=wms-app
 export USER_NAME=omar
+
+echo "POST INSTALLATION SETUP ${APP_NAME}"
 
 echo "Checking if user:group omar:omar exists"
 if ! id -u omar > /dev/null 2>&1; then 
