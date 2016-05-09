@@ -167,14 +167,18 @@ fi
 
 popd
 
+
 %post wms-app
+echo "POST INSTALLATION SETUP WMS-APP"
 export APP_NAME=wms-app
 export USER_NAME=omar
 
+echo "Checking if user:group omar:omar exists"
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
+echo "Linking the jar"
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
  unlink ${APP_NAME}.jar
@@ -183,6 +187,7 @@ if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
 fi
 
+echo "CREATING THE SERVICE WRAPPERS"
 if [ -d /etc/systemd ] ; then
   install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
@@ -192,6 +197,7 @@ else
   install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
+echo "SETTING PERMISSIONS"
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
   chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 fi
