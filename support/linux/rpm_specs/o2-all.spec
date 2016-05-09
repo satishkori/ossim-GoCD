@@ -121,12 +121,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -153,12 +153,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -184,12 +184,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -215,12 +215,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -246,12 +246,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -277,12 +277,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -308,12 +308,12 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -339,13 +339,13 @@ if [ ! -f ${APP_NAME}.jar ]; then
 fi
 
 if [ -d /etc/systemd ] ; then
-  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
   pushd /etc/systemd/system
     ln -s  /usr/lib/systemd/system/${APP_NAME}.service
   popd
 
 else
-  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
