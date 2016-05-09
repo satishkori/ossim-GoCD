@@ -6,6 +6,8 @@ Group:          System Environment/Libraries
 License:        MIT License
 #URL:            http://github
 
+%define is_systemd %(test -d /etc/systemd && echo 1 || echo 0)
+
 # this is to stop it from compressing the jar files so we do not get nested zips because the
 # jars are already zipped
 %define __os_install_post %{nil}
@@ -103,6 +105,7 @@ pushd %{_builddir}/install
     fi
   done
 popd
+
 
 %pre omar-app
 
@@ -384,25 +387,34 @@ popd
 
 
 %files omar-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/omar-app
 
+
 %files wfs-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/wfs-app
 
 %files wms-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/wms-app
 
 %files stager-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/stager-app
 
 %files swipe-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/swipe-app
 
 %files superoverlay-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/superoverlay-app
 
 %files jpip-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/jpip-app
 
 %files wmts-app
+%defattr(644, omar, omar, -)
 %{_datadir}/omar/wmts-app
