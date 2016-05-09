@@ -105,83 +105,253 @@ pushd %{_builddir}/install
 popd
 
 %post omar-app
-pushd %{_datadir}/omar/omar-app
-if [ -L omar-app.jar ]; then
- unlink omar-app.jar
+export APP_NAME=omar-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f omar-app.jar ]; then
-  ln -s omar-app-*.jar omar-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
+
 %post wfs-app
-pushd %{_datadir}/omar/wfs-app
-if [ -L wfs-app.jar ]; then
- unlink wfs-app.jar
+export APP_NAME=wfs-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f wfs-app.jar ]; then
-  ln -s wfs-app-*.jar wfs-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 %post wms-app
-pushd %{_datadir}/omar/wms-app
-if [ -L wms-app.jar ]; then
- unlink wms-app.jar
+export APP_NAME=wms-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f wms-app.jar ]; then
-  ln -s wms-app-*.jar wms-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 %post stager-app
-pushd %{_datadir}/omar/stager-app
-if [ -L stager-app.jar ]; then
- unlink stager-app.jar
+export APP_NAME=stager-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f stager-app.jar ]; then
-  ln -s stager-app-*.jar stager-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 %post swipe-app
-pushd %{_datadir}/omar/swipe-app
-if [ -L swipe-app.jar ]; then
- unlink swipe-app.jar
+export APP_NAME=swipe-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f swipe-app.jar ]; then
-  ln -s swipe-app-*.jar swipe-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 %post superoverlay-app
-pushd %{_datadir}/omar/superoverlay-app
-if [ -L superoverlay-app.jar ]; then
- unlink superoverlay-app.jar
+export APP_NAME=superoverlay-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f superoverlay-app.jar ]; then
-  ln -s superoverlay-app-*.jar superoverlay-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 %post jpip-app
-pushd %{_datadir}/omar/jpip-app
-if [ -L jpip-app.jar ]; then
- unlink jpip-app.jar
+export APP_NAME=jpip-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f jpip-app.jar ]; then
-  ln -s jpip-app-*.jar jpip-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 %post wmts-app
-pushd %{_datadir}/omar/wmts-app
-if [ -L wmts-app.jar ]; then
- unlink wmts-app.jar
+export APP_NAME=wmts-app
+export USER_NAME=omar
+
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
-if [ ! -f wmts-app.jar ]; then
-  ln -s wmts-app-*.jar wmts-app.jar
+
+pushd %{_datadir}/omar/${APP_NAME}
+if [ -L ${APP_NAME}.jar ]; then
+ unlink ${APP_NAME}.jar
 fi
+if [ ! -f ${APP_NAME}.jar ]; then
+  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+fi
+
+if [ -d /etc/systemd ] ; then
+  install -p -m755 service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
+  pushd /etc/systemd/system
+    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
+  popd
+
+else
+  install -p -m755 service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
+fi
+
+if id -u ${USER_NAME} > /dev/null 2>&1; then 
+  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+fi
+
 popd
 
 
