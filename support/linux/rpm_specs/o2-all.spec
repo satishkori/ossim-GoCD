@@ -104,13 +104,65 @@ pushd %{_builddir}/install
   done
 popd
 
-%post omar-app
-export APP_NAME=omar-app
-export USER_NAME=omar
+%pre omar-app
 
+export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
+
+%pre wfs-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%pre wms-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%pre stager-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%pre swipe-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%pre superoverlay-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%pre jpip-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%pre wmts-app
+
+export USER_NAME=omar
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+fi
+
+%post omar-app
+export APP_NAME=omar-app
+export USER_NAME=omar
 
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
@@ -129,9 +181,7 @@ else
   install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 popd
 
@@ -139,10 +189,6 @@ popd
 %post wfs-app
 export APP_NAME=wfs-app
 export USER_NAME=omar
-
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
 
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
@@ -174,11 +220,6 @@ export USER_NAME=omar
 
 echo "POST INSTALLATION SETUP ${APP_NAME}"
 
-echo "Checking if user:group omar:omar exists"
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
-
 echo "Linking the jar"
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
@@ -209,10 +250,6 @@ popd
 export APP_NAME=stager-app
 export USER_NAME=omar
 
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
-
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
  unlink ${APP_NAME}.jar
@@ -239,10 +276,6 @@ popd
 %post swipe-app
 export APP_NAME=swipe-app
 export USER_NAME=omar
-
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
 
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
@@ -271,10 +304,6 @@ popd
 export APP_NAME=superoverlay-app
 export USER_NAME=omar
 
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
-
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
  unlink ${APP_NAME}.jar
@@ -302,10 +331,6 @@ popd
 export APP_NAME=jpip-app
 export USER_NAME=omar
 
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
-
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
  unlink ${APP_NAME}.jar
@@ -332,10 +357,6 @@ popd
 %post wmts-app
 export APP_NAME=wmts-app
 export USER_NAME=omar
-
-if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
-fi
 
 pushd %{_datadir}/omar/${APP_NAME}
 if [ -L ${APP_NAME}.jar ]; then
