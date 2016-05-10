@@ -277,7 +277,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %endif
 
 %files wmts-app
-%{_datadir}/omar/wts-app
+%{_datadir}/omar/wmts-app
 %if %{is_systemd}
 %{_libdir}/systemd/system/wmts-app
 %else
