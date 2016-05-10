@@ -188,37 +188,108 @@ fi
 
 %post omar-app
 export USER_NAME=omar
+export APP_NAME=omar-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-chmod 755 `find %{_datadir}/omar -type d`
-chmod 755 `find %{_datadir}/omar -name "*.sh"`
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post wfs-app
 export USER_NAME=omar
+export APP_NAME=wfs-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post wms-app
 export USER_NAME=omar
+export APP_NAME=wms-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post stager-app
 export USER_NAME=omar
+export APP_NAME=stager-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post swipe-app
 export USER_NAME=omar
+export APP_NAME=swipe-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post superoverlay-app
 export USER_NAME=omar
+export APP_NAME=superoverlay-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post jpip-app
 export USER_NAME=omar
+export APP_NAME=jpip-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 
 %post wmts-app
 export USER_NAME=omar
+export APP_NAME=wmts-app
+
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+mkdir /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+
+%postun omar-app
+export APP_NAME=omar-app
+rm -rf /var/log/${APP_NAME}
+
+%postun wfs-app
+export APP_NAME=wfs-app
+rm -rf /var/log/${APP_NAME}
+
+%postun wms-app
+export APP_NAME=wms-app
+rm -rf /var/log/${APP_NAME}
+
+%postun stager-app
+export APP_NAME=stager-app
+rm -rf /var/log/${APP_NAME}
+
+%postun swipe-app
+export APP_NAME=swipe-app
+rm -rf /var/log/${APP_NAME}
+
+%postun superoverlay-app
+export APP_NAME=superoverlay-app
+rm -rf /var/log/${APP_NAME}
+
+
+%postun jpip-app
+export APP_NAME=jpip-app
+rm -rf /var/log/${APP_NAME}
+
+%postun wmts-app
+export APP_NAME=wmts-app
+rm -rf /var/log/${APP_NAME}
 
 %files omar-app
 %{_datadir}/omar/omar-app
