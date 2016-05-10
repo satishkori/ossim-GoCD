@@ -108,7 +108,7 @@ pushd %{_builddir}/install
   done
   # Loop through each app and sym link to the versioned app
   for app in ${O2_APPS[@]} ; do 
-    if [-d %{buildroot}%{_datadir}/omar/${APP_NAME} ]; then
+    if [ -d %{buildroot}%{_datadir}/omar/${APP_NAME} ]; then
       pushd %{buildroot}%{_datadir}/omar/${APP_NAME}
         if [ -L ${APP_NAME}.jar ]; then
          unlink ${APP_NAME}.jar
@@ -124,13 +124,13 @@ pushd %{_builddir}/install
 
 %if %{is_systemd}
   for x in `find usr/lib/systemd/system` ; do
-    if [-f $x ] ; then
+    if [ -f $x ] ; then
       install -p -m755 -D $x %{buildroot}/$x;
     fi
   done
 %else
   for x in `find etc/init.d` ; do
-    if [-f $x ] ; then
+    if [ -f $x ] ; then
       install -p -m755 -D $x %{buildroot}/$x;
     fi
   done
