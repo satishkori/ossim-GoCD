@@ -42,7 +42,7 @@ if [ -z $BUILD_OSSIM_APPS ] ; then
    export BUILD_OSSIM_APPS=ON
 fi
 if [ -z $BUILD_OSSIM_CURL_APPS ] ; then
-   export BUILD_OSSIM_CURL_APP=ON
+   export BUILD_OSSIM_CURL_APPS=ON
 fi
 
 if [ -z $BUILD_OSSIM_VIDEO ] ; then
