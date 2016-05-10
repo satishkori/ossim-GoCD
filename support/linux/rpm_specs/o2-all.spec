@@ -294,7 +294,7 @@ rm -rf /var/log/${APP_NAME}
 %files omar-app
 %{_datadir}/omar/omar-app
 %if %{is_systemd}
-/usr/lib/systemd/system/omar-app
+/usr/lib/systemd/system/omar-app.service
 %else
 %{_sysconfdir}/init.d/omar-app
 %endif
@@ -302,7 +302,7 @@ rm -rf /var/log/${APP_NAME}
 %files wfs-app
 %{_datadir}/omar/wfs-app
 %if %{is_systemd}
-/usr/lib/systemd/system/wfs-app
+/usr/lib/systemd/system/wfs-app.service
 %else
 %{_sysconfdir}/init.d/wfs-app
 %endif
@@ -310,7 +310,7 @@ rm -rf /var/log/${APP_NAME}
 %files wms-app
 %{_datadir}/omar/wms-app
 %if %{is_systemd}
-/usr/lib/systemd/system/wms-app
+/usr/lib/systemd/system/wms-app.service
 %else
 %{_sysconfdir}/init.d/wms-app
 %endif
@@ -318,7 +318,7 @@ rm -rf /var/log/${APP_NAME}
 %files stager-app
 %{_datadir}/omar/stager-app
 %if %{is_systemd}
-/usr/lib/systemd/system/stager-app
+/usr/lib/systemd/system/stager-app.service
 %else
 %{_sysconfdir}/init.d/stager-app
 %endif
@@ -326,7 +326,7 @@ rm -rf /var/log/${APP_NAME}
 %files swipe-app
 %{_datadir}/omar/swipe-app
 %if %{is_systemd}
-/usr/lib/systemd/system/swipe-app
+/usr/lib/systemd/system/swipe-app.service
 %else
 %{_sysconfdir}/init.d/swipe-app
 %endif
@@ -334,7 +334,7 @@ rm -rf /var/log/${APP_NAME}
 %files superoverlay-app
 %{_datadir}/omar/superoverlay-app
 %if %{is_systemd}
-/usr/lib/systemd/system/superoverlay-app
+/usr/lib/systemd/system/superoverlay-app.service
 %else
 %{_sysconfdir}/init.d/superoverlay-app
 %endif
@@ -342,7 +342,7 @@ rm -rf /var/log/${APP_NAME}
 %files jpip-app
 %{_datadir}/omar/jpip-app
 %if %{is_systemd}
-/usr/lib/systemd/system/jpip-app
+/usr/lib/systemd/system/jpip-app.service
 %else
 %{_sysconfdir}/init.d/jpip-app
 %endif
@@ -350,7 +350,7 @@ rm -rf /var/log/${APP_NAME}
 %files wmts-app
 %{_datadir}/omar/wmts-app
 %if %{is_systemd}
-/usr/lib/systemd/system/wmts-app
+/usr/lib/systemd/system/wmts-app.service
 %else
 %{_sysconfdir}/init.d/wmts-app
 %endif
