@@ -97,13 +97,30 @@ WMTS application
 %build
 
 %install
+export O2_APPS=( "omar-app" "wfs-app" "wms-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
 
 pushd %{_builddir}/install
+  # Install all files with default permissions
   for x in `find share`; do
     if [ -f $x ] ; then
       install -p -m644 -D $x %{buildroot}/usr/$x;
     fi
   done
+  # Loop through each app and sym link to the versioned app
+  for app in ${O2_APPS[@]} ; do 
+    if [-d %{buildroot}%{_datadir}/omar/${APP_NAME} ]; then
+      pushd %{buildroot}%{_datadir}/omar/${APP_NAME}
+        if [ -L ${APP_NAME}.jar ]; then
+         unlink ${APP_NAME}.jar
+        fi
+        if [ ! -f ${APP_NAME}.jar ]; then
+          ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+        fi
+        chmod 755 *.sh
+      popd
+    fi  
+  done
+  chmod 755 `find %{buildroot}%{_datadir}/omar -type d`
 
 %if %{is_systemd}
   for x in `find usr/lib/systemd/system` ; do
@@ -121,298 +138,148 @@ pushd %{_builddir}/install
 
 popd
 
-
-
 %pre omar-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre wfs-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre wms-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre stager-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre swipe-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre superoverlay-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre jpip-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre wmts-app
-
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
   adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
 fi
 
 %post omar-app
-export APP_NAME=omar-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-
-popd
-
+chmod 755 `find %{_datadir}/omar -type d`
+chmod 755 `find %{_datadir}/omar -name "*.sh"`
 
 %post wfs-app
-export APP_NAME=wfs-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
-
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %post wms-app
-export APP_NAME=wms-app
 export USER_NAME=omar
-
-echo "POST INSTALLATION SETUP ${APP_NAME}"
-
-echo "Linking the jar"
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %post stager-app
-export APP_NAME=stager-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %post swipe-app
-export APP_NAME=swipe-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %post superoverlay-app
-export APP_NAME=superoverlay-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %post jpip-app
-export APP_NAME=jpip-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %post wmts-app
-export APP_NAME=wmts-app
 export USER_NAME=omar
-
-pushd %{_datadir}/omar/${APP_NAME}
-if [ -L ${APP_NAME}.jar ]; then
- unlink ${APP_NAME}.jar
-fi
-if [ ! -f ${APP_NAME}.jar ]; then
-  ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if id -u ${USER_NAME} > /dev/null 2>&1; then 
-  chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-fi
-
-popd
-
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 %files omar-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/omar-app
-%attr(755, omar, omar, -) %{_datadir}/omar/jpip-app/omar-app.sh
-
+%{_datadir}/omar/omar-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/omar-app
+%{_libdir}/systemd/system/omar-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/omar-app
+%{_sysconfdir}/init.d/omar-app
 %endif
 
 %files wfs-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/wfs-app
-%attr(755, omar, omar, -) %{_datadir}/omar/wfs-app/wfs-app.sh
+%{_datadir}/omar/wfs-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/wfs-app
+%{_libdir}/systemd/system/wfs-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/wfs-app
+%{_sysconfdir}/init.d/wfs-app
 %endif
 
 %files wms-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/wms-app
-%attr(755, omar, omar, -) %{_datadir}/omar/wms-app/wms-app.sh
+%{_datadir}/omar/wms-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/wms-app
+%{_libdir}/systemd/system/wms-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/wms-app
+%{_sysconfdir}/init.d/wms-app
 %endif
 
 %files stager-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/stager-app
-%attr(755, omar, omar, -) %{_datadir}/omar/stager-app/stager-app.sh
+%{_datadir}/omar/stager-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/stager-app
+%{_libdir}/systemd/system/stager-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/stager-app
+%{_sysconfdir}/init.d/stager-app
 %endif
 
 %files swipe-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/swipe-app
-%attr(755, omar, omar, -) %{_datadir}/omar/swipe-app/swipe-app.sh
+%{_datadir}/omar/swipe-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/swipe-app
+%{_libdir}/systemd/system/swipe-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/swipe-app
+%{_sysconfdir}/init.d/swipe-app
 %endif
 
 %files superoverlay-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/superoverlay-app
-%attr(755, omar, omar, -) %{_datadir}/omar/superoveraly-app/superoverlay-app.sh
+%{_datadir}/omar/superoverlay-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/superoverlay-app
+%{_libdir}/systemd/system/superoverlay-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/superoverlay-app
+%{_sysconfdir}/init.d/superoverlay-app
 %endif
 
 %files jpip-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/jpip-app
-%attr(755, omar, omar, -) %{_datadir}/omar/jpip-app/jpip-app.sh
-
+%{_datadir}/omar/jpip-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/jpip-app
+%{_libdir}/systemd/system/jpip-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/jpip-app
+%{_sysconfdir}/init.d/jpip-app
 %endif
 
 %files wmts-app
-%defattr(644, omar, omar, -)
-%attr(755, omar, omar, -) %{_datadir}/omar
-%attr(755, omar, omar, -) %{_datadir}/omar/wmts-app
-%attr(755, omar, omar, -) %{_datadir}/omar/wmts-app/wmts-app.sh
+%{_datadir}/omar/wts-app
 %if %{is_systemd}
-%attr(755, omar, omar, -) /usr/lib/systemd/system/wmts-app
+%{_libdir}/systemd/system/wmts-app
 %else
-%attr(755, omar, omar, -) /etc/init.d/wmts-app
+%{_sysconfdir}/init.d/wmts-app
 %endif
