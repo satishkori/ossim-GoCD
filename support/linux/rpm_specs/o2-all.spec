@@ -192,8 +192,11 @@ export APP_NAME=omar-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post wfs-app
 export USER_NAME=omar
@@ -201,8 +204,11 @@ export APP_NAME=wfs-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post wms-app
 export USER_NAME=omar
@@ -210,8 +216,11 @@ export APP_NAME=wms-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post stager-app
 export USER_NAME=omar
@@ -219,8 +228,11 @@ export APP_NAME=stager-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post swipe-app
 export USER_NAME=omar
@@ -228,8 +240,11 @@ export APP_NAME=swipe-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post superoverlay-app
 export USER_NAME=omar
@@ -237,8 +252,11 @@ export APP_NAME=superoverlay-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post jpip-app
 export USER_NAME=omar
@@ -246,8 +264,11 @@ export APP_NAME=jpip-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 
 %post wmts-app
 export USER_NAME=omar
@@ -255,48 +276,147 @@ export APP_NAME=wmts-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+
+%preun omar-app
+export APP_NAME=omar-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun wfs-app
+export APP_NAME=wfs-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun wms-app
+export APP_NAME=wms-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun stager-app
+export APP_NAME=stager-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun swipe-app
+export APP_NAME=swipe-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun superoverlay-app
+export APP_NAME=superoverlay-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun jpip-app
+export APP_NAME=jpip-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+%preun wmts-app
+export APP_NAME=wmts-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
 
 %postun omar-app
 export APP_NAME=omar-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %postun wfs-app
 export APP_NAME=wfs-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %postun wms-app
 export APP_NAME=wms-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %postun stager-app
 export APP_NAME=stager-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %postun swipe-app
 export APP_NAME=swipe-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %postun superoverlay-app
 export APP_NAME=superoverlay-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 
 %postun jpip-app
 export APP_NAME=jpip-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %postun wmts-app
 export APP_NAME=wmts-app
 rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
 %files omar-app
