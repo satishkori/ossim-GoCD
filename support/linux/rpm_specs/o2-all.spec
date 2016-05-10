@@ -223,7 +223,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files omar-app
 %{_datadir}/omar/omar-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/omar-app
+/usr/lib/systemd/system/omar-app
 %else
 %{_sysconfdir}/init.d/omar-app
 %endif
@@ -231,7 +231,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files wfs-app
 %{_datadir}/omar/wfs-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/wfs-app
+/usr/lib/systemd/system/wfs-app
 %else
 %{_sysconfdir}/init.d/wfs-app
 %endif
@@ -239,7 +239,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files wms-app
 %{_datadir}/omar/wms-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/wms-app
+/usr/lib/systemd/system/wms-app
 %else
 %{_sysconfdir}/init.d/wms-app
 %endif
@@ -247,7 +247,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files stager-app
 %{_datadir}/omar/stager-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/stager-app
+/usr/lib/systemd/system/stager-app
 %else
 %{_sysconfdir}/init.d/stager-app
 %endif
@@ -255,7 +255,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files swipe-app
 %{_datadir}/omar/swipe-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/swipe-app
+/usr/lib/systemd/system/swipe-app
 %else
 %{_sysconfdir}/init.d/swipe-app
 %endif
@@ -263,7 +263,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files superoverlay-app
 %{_datadir}/omar/superoverlay-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/superoverlay-app
+/usr/lib/systemd/system/superoverlay-app
 %else
 %{_sysconfdir}/init.d/superoverlay-app
 %endif
@@ -271,7 +271,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files jpip-app
 %{_datadir}/omar/jpip-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/jpip-app
+/usr/lib/systemd/system/jpip-app
 %else
 %{_sysconfdir}/init.d/jpip-app
 %endif
@@ -279,7 +279,7 @@ chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 %files wmts-app
 %{_datadir}/omar/wmts-app
 %if %{is_systemd}
-%{_libdir}/systemd/system/wmts-app
+/usr/lib/systemd/system/wmts-app
 %else
 %{_sysconfdir}/init.d/wmts-app
 %endif
