@@ -104,7 +104,23 @@ pushd %{_builddir}/install
       install -p -m644 -D $x %{buildroot}/usr/$x;
     fi
   done
+
+%if %{is_systemd}
+  for x in `find usr/lib/systemd/system` ; do
+    if [-f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/$x;
+    fi
+  done
+%else
+  for x in `find etc/init.d` ; do
+    if [-f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/$x;
+    fi
+  done
+%endif
+
 popd
+
 
 
 %pre omar-app
@@ -175,15 +191,6 @@ if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
 fi
 
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
-fi
-
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 
 popd
@@ -199,15 +206,6 @@ if [ -L ${APP_NAME}.jar ]; then
 fi
 if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -232,17 +230,6 @@ if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
 fi
 
-echo "CREATING THE SERVICE WRAPPERS"
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
-fi
-
-echo "SETTING PERMISSIONS"
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
   chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 fi
@@ -259,15 +246,6 @@ if [ -L ${APP_NAME}.jar ]; then
 fi
 if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -288,15 +266,6 @@ if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
 fi
 
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
-fi
-
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
   chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 fi
@@ -313,15 +282,6 @@ if [ -L ${APP_NAME}.jar ]; then
 fi
 if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
-fi
-
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
 fi
 
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
@@ -342,15 +302,6 @@ if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
 fi
 
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
-fi
-
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
   chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 fi
@@ -369,16 +320,6 @@ if [ ! -f ${APP_NAME}.jar ]; then
   ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
 fi
 
-if [ -d /etc/systemd ] ; then
-  install -p -m755 ./service-templates/${APP_NAME}.service /usr/lib/systemd/system/${APP_NAME}.service
-  pushd /etc/systemd/system
-    ln -s  /usr/lib/systemd/system/${APP_NAME}.service
-  popd
-
-else
-  install -p -m755 ./service-templates/${APP_NAME} /etc/init.d/${APP_NAME}
-fi
-
 if id -u ${USER_NAME} > /dev/null 2>&1; then 
   chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 fi
@@ -390,31 +331,71 @@ popd
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/omar-app
 
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/omar-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/omar-app
+%endif
 
 %files wfs-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/wfs-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/wfs-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/wfs-app
+%endif
 
 %files wms-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/wms-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/wms-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/wms-app
+%endif
 
 %files stager-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/stager-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/stager-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/stager-app
+%endif
 
 %files swipe-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/swipe-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/swipe-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/swipe-app
+%endif
 
 %files superoverlay-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/superoverlay-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/superoverlay-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/superoverlay-app
+%endif
 
 %files jpip-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/jpip-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/jpip-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/jpip-app
+%endif
 
 %files wmts-app
 %defattr(644, omar, omar, -)
 %{_datadir}/omar/wmts-app
+%if %{is_systemd}
+%attr(755, omar, omar, -) /usr/lib/systemd/system/wmts-app
+%else
+%attr(755, omar, omar, -) /etc/init.d/wmts-app
+%endif
