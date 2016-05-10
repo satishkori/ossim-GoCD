@@ -108,13 +108,13 @@ pushd %{_builddir}/install
   done
   # Loop through each app and sym link to the versioned app
   for app in ${O2_APPS[@]} ; do 
-    if [ -d %{buildroot}%{_datadir}/omar/${APP_NAME} ]; then
-      pushd %{buildroot}%{_datadir}/omar/${APP_NAME}
-        if [ -L ${APP_NAME}.jar ]; then
-         unlink ${APP_NAME}.jar
+    if [ -d %{buildroot}%{_datadir}/omar/${app} ]; then
+      pushd %{buildroot}%{_datadir}/omar/${app}
+        if [ -L ${app}.jar ]; then
+         unlink ${app}.jar
         fi
-        if [ ! -f ${APP_NAME}.jar ]; then
-          ln -s ${APP_NAME}-*.jar ${APP_NAME}.jar
+        if [ ! -f ${app}.jar ]; then
+          ln -s ${app}-*.jar ${app}.jar
         fi
         chmod 755 *.sh
       popd
