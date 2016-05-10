@@ -329,7 +329,9 @@ popd
 
 %files omar-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/omar-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/omar-app
+%attr(755, omar, omar, -) %{_datadir}/omar/jpip-app/omar-app.sh
 
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/omar-app
@@ -339,7 +341,9 @@ popd
 
 %files wfs-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/wfs-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/wfs-app
+%attr(755, omar, omar, -) %{_datadir}/omar/wfs-app/wfs-app.sh
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/wfs-app
 %else
@@ -348,7 +352,9 @@ popd
 
 %files wms-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/wms-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/wms-app
+%attr(755, omar, omar, -) %{_datadir}/omar/wms-app/wms-app.sh
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/wms-app
 %else
@@ -357,7 +363,9 @@ popd
 
 %files stager-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/stager-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/stager-app
+%attr(755, omar, omar, -) %{_datadir}/omar/stager-app/stager-app.sh
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/stager-app
 %else
@@ -366,7 +374,9 @@ popd
 
 %files swipe-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/swipe-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/swipe-app
+%attr(755, omar, omar, -) %{_datadir}/omar/swipe-app/swipe-app.sh
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/swipe-app
 %else
@@ -375,7 +385,9 @@ popd
 
 %files superoverlay-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/superoverlay-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/superoverlay-app
+%attr(755, omar, omar, -) %{_datadir}/omar/superoveraly-app/superoverlay-app.sh
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/superoverlay-app
 %else
@@ -384,7 +396,10 @@ popd
 
 %files jpip-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/jpip-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/jpip-app
+%attr(755, omar, omar, -) %{_datadir}/omar/jpip-app/jpip-app.sh
+
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/jpip-app
 %else
@@ -393,7 +408,9 @@ popd
 
 %files wmts-app
 %defattr(644, omar, omar, -)
-%{_datadir}/omar/wmts-app
+%attr(755, omar, omar, -) %{_datadir}/omar
+%attr(755, omar, omar, -) %{_datadir}/omar/wmts-app
+%attr(755, omar, omar, -) %{_datadir}/omar/wmts-app/wmts-app.sh
 %if %{is_systemd}
 %attr(755, omar, omar, -) /usr/lib/systemd/system/wmts-app
 %else
