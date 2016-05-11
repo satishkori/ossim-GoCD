@@ -141,49 +141,50 @@ popd
 %pre omar-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  if [ -d ]
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre wfs-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre wms-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre stager-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre swipe-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre superoverlay-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre jpip-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %pre wmts-app
 export USER_NAME=omar
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser --no-create-home -s /usr/sbin/nologin --user-group ${USER_NAME}
+  adduser --no-create-home -s /sbin/nologin --user-group ${USER_NAME}
 fi
 
 %post omar-app
