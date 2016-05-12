@@ -142,56 +142,56 @@ popd
 export USER_NAME=omar
 export APP_NAME=omar-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre wfs-app
 export USER_NAME=omar
 export APP_NAME=wfs-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre wms-app
 export USER_NAME=omar
 export APP_NAME=wms-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre stager-app
 export USER_NAME=omar
 export APP_NAME=stager-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre swipe-app
 export USER_NAME=omar
 export APP_NAME=swipe-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre superoverlay-app
 export USER_NAME=omar
 export APP_NAME=superoverlay-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre jpip-app
 export USER_NAME=omar
 export APP_NAME=jpip-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %pre wmts-app
 export USER_NAME=omar
 export APP_NAME=wmts-app
 if ! id -u omar > /dev/null 2>&1; then 
-  adduser -r -d /var/run/${APP_NAME} --no-create-home --user-group ${USER_NAME}
+  adduser -r -d /user/share/omar --no-create-home --user-group ${USER_NAME}
 fi
 
 %post omar-app
