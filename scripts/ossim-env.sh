@@ -38,6 +38,13 @@ if [ -z $BUILD_OMS ] ; then
    export BUILD_OMS=ON
 fi
 
+if [ -z $BUILD_OSSIM_APPS ] ; then
+   export BUILD_OSSIM_APPS=ON
+fi
+if [ -z $BUILD_OSSIM_CURL_APPS ] ; then
+   export BUILD_OSSIM_CURL_APPS=ON
+fi
+
 if [ -z $BUILD_OSSIM_VIDEO ] ; then
    export BUILD_OSSIM_VIDEO=ON
 fi
@@ -61,7 +68,6 @@ fi
 if [ -z $BUILD_WEB_PLUGIN ] ; then
    export BUILD_WEB_PLUGIN=ON
 fi
-
 
 if [ -z $BUILD_SQLITE_PLUGIN ] ; then
    export BUILD_SQLITE_PLUGIN=ON
@@ -102,6 +108,7 @@ fi
 if [ -z $BUILD_PNG_PLUGIN ] ; then
    export BUILD_PNG_PLUGIN=ON
 fi
+
 
 
 if [ -z $OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then
