@@ -194,7 +194,7 @@ reading hdf5 images via the hdf5 libraries
 Summary:        ossim kakadu jpip server
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       kakadu-plugin%{?_isa} = %{version}-%{release}
+Requires:       %{name}-kakadu-plugin%{?_isa} = %{version}-%{release}
 
 %description    jpip-server
 This sub-package contains the ossim kakadu jpip server for streaming
