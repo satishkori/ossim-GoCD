@@ -345,6 +345,12 @@ echo on
 #chmod 755 %{buildroot}%{_libdir}/libjoms.so
 #popd
 
+%pre jpip-server
+export USER_NAME=omar
+export APP_NAME=jpip-server
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser -r -d /usr/share/omar -s /bin/false --no-create-home --user-group ${USER_NAME}
+fi
 
 %post
 /sbin/ldconfig
@@ -378,6 +384,23 @@ rm -f %{_javadir}/joms.jar
 %postun wms
 /sbin/ldconfig
 
+%post jpip-server
+export USER_NAME=omar
+export APP_NAME=jpip-server
+
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/ossim/${APP_NAME}
+mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+
+%postun jpip-server
+export APP_NAME=jpip-server
+rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
+rm -rf /usr/share/omar/${APP_NAME}
 
 %files
 %{_bindir}/*
