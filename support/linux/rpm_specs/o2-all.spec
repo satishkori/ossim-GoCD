@@ -123,7 +123,7 @@ pushd %{_builddir}/install
   chmod 755 `find %{buildroot}%{_datadir}/omar -type d`
 
 %if %{is_systemd}
-  for x in `find usr/lib/systemd/system` ; do
+  for x in `find lib/systemd/system` ; do
     if [ -f $x ] ; then
       install -p -m755 -D $x %{buildroot}/$x;
     fi
