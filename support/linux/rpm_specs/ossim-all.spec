@@ -21,6 +21,7 @@ Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            https://github.com/orgs/ossimlabs/dashboard
 #Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
+%define is_systemd %(test -d /etc/systemd && echo 1 || echo 0)
 
 
 #BuildRequires: ant
