@@ -33,10 +33,10 @@ if [ $? -ne 0 ]; then
 fi
 popd >/dev/null
 
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-initd-template $OSSIM_INSTALL_PREFIX/usr/share/ossim/templates/service-wrapper-initd-template
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-systemd-template $OSSIM_INSTALL_PREFIX/usr/share/ossim/templates/service-wrapper-systemd-template
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-initd-template $OSSIM_INSTALL_PREFIX/share/ossim/templates/service-wrapper-initd-template
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-systemd-template $OSSIM_INSTALL_PREFIX/share/ossim/templates/service-wrapper-systemd-template
 
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 
