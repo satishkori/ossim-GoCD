@@ -74,7 +74,7 @@ TIMESTAMP=`date +%Y-%m-%d-%H%M`
 # for the JPIP server.
 #
 install -d -m755 ${OSSIM_INSTALL_PREFIX}/etc/init.d
-install -d -m755 ${OSSIM_INSTALL_PREFIX}/usr/lib/systemd/system
+install -d -m755 ${OSSIM_INSTALL_PREFIX}/lib/systemd/system
 pushd $OSSIM_DEV_HOME/ossim/support/linux/
 app=jpip-server
 sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-systemd-template >${OSSIM_INSTALL_PREFIX}/lib/systemd/system/${app}.service 
