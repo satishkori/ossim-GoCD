@@ -326,6 +326,20 @@ echo off
   if [ -f ./etc/profile.d/ossim.csh ] ; then
     install -p -m644 -D ./etc/profile.d/ossim.csh %{buildroot}%{_sysconfdir}/profile.d/ossim.csh
   fi
+%if %{is_systemd}
+  for x in `find lib/systemd/system` ; do
+    if [ -f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/usr/$x;
+    fi
+  done
+%else
+  for x in `find etc/init.d` ; do
+    if [ -f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/$x;
+    fi
+  done
+%endif
+
 popd
 echo on
 
@@ -351,6 +365,14 @@ export USER_NAME=omar
 export APP_NAME=jpip-server
 if ! id -u omar > /dev/null 2>&1; then 
   adduser -r -d /usr/share/omar -s /bin/false --no-create-home --user-group ${USER_NAME}
+fi
+%preun jpip-server
+export APP_NAME=jpip-server
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
 fi
 
 %post
@@ -497,6 +519,11 @@ rm -rf /usr/share/omar/${APP_NAME}
 
 %files jpip-server
 %{_bindir}/ossim-jpip-server
+%if %{is_systemd}
+/usr/lib/systemd/system/jpip-server.service
+%else
+%{_sysconfdir}/init.d/jpip-server
+%endif
 
 %files kml-plugin
 %{_libdir}/ossim/plugins/libossim_kml_plugin.so
