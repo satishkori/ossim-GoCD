@@ -125,7 +125,7 @@ pushd %{_builddir}/install
 %if %{is_systemd}
   for x in `find lib/systemd/system` ; do
     if [ -f $x ] ; then
-      install -p -m755 -D $x %{buildroot}/$x;
+      install -p -m755 -D $x %{buildroot}/usr/$x;
     fi
   done
 %else
