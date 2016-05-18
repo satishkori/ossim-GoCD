@@ -69,6 +69,16 @@ fi
 
 TIMESTAMP=`date +%Y-%m-%d-%H%M`
 
+##### 
+# For binary install we will go ahead and define a service wrapper
+# for the JPIP server.
+#
+pushd $OSSIM_DEV_HOME/ossim/support/linux/
+app=jpip-server
+sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-systemd-template >${OMAR_INSTALL_PREFIX}/lib/systemd/system/${app}.service 
+sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-initd-template >${OMAR_INSTALL_PREFIX}/etc/init.d/${app} 
+popd
+
 echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
 pushd $OSSIM_INSTALL_PREFIX
 INSTALL_DIRNAME=${PWD##*/}
