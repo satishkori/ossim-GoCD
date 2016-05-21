@@ -21,6 +21,7 @@ Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            https://github.com/orgs/ossimlabs/dashboard
 #Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
+%define is_systemd %(test -d /etc/systemd && echo 1 || echo 0)
 
 
 #BuildRequires: ant
@@ -194,7 +195,7 @@ reading hdf5 images via the hdf5 libraries
 Summary:        ossim kakadu jpip server
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
-Requires:       kakadu-plugin%{?_isa} = %{version}-%{release}
+Requires:       %{name}-kakadu-plugin%{?_isa} = %{version}-%{release}
 
 %description    jpip-server
 This sub-package contains the ossim kakadu jpip server for streaming
@@ -325,6 +326,20 @@ echo off
   if [ -f ./etc/profile.d/ossim.csh ] ; then
     install -p -m644 -D ./etc/profile.d/ossim.csh %{buildroot}%{_sysconfdir}/profile.d/ossim.csh
   fi
+%if %{is_systemd}
+  for x in `find lib/systemd/system` ; do
+    if [ -f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/usr/$x;
+    fi
+  done
+%else
+  for x in `find etc/init.d` ; do
+    if [ -f $x ] ; then
+      install -p -m755 -D $x %{buildroot}/$x;
+    fi
+  done
+%endif
+
 popd
 echo on
 
@@ -345,6 +360,20 @@ echo on
 #chmod 755 %{buildroot}%{_libdir}/libjoms.so
 #popd
 
+%pre jpip-server
+export USER_NAME=omar
+export APP_NAME=jpip-server
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser -r -d /usr/share/omar -s /bin/false --no-create-home --user-group ${USER_NAME}
+fi
+%preun jpip-server
+export APP_NAME=jpip-server
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
 
 %post
 /sbin/ldconfig
@@ -378,6 +407,23 @@ rm -f %{_javadir}/joms.jar
 %postun wms
 /sbin/ldconfig
 
+%post jpip-server
+export USER_NAME=omar
+export APP_NAME=jpip-server
+
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/ossim/${APP_NAME}
+mkdir /var/log/${APP_NAME}
+mkdir /var/run/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+
+%postun jpip-server
+export APP_NAME=jpip-server
+rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
+rm -rf /usr/share/omar/${APP_NAME}
 
 %files
 %{_bindir}/*
@@ -473,6 +519,11 @@ rm -f %{_javadir}/joms.jar
 
 %files jpip-server
 %{_bindir}/ossim-jpip-server
+%if %{is_systemd}
+/usr/lib/systemd/system/jpip-server.service
+%else
+%{_sysconfdir}/init.d/jpip-server
+%endif
 
 %files kml-plugin
 %{_libdir}/ossim/plugins/libossim_kml_plugin.so

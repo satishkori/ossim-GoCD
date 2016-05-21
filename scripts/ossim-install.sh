@@ -33,8 +33,10 @@ if [ $? -ne 0 ]; then
 fi
 popd >/dev/null
 
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-initd-template $OSSIM_INSTALL_PREFIX/share/ossim/templates/service-wrapper-initd-template
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-systemd-template $OSSIM_INSTALL_PREFIX/share/ossim/templates/service-wrapper-systemd-template
 
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 
@@ -66,6 +68,18 @@ if [ $? -ne 0 ]; then
 fi
 
 TIMESTAMP=`date +%Y-%m-%d-%H%M`
+
+##### 
+# For binary install we will go ahead and define a service wrapper
+# for the JPIP server.
+#
+install -d -m755 ${OSSIM_INSTALL_PREFIX}/etc/init.d
+install -d -m755 ${OSSIM_INSTALL_PREFIX}/lib/systemd/system
+pushd $OSSIM_DEV_HOME/ossim/support/linux/
+app=jpip-server
+sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-systemd-template >${OSSIM_INSTALL_PREFIX}/lib/systemd/system/${app}.service 
+sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-initd-template >${OSSIM_INSTALL_PREFIX}/etc/init.d/${app} 
+popd
 
 echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
 pushd $OSSIM_INSTALL_PREFIX
