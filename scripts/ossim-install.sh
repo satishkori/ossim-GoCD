@@ -33,8 +33,10 @@ if [ $? -ne 0 ]; then
 fi
 popd >/dev/null
 
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
-install -p -m644 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.sh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.sh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/etc/profile.d/ossim.csh $OSSIM_INSTALL_PREFIX/etc/profile.d/ossim.csh
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-initd-template $OSSIM_INSTALL_PREFIX/share/ossim/templates/service-wrapper-initd-template
+install -p -m755 -D $OSSIM_DEV_HOME/ossim/support/linux/service-wrapper-systemd-template $OSSIM_INSTALL_PREFIX/share/ossim/templates/service-wrapper-systemd-template
 
 echo; echo "STATUS: Install completed successfully. Install located in $OSSIM_INSTALL_PREFIX"
 
@@ -67,6 +69,18 @@ fi
 
 TIMESTAMP=`date +%Y-%m-%d-%H%M`
 
+##### 
+# For binary install we will go ahead and define a service wrapper
+# for the JPIP server.
+#
+install -d -m755 ${OSSIM_INSTALL_PREFIX}/etc/init.d
+install -d -m755 ${OSSIM_INSTALL_PREFIX}/lib/systemd/system
+pushd $OSSIM_DEV_HOME/ossim/support/linux/
+app=jpip-server
+sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-systemd-template >${OSSIM_INSTALL_PREFIX}/lib/systemd/system/${app}.service 
+sed -e "s/{{program_name}}/${app}/g"  -e "s/{{program_user}}/omar/g" -e "s/{{program_group}}/omar/g" < service-wrapper-initd-template >${OSSIM_INSTALL_PREFIX}/etc/init.d/${app} 
+popd
+
 echo; echo "STATUS: Writing install info file to: <$OSSIM_INSTALL_PREFIX/gocd_install.info>..."
 pushd $OSSIM_INSTALL_PREFIX
 INSTALL_DIRNAME=${PWD##*/}
@@ -79,8 +93,8 @@ cd ..
 
 if [ "$ZIP_OPTION" == "-z" ]; then
   echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
-  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
-  zip -r $FILENAME_TS $INSTALL_DIRNAME
+  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.tgz"
+  tar cvfz $FILENAME_TS $INSTALL_DIRNAME
   if [ $? -ne 0 ]; then
     echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
     popd
@@ -90,8 +104,8 @@ if [ "$ZIP_OPTION" == "-z" ]; then
   # Create a link that can be used as artifact of latest build/install. This will    
   # overwrite previous sandbox's so only the latest is used for testing (standalone)
   # or generating expected results
-  ln -s $FILENAME_TS "install.zip"
-  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
+  ln -s $FILENAME_TS "install.tgz"
+  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.tgz>."
 fi
 
 popd # Out of dir containing install subdir
