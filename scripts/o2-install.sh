@@ -22,7 +22,7 @@ pushd $ROOT_DIR
 
 if [ "$ZIP_OPTION" == "-z" ]; then
    rm -f install.tgz
-   tar cvfz -r install.tgz install
+   tar cvfz install.tgz install
    if [ $? -ne 0 ]; then
       echo; echo "ERROR: Failed zipping the OMAR binaries."
       popd
