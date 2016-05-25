@@ -199,96 +199,136 @@ export USER_NAME=omar
 export APP_NAME=omar-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post wfs-app
 export USER_NAME=omar
 export APP_NAME=wfs-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post wms-app
 export USER_NAME=omar
 export APP_NAME=wms-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post stager-app
 export USER_NAME=omar
 export APP_NAME=stager-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post swipe-app
 export USER_NAME=omar
 export APP_NAME=swipe-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post superoverlay-app
 export USER_NAME=omar
 export APP_NAME=superoverlay-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post jpip-app
 export USER_NAME=omar
 export APP_NAME=jpip-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %post wmts-app
 export USER_NAME=omar
 export APP_NAME=wmts-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %preun omar-app
 export APP_NAME=omar-app
