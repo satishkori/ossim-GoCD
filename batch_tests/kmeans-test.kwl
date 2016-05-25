@@ -26,10 +26,10 @@
 test1.description: Test of ossimKmeansFilter class
 
 // Commands to generate expected results.
-test1.expected_results_command0: ossim-kmeans-filter-test -i $(OSSIM_BATCH_TEST_DATA)/public/kmeans/kmeans-input.tif > $(OBT_EXP_DIR)/kmeans-test.txt
+test1.expected_results_command0: ossim-kmeans-filter-test -i $(OSSIM_BATCH_TEST_DATA)/public/kmeans/kmeans-input.tif $(OBT_EXP_DIR)/kmeans-out.tif > $(OBT_EXP_DIR)/kmeans-test.txt
 
 // The actual commands to test.
-test1.test_command0: ossim-kmeans-filter-test -i $(OSSIM_BATCH_TEST_DATA)/public/kmeans/kmeans-input.tif > $(OBT_OUT_DIR)/kmeans-test.txt
+test1.test_command0: ossim-kmeans-filter-test -i $(OSSIM_BATCH_TEST_DATA)/public/kmeans/kmeans-input.tif $(OBT_OUT_DIR)/kmeans-out.tif > $(OBT_OUT_DIR)/kmeans-test.txt
 
 // The post-processing (comparison) commands. Typically these involve a file 
 // comparison of last run command against expected results.
