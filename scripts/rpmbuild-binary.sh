@@ -34,7 +34,7 @@ cp $ROOT_DIR/ossim-GoCD/support/linux/rpm_specs/*.spec $ROOT_DIR/rpmbuild/SPECS
 #
 pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
-unzip -o $ROOT_DIR/ossim-install/install.zip 
+tar xvfz $ROOT_DIR/ossim-install/install.tgz 
 popd
 
 #unzip -o $ROOT_DIR/oldmar-install/install.zip 
@@ -53,7 +53,7 @@ fi
 #
 pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
-unzip -o $ROOT_DIR/oldmar-install/install.zip 
+tar xvfz $ROOT_DIR/oldmar-install/install.tgz 
 popd
 echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "RPM_OSSIM_VERSION ${OSSIM_VERSION}" --define "BUILD_RELEASE ${OSSIM_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/oldmar-all.spec
 
@@ -69,7 +69,7 @@ fi
 # Setup and package the new O2 distribution
 pushd $ROOT_DIR/rpmbuild/BUILD/
 rm -rf *
-unzip -o $ROOT_DIR/o2-install/install.zip 
+tar  xvfz $ROOT_DIR/o2-install/install.tgz 
 popd
 echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${O2_VERSION}" --define "O2_BUILD_RELEASE ${O2_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/o2-all.spec
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${O2_VERSION}" --define "O2_BUILD_RELEASE ${O2_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/o2-all.spec
