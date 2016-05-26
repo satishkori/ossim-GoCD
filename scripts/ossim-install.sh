@@ -93,8 +93,8 @@ cd ..
 
 if [ "$ZIP_OPTION" == "-z" ]; then
   echo; echo "STATUS: Zipping up install directory: <$INSTALL_DIRNAME>..."
-  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.zip"
-  zip -r $FILENAME_TS $INSTALL_DIRNAME
+  FILENAME_TS="install_$GO_PIPELINE_NAME_$TIMESTAMP.tgz"
+  tar cvfz $FILENAME_TS $INSTALL_DIRNAME
   if [ $? -ne 0 ]; then
     echo; echo "ERROR: Error encountered while zipping the install dir. Check the console log and correct."
     popd
@@ -104,8 +104,8 @@ if [ "$ZIP_OPTION" == "-z" ]; then
   # Create a link that can be used as artifact of latest build/install. This will    
   # overwrite previous sandbox's so only the latest is used for testing (standalone)
   # or generating expected results
-  ln -s $FILENAME_TS "install.zip"
-  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.zip>."
+  ln -s $FILENAME_TS "install.tgz"
+  echo "STATUS: Successfully zipped install dir to <$PWD/$FILENAME_TS> and created link <$PWD/install.tgz>."
 fi
 
 popd # Out of dir containing install subdir

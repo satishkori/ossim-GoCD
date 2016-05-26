@@ -18,9 +18,9 @@ if [ -z "${OSSIM_INSTALL_PREFIX}" ]; then
 fi
 
 if [ ! -d "${OSSIM_INSTALL_PREFIX}" ]; then
-   if [ -f "${OSSIM_DEV_HOME}/install.zip" ]; then
+   if [ -f "${OSSIM_DEV_HOME}/install.tgz" ]; then
       pushd ${OSSIM_DEV_HOME} >/dev/null
-      unzip "${OSSIM_DEV_HOME}/install.zip"
+      tar xvfz "${OSSIM_DEV_HOME}/install.tgz"
       popd >/dev/null
    fi
 fi
