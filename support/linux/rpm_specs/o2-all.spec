@@ -26,6 +26,11 @@ Summary:        OMAR/O2 SQS application.
 Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
 
+%package    avro-app
+Summary:        OMAR/O2 SQS application.
+Version:        %{O2_VERSION}
+Group:          System Environment/Libraries
+
 
 %package    wfs-app
 Summary:        OMAR/O2 WFS Service
@@ -76,6 +81,9 @@ OMAR/O2 UI
 %description  sqs-app
 OMAR/O2 SQS service
 
+%description  avro-app
+OMAR/O2 AVRO service.  At the momonet it only parses the payload of an AVRO file.  So one record at a time can be sent to this app
+
 
 %description  wms-app
 WMS Micro service
@@ -105,7 +113,7 @@ WMTS application
 %build
 
 %install
-export O2_APPS=( "omar-app" "sqs-app" "wfs-app" "wms-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
+export O2_APPS=( "omar-app" "sqs-app" "avro-app" "wfs-app" "wms-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
 
 pushd %{_builddir}/install
   # Install all files with default permissions
@@ -156,6 +164,13 @@ fi
 %pre sqs-app
 export USER_NAME=omar
 export APP_NAME=sqs-app
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser -s /bin/false -m --user-group ${USER_NAME}
+fi
+
+%pre avro-app
+export USER_NAME=omar
+export APP_NAME=avro-app
 if ! id -u omar > /dev/null 2>&1; then 
   adduser -s /bin/false -m --user-group ${USER_NAME}
 fi
@@ -242,6 +257,24 @@ chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
 chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
 chmod 755 /var/run/${APP_NAME}
+
+%post avro-app
+export USER_NAME=omar
+export APP_NAME=avro-app
+
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
+
 
 %post wfs-app
 export USER_NAME=omar
@@ -384,6 +417,18 @@ service $APP_NAME stop
 %endif
 fi
 
+%preun avro-app
+export APP_NAME=avro-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
+
 %preun wfs-app
 export APP_NAME=wfs-app
 ps -ef | grep $APP_NAME | grep -v grep
@@ -473,6 +518,12 @@ rm -rf /var/log/${APP_NAME}
 rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
+%postun avro-app
+export APP_NAME=avro-app
+rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
+rm -rf /usr/share/omar/${APP_NAME}
+
 %postun wfs-app
 export APP_NAME=wfs-app
 rm -rf /var/log/${APP_NAME}
@@ -530,6 +581,14 @@ rm -rf /usr/share/omar/${APP_NAME}
 /usr/lib/systemd/system/sqs-app.service
 %else
 %{_sysconfdir}/init.d/sqs-app
+%endif
+
+%files avro-app
+%{_datadir}/omar/avro-app
+%if %{is_systemd}
+/usr/lib/systemd/system/avro-app.service
+%else
+%{_sysconfdir}/init.d/avro-app
 %endif
 
 %files wfs-app
