@@ -109,7 +109,11 @@ if [ -z $BUILD_PNG_PLUGIN ] ; then
    export BUILD_PNG_PLUGIN=ON
 fi
 
-
+if [ -f "/usr/lib64/libjpeg12.so" ] ; then
+  if [ -z $BUILD_JPEG12_PLUGIN ] ; then
+    export BUILD_JPEG12_PLUGIN=ON
+  fi
+fi
 
 if [ -z $OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then
    if [ -d $OSSIM_DEV_HOME/ossim-private/ossim-kakadu-jpip-server ]; then
