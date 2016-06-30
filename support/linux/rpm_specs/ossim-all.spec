@@ -541,7 +541,7 @@ rm -rf /usr/share/omar/${APP_NAME}
 %{_libdir}/ossim/plugins/libossim_kakadu_plugin.so
 %{_libdir}/libkdu_*.so
 
-%files jpeg12_plugin
+%files jpeg12-plugin
 %if %{has_libjpeg12}
 %{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so
 %endif
