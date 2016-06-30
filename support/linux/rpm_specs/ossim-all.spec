@@ -22,7 +22,7 @@ License:        LGPLv2+
 URL:            https://github.com/orgs/ossimlabs/dashboard
 #Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
 %define is_systemd %(test -d /etc/systemd && echo 1 || echo 0)
-%define has_libjpeg12 %(test -f %{_libdir}/ossim/plugins/libossim_geopdf_plugin.so && echo 1 || echo 0)
+%define has_libjpeg12 %(test -f /usr/lib64/ossim/plugins/libossim_geopdf_plugin.so && echo 1 || echo 0)
 
 
 #BuildRequires: ant
