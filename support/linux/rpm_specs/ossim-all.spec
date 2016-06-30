@@ -22,6 +22,7 @@ License:        LGPLv2+
 URL:            https://github.com/orgs/ossimlabs/dashboard
 #Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
 %define is_systemd %(test -d /etc/systemd && echo 1 || echo 0)
+%define has_libjpeg12 %(test -d %{_libdir}/ossim/plugins/libossim_geopdf_plugin.so && echo 1 || echo 0)
 
 
 #BuildRequires: ant
@@ -218,6 +219,17 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 %description    kakadu-plugin
 This sub-package contains the kakadu ossim plugin for reading/writing
 J2K compressed data via the Kakadu library.
+
+%if %{has_libjpeg12}
+%package    jpeg12-plugin
+Summary:        jpeg12 ossim plugin
+Group:          System Environment/Libraries
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
+%description    kakadu-plugin
+This sub-package contains the kakadu ossim plugin for reading/writing
+J2K compressed data via the Kakadu library.
+%endif
 
 %package    mrsid-plugin
 Summary:        mrsid ossim plugin
@@ -531,6 +543,12 @@ rm -rf /usr/share/omar/${APP_NAME}
 %files kakadu-plugin
 %{_libdir}/ossim/plugins/libossim_kakadu_plugin.so
 %{_libdir}/libkdu_*.so
+
+%if %{has_libjpeg12}
+%files jpeg12_plugin
+%{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so
+%endif
+
 
 #%files mrsid-plugin
 #%{_libdir}/ossim/plugins/libossim_mrsid_plugin.so
