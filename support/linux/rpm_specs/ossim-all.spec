@@ -522,6 +522,9 @@ rm -rf /usr/share/omar/${APP_NAME}
 %files geopdf-plugin
 %{_libdir}/ossim/plugins/libossim_geopdf_plugin.so
 
+%files jpeg12-plugin
+%{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so
+
 %files hdf5-plugin
 %{_libdir}/ossim/plugins/libossim_hdf5_plugin.so
 
