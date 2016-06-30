@@ -321,7 +321,7 @@ echo off
       install -p -m755 -D $x %{buildroot}/usr/$x;
     fi
   done
-%define has_libjpeg12 %(test -f %{buildroot}/usr/lib64/ossim/plugins/libossim_jpeg12_plugin.so && echo 1 || echo 0)
+%define has_libjpeg12 %(test -f lib64/ossim/plugins/libossim_jpeg12_plugin.so && echo 1 || echo 0)
 
   for x in `find bin`; do
     if [ -f $x ] ; then
