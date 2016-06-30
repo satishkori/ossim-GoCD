@@ -220,16 +220,13 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 This sub-package contains the kakadu ossim plugin for reading/writing
 J2K compressed data via the Kakadu library.
 
-%if %{has_libjpeg12}
 %package    jpeg12-plugin
 Summary:        jpeg12 ossim plugin
 Group:          System Environment/Libraries
 Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
-%description    kakadu-plugin
-This sub-package contains the kakadu ossim plugin for reading/writing
-J2K compressed data via the Kakadu library.
-%endif
+%description    jpeg12-plugin
+This sub-package contains the jpeg12 ossim plugin.
 
 %package    mrsid-plugin
 Summary:        mrsid ossim plugin
