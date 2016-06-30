@@ -43,6 +43,12 @@ Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
 Requires: ossim-oms
 
+%package    wcs-app
+Summary:        OMAR/O2 WCS Service
+Version:        %{O2_VERSION}
+Group:          System Environment/Libraries
+Requires: ossim-oms
+
 %package    stager-app
 Summary:        Stager service for the O2 raster database Service
 Version:        %{O2_VERSION}
@@ -88,6 +94,9 @@ OMAR/O2 AVRO service.  At the momonet it only parses the payload of an AVRO file
 %description  wms-app
 WMS Micro service
 
+%description  wcs-app
+WCS Micro service
+
 %description  wfs-app
 WFS Micro Service
 
@@ -113,7 +122,7 @@ WMTS application
 %build
 
 %install
-export O2_APPS=( "omar-app" "sqs-app" "avro-app" "wfs-app" "wms-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
+export O2_APPS=( "omar-app" "sqs-app" "avro-app" "wfs-app" "wms-app" "wcs-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
 
 pushd %{_builddir}/install
   # Install all files with default permissions
@@ -188,6 +197,14 @@ export APP_NAME=wms-app
 if ! id -u omar > /dev/null 2>&1; then 
   adduser -r -d /usr/share/omar -s /bin/false --no-create-home --user-group ${USER_NAME}
 fi
+
+%pre wcs-app
+export USER_NAME=omar
+export APP_NAME=wcs-app
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser -r -d /usr/share/omar -s /bin/false --no-create-home --user-group ${USER_NAME}
+fi
+
 
 %pre stager-app
 export USER_NAME=omar
@@ -296,6 +313,23 @@ chmod 755 /var/run/${APP_NAME}
 %post wms-app
 export USER_NAME=omar
 export APP_NAME=wms-app
+
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
+
+%post wcs-app
+export USER_NAME=omar
+export APP_NAME=wcs-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 if [ ! -d "/var/log/${APP_NAME}" ] ; then
@@ -451,6 +485,17 @@ service $APP_NAME stop
 %endif
 fi
 
+%preun wcs-app
+export APP_NAME=wcs-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
 %preun stager-app
 export APP_NAME=stager-app
 ps -ef | grep $APP_NAME | grep -v grep
@@ -536,6 +581,12 @@ rm -rf /var/log/${APP_NAME}
 rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
+%postun wcs-app
+export APP_NAME=wcs-app
+rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
+rm -rf /usr/share/omar/${APP_NAME}
+
 %postun stager-app
 export APP_NAME=stager-app
 rm -rf /var/log/${APP_NAME}
@@ -606,6 +657,15 @@ rm -rf /usr/share/omar/${APP_NAME}
 %else
 %{_sysconfdir}/init.d/wms-app
 %endif
+
+%files wcs-app
+%{_datadir}/omar/wcs-app
+%if %{is_systemd}
+/usr/lib/systemd/system/wcs-app.service
+%else
+%{_sysconfdir}/init.d/wcs-app
+%endif
+
 
 %files stager-app
 %{_datadir}/omar/stager-app
