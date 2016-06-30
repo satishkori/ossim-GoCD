@@ -22,7 +22,6 @@ License:        LGPLv2+
 URL:            https://github.com/orgs/ossimlabs/dashboard
 #Source0:        http://download.osgeo.org/ossim/source/%{name}-%{version}.tar.gz
 %define is_systemd %(test -d /etc/systemd && echo 1 || echo 0)
-%define has_libjpeg12 %(test -f %{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so && echo 1 || echo 0)
 
 
 #BuildRequires: ant
@@ -321,7 +320,6 @@ echo off
       install -p -m755 -D $x %{buildroot}/usr/$x;
     fi
   done
-%define has_libjpeg12 %(test -f lib64/ossim/plugins/libossim_jpeg12_plugin.so && echo 1 || echo 0)
 
   for x in `find bin`; do
     if [ -f $x ] ; then
@@ -541,12 +539,6 @@ rm -rf /usr/share/omar/${APP_NAME}
 %files kakadu-plugin
 %{_libdir}/ossim/plugins/libossim_kakadu_plugin.so
 %{_libdir}/libkdu_*.so
-
-%files jpeg12-plugin
-%if %{has_libjpeg12}
-%{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so
-%endif
-
 
 #%files mrsid-plugin
 #%{_libdir}/ossim/plugins/libossim_mrsid_plugin.so
