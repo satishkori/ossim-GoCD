@@ -56,16 +56,6 @@ if [ $? != 0 ] ; then
   echo "ERROR: Failed data repository rsync of DTED elevation.";
   echo; exit 1;
 fi
-echo "STATUS: Syncing SRTM 1 ARC";
-if [ ! -d $OSSIM_DATA/elevation/srtm ] ; then
-mkdir $OSSIM_DATA/elevation/srtm
-fi
-
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/srtm/batch_test_1arc/ $OSSIM_DATA/elevation/srtm/1arc;
-if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of SRTM elevation.";
-  echo; exit 1;
-fi
 
 # rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
@@ -107,6 +97,7 @@ if [ $? != 0 ] ; then
   echo "ERROR: Failed data repository rsync of imagery.";
   echo; exit 1;
 fi
+
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/geoeye1 $OSSIM_BATCH_TEST_DATA;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of imagery.";
