@@ -61,7 +61,7 @@ if [ ! -d $OSSIM_DATA/elevation/srtm ] ; then
 mkdir $OSSIM_DATA/elevation/srtm
 fi
 
-$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/srtm/batch_test_1arc $OSSIM_DATA/elevation/srtm/1arc;
+$RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/srtm/batch_test_1arc/ $OSSIM_DATA/elevation/srtm/1arc;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of SRTM elevation.";
   echo; exit 1;
