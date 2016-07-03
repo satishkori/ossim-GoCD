@@ -50,11 +50,13 @@ fi
 
 # rsync elevation data:
 echo; echo "STATUS: Syncing elevation data...";
+echo "STATUS: Syncing DTED level0";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/dted/level0 $OSSIM_DATA/elevation/dted;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of elevation.";
   echo; exit 1;
 fi
+echo "STATUS: Syncing SRTM 1 ARC";
 
 # rsync nadcon data:
 echo; echo "STATUS: Syncing nadcon data...";
