@@ -315,17 +315,22 @@ echo off
     fi
   done
 
-  for x in `find lib64`; do
-    if [ -f $x ] ; then
-      install -p -m755 -D $x %{buildroot}/usr/$x;
-    fi
-  done
+  cp -R lib64 %{buildroot}/usr/
+  chmod -R 755 %{buildroot}/usr/lib64/*
 
-  for x in `find bin`; do
-    if [ -f $x ] ; then
-      install -p -m755 -D $x %{buildroot}/usr/$x;
-    fi
-  done
+#  for x in `find lib64`; do
+#    if [ -f $x ] ; then
+#      install -p -m755 -D $x %{buildroot}/usr/$x;
+#    fi
+#  done
+
+  cp -R bin %{buildroot}/usr/
+  chmod -R 755 %{buildroot}/usr/bin/*
+#  for x in `find bin`; do
+#    if [ -f $x ] ; then
+#      install -p -m755 -D $x %{buildroot}/usr/$x;
+#    fi
+#  done
 
   if [ -f ./etc/profile.d/ossim.sh ] ; then
     install -p -m644 -D ./etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
