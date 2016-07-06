@@ -388,7 +388,7 @@ service $APP_NAME stop
 %endif
 fi
 
-%post
+%post libs
 /sbin/ldconfig
 
 # First time through create the site preferences.
