@@ -31,6 +31,11 @@ Summary:        OMAR/O2 SQS application.
 Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
 
+%package    download-app
+Summary:        OMAR/O2 download application.
+Version:        %{O2_VERSION}
+Group:          System Environment/Libraries
+
 
 %package    wfs-app
 Summary:        OMAR/O2 WFS Service
@@ -90,6 +95,8 @@ OMAR/O2 SQS service
 %description  avro-app
 OMAR/O2 AVRO service.  At the momonet it only parses the payload of an AVRO file.  So one record at a time can be sent to this app
 
+%description  download-app
+Allows one to download files
 
 %description  wms-app
 WMS Micro service
@@ -122,7 +129,7 @@ WMTS application
 %build
 
 %install
-export O2_APPS=( "omar-app" "sqs-app" "avro-app" "wfs-app" "wms-app" "wcs-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
+export O2_APPS=( "omar-app" "sqs-app" "avro-app" "download-app" "wfs-app" "wms-app" "wcs-app" "stager-app" "swipe-app" "superoverlay-app" "jpip-app wmts-app" )
 
 pushd %{_builddir}/install
   # Install all files with default permissions
@@ -180,6 +187,13 @@ fi
 %pre avro-app
 export USER_NAME=omar
 export APP_NAME=avro-app
+if ! id -u omar > /dev/null 2>&1; then 
+  adduser -s /bin/false -m --user-group ${USER_NAME}
+fi
+
+%pre download-app
+export USER_NAME=omar
+export APP_NAME=download-app
 if ! id -u omar > /dev/null 2>&1; then 
   adduser -s /bin/false -m --user-group ${USER_NAME}
 fi
@@ -278,6 +292,23 @@ chmod 755 /var/run/${APP_NAME}
 %post avro-app
 export USER_NAME=omar
 export APP_NAME=avro-app
+
+chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
+chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
+chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
+
+%post download-app
+export USER_NAME=omar
+export APP_NAME=download-app
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/omar
 if [ ! -d "/var/log/${APP_NAME}" ] ; then
@@ -462,6 +493,17 @@ service $APP_NAME stop
 %endif
 fi
 
+%preun download-app
+export APP_NAME=download-app
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
+%if %{is_systemd}
+systemctl stop $APP_NAME
+%else
+service $APP_NAME stop
+%endif
+fi
+
 
 %preun wfs-app
 export APP_NAME=wfs-app
@@ -569,6 +611,12 @@ rm -rf /var/log/${APP_NAME}
 rm -rf /var/run/${APP_NAME}
 rm -rf /usr/share/omar/${APP_NAME}
 
+%postun download-app
+export APP_NAME=download-app
+rm -rf /var/log/${APP_NAME}
+rm -rf /var/run/${APP_NAME}
+rm -rf /usr/share/omar/${APP_NAME}
+
 %postun wfs-app
 export APP_NAME=wfs-app
 rm -rf /var/log/${APP_NAME}
@@ -641,6 +689,15 @@ rm -rf /usr/share/omar/${APP_NAME}
 %else
 %{_sysconfdir}/init.d/avro-app
 %endif
+
+%files download-app
+%{_datadir}/omar/download-app
+%if %{is_systemd}
+/usr/lib/systemd/system/download-app.service
+%else
+%{_sysconfdir}/init.d/download-app
+%endif
+
 
 %files wfs-app
 %{_datadir}/omar/wfs-app
