@@ -3,7 +3,7 @@ call .\env.bat
 set BUILD_COMMAND=jom /J 4
 set BUILD_TYPE=Release
 set SCRIPT_DIR=%CD%
-cd ..\..\..
+cd ..\..\..\..
 set DEV_HOME=%CD%
 
 if defined DEPENDENCY_VERSION (

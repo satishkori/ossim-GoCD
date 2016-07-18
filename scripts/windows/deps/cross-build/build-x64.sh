@@ -2,7 +2,7 @@
 
 pushd `dirname $0` >/dev/null
 export SCRIPT_DIR=`pwd -P`
-pushd $SCRIPT_DIR/../../../.. >/dev/null
+pushd $SCRIPT_DIR/../../../../.. >/dev/null
 export ROOT_DIR=`pwd -P`
 export INSTALL_PREFIX=$ROOT_DIR/ossim-deps
 popd >/dev/null
