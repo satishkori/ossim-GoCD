@@ -470,6 +470,10 @@ rm -rf /usr/share/omar/${APP_NAME}
 # In jpip-server package:
 %exclude %{_bindir}/ossim-jpip-server
 
+# ossimGui includes remove
+%exclude %{_includedir}/ossimGui
+%exclude %{_includedir}/ossimGui/*
+
 %files devel
 %{_includedir}/ossim
 
