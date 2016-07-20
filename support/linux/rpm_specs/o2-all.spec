@@ -474,6 +474,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun sqs-app
@@ -490,6 +492,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun avro-app
@@ -506,6 +510,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun download-app
@@ -522,6 +528,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 
@@ -539,6 +547,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun wms-app
@@ -555,6 +565,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun wcs-app
@@ -571,6 +583,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun stager-app
@@ -587,6 +601,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun swipe-app
@@ -603,6 +619,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun superoverlay-app
@@ -619,6 +637,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun jpip-app
@@ -635,6 +655,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %preun wmts-app
@@ -651,6 +673,8 @@ service $APP_NAME stop
   else
      echo "Problems stopping $APP_NAME.  Ignoring..."
   fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %postun omar-app
