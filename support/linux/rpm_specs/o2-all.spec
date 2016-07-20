@@ -469,6 +469,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun sqs-app
@@ -480,6 +485,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun avro-app
@@ -491,6 +501,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun download-app
@@ -502,6 +517,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 
@@ -514,6 +534,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun wms-app
@@ -525,6 +550,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun wcs-app
@@ -536,6 +566,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun stager-app
@@ -547,6 +582,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun swipe-app
@@ -558,6 +598,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun superoverlay-app
@@ -569,6 +614,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun jpip-app
@@ -580,6 +630,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %preun wmts-app
@@ -591,6 +646,11 @@ systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
 fi
 
 %postun omar-app
