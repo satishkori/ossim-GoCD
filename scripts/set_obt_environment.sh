@@ -18,6 +18,7 @@ popd
 #export the GoCD-specfic OSSIM runtime env to child processes:
 
 export OSSIM_INSTALL_DIR=$OSSIM_DEV_HOME/install
+export OSSIM_INSTALL_PREFIX=$OSSIM_INSTALL_DIR
 export PATH=$OSSIM_INSTALL_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$OSSIM_INSTALL_DIR/lib:$OSSIM_INSTALL_DIR/lib64:$LD_LIBRARY_PATH
 export OSSIM_PREFS_FILE=$OSSIM_DEV_HOME/ossim-GoCD/ossim-gocd.prefs
@@ -56,6 +57,7 @@ echo "  OSSIM_DEV_HOME            = $OSSIM_DEV_HOME"
 echo "  OSSIM_VERSION             = $OSSIM_VERSION"
 echo "  OSSIM_DATA                = $OSSIM_DATA"
 echo "  OSSIM_INSTALL_DIR         = $OSSIM_INSTALL_DIR"
+echo "  OSSIM_INSTALL_PREFIX      = $OSSIM_INSTALL_PREFIX"
 echo "  OSSIM_PREFS_FILE          = $OSSIM_PREFS_FILE"
 echo "  OSSIM_BATCH_TEST_DATA     = $OSSIM_BATCH_TEST_DATA"
 echo "  OSSIM_BATCH_TEST_EXPECTED = $OSSIM_BATCH_TEST_EXPECTED"  

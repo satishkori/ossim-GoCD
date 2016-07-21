@@ -219,6 +219,14 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 This sub-package contains the kakadu ossim plugin for reading/writing
 J2K compressed data via the Kakadu library.
 
+%package    jpeg12-plugin
+Summary:        jpeg12 ossim plugin
+Group:          System Environment/Libraries
+Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+
+%description    jpeg12-plugin
+This sub-package contains the jpeg12 ossim plugin.
+
 %package    mrsid-plugin
 Summary:        mrsid ossim plugin
 Group:          System Environment/Libraries
@@ -307,17 +315,22 @@ echo off
     fi
   done
 
-  for x in `find lib64`; do
-    if [ -f $x ] ; then
-      install -p -m755 -D $x %{buildroot}/usr/$x;
-    fi
-  done
+  cp -R lib64 %{buildroot}/usr/
+  chmod -R 755 %{buildroot}/usr/lib64/*
 
-  for x in `find bin`; do
-    if [ -f $x ] ; then
-      install -p -m755 -D $x %{buildroot}/usr/$x;
-    fi
-  done
+#  for x in `find lib64`; do
+#    if [ -f $x ] ; then
+#      install -p -m755 -D $x %{buildroot}/usr/$x;
+#    fi
+#  done
+
+  cp -R bin %{buildroot}/usr/
+  chmod -R 755 %{buildroot}/usr/bin/*
+#  for x in `find bin`; do
+#    if [ -f $x ] ; then
+#      install -p -m755 -D $x %{buildroot}/usr/$x;
+#    fi
+#  done
 
   if [ -f ./etc/profile.d/ossim.sh ] ; then
     install -p -m644 -D ./etc/profile.d/ossim.sh %{buildroot}%{_sysconfdir}/profile.d/ossim.sh
@@ -375,7 +388,7 @@ service $APP_NAME stop
 %endif
 fi
 
-%post
+%post libs
 /sbin/ldconfig
 
 # First time through create the site preferences.
@@ -457,6 +470,10 @@ rm -rf /usr/share/omar/${APP_NAME}
 # In jpip-server package:
 %exclude %{_bindir}/ossim-jpip-server
 
+# ossimGui includes remove
+%exclude %{_includedir}/ossimGui
+%exclude %{_includedir}/ossimGui/*
+
 %files devel
 %{_includedir}/ossim
 
@@ -513,6 +530,9 @@ rm -rf /usr/share/omar/${APP_NAME}
 
 %files geopdf-plugin
 %{_libdir}/ossim/plugins/libossim_geopdf_plugin.so
+
+%files jpeg12-plugin
+%{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so
 
 %files hdf5-plugin
 %{_libdir}/ossim/plugins/libossim_hdf5_plugin.so

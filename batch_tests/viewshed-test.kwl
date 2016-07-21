@@ -30,12 +30,12 @@ test1.enabled: 1
 //---------------------------------------
 // Commands to generate expected results.
 //---------------------------------------
-test1.expected_results_command0: ossim-viewshed --dem $OSSIM_BATCH_TEST_DATA/public/viewshed/vs-test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/viewshed/vs.lut 0 0 $(OBT_EXP_DIR)/viewshed-test.tif
+test1.expected_results_command0: ossim-cli viewshed --dem $OSSIM_BATCH_TEST_DATA/public/viewshed/vs-test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/viewshed/vs.lut 0 0 $(OBT_EXP_DIR)/viewshed-test.tif
 
 //---------------------------------------
 // The actual commands to test.
 //---------------------------------------
-test1.test_command0: ossim-viewshed --dem $OSSIM_BATCH_TEST_DATA/public/viewshed/vs-test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/viewshed/vs.lut 0 0 $(OBT_OUT_DIR)/viewshed-test.tif 
+test1.test_command0: ossim-cli viewshed --dem $OSSIM_BATCH_TEST_DATA/public/viewshed/vs-test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/viewshed/vs.lut 0 0 $(OBT_OUT_DIR)/viewshed-test.tif 
 
 //---------------------------------------
 // The post-processing (comparison) commands. Typically these involve a file 

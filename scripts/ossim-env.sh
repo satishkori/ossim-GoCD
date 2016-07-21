@@ -109,6 +109,9 @@ if [ -z $BUILD_PNG_PLUGIN ] ; then
    export BUILD_PNG_PLUGIN=ON
 fi
 
+if [ -z $BUILD_JPEG12_PLUGIN ] ; then
+   export BUILD_JPEG12_PLUGIN=ON
+fi
 
 
 if [ -z $OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then

@@ -30,12 +30,12 @@ test1.enabled: 1
 //---------------------------------------
 // Commands to generate expected results.
 //---------------------------------------
-test1.expected_results_command0: ossim-hlz --dem $OSSIM_BATCH_TEST_DATA/public/HLZ/test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/HLZ/hlz2.lut --rlz 8 $(OBT_EXP_DIR)/hlz-test.tif
+test1.expected_results_command0: ossim-cli hlz --dem $OSSIM_BATCH_TEST_DATA/public/HLZ/test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/HLZ/hlz2.lut --rlz 8 $(OBT_EXP_DIR)/hlz-test.tif
 
 //---------------------------------------
 // The actual commands to test.
 //---------------------------------------
-test1.test_command0: ossim-hlz --dem $OSSIM_BATCH_TEST_DATA/public/HLZ/test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/HLZ/hlz2.lut --rlz 8 $(OBT_OUT_DIR)/hlz-test.tif 
+test1.test_command0: ossim-cli hlz --dem $OSSIM_BATCH_TEST_DATA/public/HLZ/test-dem.tif --lut $OSSIM_BATCH_TEST_DATA/public/HLZ/hlz2.lut --rlz 8 $(OBT_OUT_DIR)/hlz-test.tif 
 
 //---------------------------------------
 // The post-processing (comparison) commands. Typically these involve a file 

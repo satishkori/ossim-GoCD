@@ -50,9 +50,10 @@ fi
 
 # rsync elevation data:
 echo; echo "STATUS: Syncing elevation data...";
+echo "STATUS: Syncing DTED level0";
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/elevation/dted/level0 $OSSIM_DATA/elevation/dted;
 if [ $? != 0 ] ; then 
-  echo "ERROR: Failed data repository rsync of elevation.";
+  echo "ERROR: Failed data repository rsync of DTED elevation.";
   echo; exit 1;
 fi
 
@@ -96,6 +97,7 @@ if [ $? != 0 ] ; then
   echo "ERROR: Failed data repository rsync of imagery.";
   echo; exit 1;
 fi
+
 $RSYNC_CMD $OSSIM_DATA_REPOSITORY/test/data/geoeye1 $OSSIM_BATCH_TEST_DATA;
 if [ $? != 0 ] ; then 
   echo "ERROR: Failed data repository rsync of imagery.";

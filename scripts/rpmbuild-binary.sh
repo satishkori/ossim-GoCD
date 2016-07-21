@@ -75,7 +75,6 @@ echo rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION $
 rpmbuild -ba --define "_topdir ${ROOT_DIR}/rpmbuild" --define "O2_VERSION ${O2_VERSION}" --define "O2_BUILD_RELEASE ${O2_BUILD_RELEASE}" ${ROOT_DIR}/rpmbuild/SPECS/o2-all.spec
 if [ $? -ne 0 ]; then
   echo; echo "ERROR: Build failed for O2 rpm binary build."
-  popd >/dev/null
   exit 1
 fi
 
