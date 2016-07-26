@@ -64,6 +64,7 @@ Requires: ossim-oms
 Summary:        KML Superoverlay service for the O2 raster database Service
 Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
+Requires: ossim-oms
 
 #%package   ossimtools-app
 #Summary:        OSSIM tools service Services
@@ -80,6 +81,7 @@ Group:          System Environment/Libraries
 Summary:        JPIP Services
 Version:        %{O2_VERSION}
 Group:          System Environment/Libraries
+Requires: ossim-oms
 
 %package    wmts-app
 Summary:        WMTS Services
