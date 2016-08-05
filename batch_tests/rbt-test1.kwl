@@ -167,8 +167,6 @@ test4.expected_results_command0: ossim-preproc -r --ch $(OSSIM_BATCH_TEST_DATA)/
 // Info dump to expected results dir:
 test4.expected_results_command1: ossim-info -d -i -p $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HRI/HRI_2/2012-06-15_20-00-29.HRI_2.Strip_00002.corrected.hri > $(OBT_EXP_DIR)/test4-info.txt
 
-// Copy histogram to expected results dir:
-test4.expected_results_command2: $(COPY_CMD) $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HRI/HRI_2/2012-06-15_20-00-29.HRI_2.Strip_00002.corrected.his $(OBT_EXP_DIR)/test4-his.txt
 
 
 // The actual commands to test:
@@ -214,10 +212,6 @@ test5.expected_results_command1: ossim-info -d -i -p $(OSSIM_BATCH_TEST_DATA)/rb
 test5.expected_results_command2: $(COPY_CMD) $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HSI/Scan_00004/2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected.his $(OBT_EXP_DIR)/test5-his.txt
 
 
-// Create thumbnail for Aces High data rgb auto selector to expected dir:
-test5.expected_results_command3: ossim-chipper --histogram-op auto-minmax -t 128 --op chip --bands rgb $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HSI/Scan_00004/2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected.hsi $(OBT_EXP_DIR)/test5-hsi-thumbnail-rgb.jpg
-
-
 // The actual commands to test:
 
 // Build overviews:
@@ -229,10 +223,6 @@ test5.test_command1: ossim-info -d -i -p $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL
 // Copy histogram to output dir:
 test5.test_command2: $(COPY_CMD) $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HSI/Scan_00004/2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected.his $(OBT_OUT_DIR)/test5-his.txt
 
-// Create thumbnail for Aces High data rgb auto selector to output dir:
-test5.test_command3: ossim-chipper --histogram-op auto-minmax -t 128 --op chip --bands rgb $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HSI/Scan_00004/2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected.hsi $(OBT_OUT_DIR)/test5-hsi-thumbnail-rgb.jpg
-
-
 // Post process commands for diffs and stuff:
 
 // Test for info dump diffs:
@@ -240,9 +230,6 @@ test5.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test5-info.txt $(OBT_OUT_
 
 // Test for histogram diffs:
 test5.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test5-his.txt $(OBT_OUT_DIR)/test5-his.txt
-
-// Test thumbnail for Aces High data rgb auto selector to output dir:
-test5.postprocess_command2: $(DIFF_CMD) $(OBT_EXP_DIR)/test5-hsi-thumbnail-rgb.jpg $(OBT_OUT_DIR)/test5-hsi-thumbnail-rgb.jpg
 
 // ---
 // End test5:
@@ -294,6 +281,41 @@ test6.postprocess_command1: $(DIFF_CMD) $(OBT_EXP_DIR)/test6-exp.his $(OBT_OUT_D
 
 // ---
 // End test6:
+// ---
+
+
+
+
+// ---
+// Begin test7:
+// ---
+test7.name: test7
+test7.description: Thumbnail creation for ACES HIGH.
+test7.enabled: 1
+
+// Clean commands:
+test7.clean_command0: $(RMDIR_CMD) $(OBT_EXP_DIR)/test7*
+
+// Commands to generate expected results:
+
+// Create thumbnail for Aces High data rgb auto selector to expected dir:
+test7.expected_results_command0: ossim-chipper --histogram-op auto-minmax -t 128 --op chip --bands rgb $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HSI/Scan_00004/2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected.hsi $(OBT_EXP_DIR)/test7-2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected-thumbnail-rgb.jpg
+
+
+// The actual commands to test:
+
+// Create thumbnail for Aces High data rgb auto selector to output dir:
+test5.test_command0: ossim-chipper --histogram-op auto-minmax -t 128 --op chip --bands rgb $(OSSIM_BATCH_TEST_DATA)/rbt/YOGI_PEARL3/2012-06-15/AM/ALPHA/2012-06-15_20-00-29/HSI/Scan_00004/2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected.hsi $(OBT_OUT_DIR)/test7-2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected-thumbnail-rgb.jpg
+
+
+// Post process commands for diffs and stuff:
+
+// Test thumbnail for Aces High data rgb auto selector to output dir:
+test5.postprocess_command0: $(DIFF_CMD) $(OBT_EXP_DIR)/test7-2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected-thumbnail-rgb.jpg $(OBT_OUT_DIR)/test7-2012-06-15_20-00-29.HSI.Scan_00004.scene.corrected-thumbnail-rgb.jpg
+
+
+// ---
+// End test7:
 // ---
 
 
