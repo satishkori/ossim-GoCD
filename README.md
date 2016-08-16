@@ -8,7 +8,7 @@ centos7 | ![centos7 Status](http://omar.ossim.org/gocd/status/centos7_master_sta
 
 #### This repository generally is not cloned by humans. It is intended for access by an automated GoCD continuous-integration process used by the core OSSIM development team. 
 
-While OSSIM core contains scripts for building and testing OSSIM. The scripts included here are tailored for working in a GoCD environment. Presently, only linux scripts are defined, but we hope to add scripts (and associated GoCD build/test/deploy pipelines) for Windows and Mac soon.
+While OSSIM core contains scripts for building and testing OSSIM. The scripts included here are tailored for working in a GoCD environment. 
 
 ### Linux
 
