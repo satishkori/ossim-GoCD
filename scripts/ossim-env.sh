@@ -113,6 +113,10 @@ if [ -z $BUILD_JPEG12_PLUGIN ] ; then
    export BUILD_JPEG12_PLUGIN=ON
 fi
 
+if [ -z $BUILD_OSSIM_HDF5_SUPPORT ] ; then
+   export BUILD_OSSIM_HDF5_SUPPORT=ON
+fi
+
 
 if [ -z $OSSIM_BUILD_ADDITIONAL_DIRECTORIES ] ; then
    if [ -d $OSSIM_DEV_HOME/ossim-private/ossim-kakadu-jpip-server ]; then
