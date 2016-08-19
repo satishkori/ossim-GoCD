@@ -379,13 +379,23 @@ export APP_NAME=jpip-server
 if ! id -u omar > /dev/null 2>&1; then 
   adduser -r -d /usr/share/omar -s /bin/false --no-create-home --user-group ${USER_NAME}
 fi
+
 %preun jpip-server
 export APP_NAME=jpip-server
+ps -ef | grep $APP_NAME | grep -v grep
+if [ $? -eq "0" ] ; then
 %if %{is_systemd}
 systemctl stop $APP_NAME
 %else
 service $APP_NAME stop
 %endif
+  if [ "$?" -eq "0" ]; then
+     echo "Service $APP_NAME stopped successfully"
+  else
+     echo "Problems stopping $APP_NAME.  Ignoring..."
+  fi
+else
+  echo "Service ${APP_NAME} is not running and will not be stopped."
 fi
 
 %post libs
@@ -425,18 +435,23 @@ export USER_NAME=omar
 export APP_NAME=jpip-server
 
 chown -R ${USER_NAME}:${USER_NAME} %{_datadir}/ossim/${APP_NAME}
-mkdir /var/log/${APP_NAME}
-mkdir /var/run/${APP_NAME}
+if [ ! -d "/var/log/${APP_NAME}" ] ; then
+  mkdir /var/log/${APP_NAME}
+fi
+if [ ! -d "/var/run/${APP_NAME}" ] ; then
+  mkdir /var/run/${APP_NAME}
+fi
+
 chown -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/log/${APP_NAME}
+chmod 755 /var/log/${APP_NAME}
 chown -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
-chmod 755 -R ${USER_NAME}:${USER_NAME}  /var/run/${APP_NAME}
+chmod 755 /var/run/${APP_NAME}
 
 %postun jpip-server
 export APP_NAME=jpip-server
 rm -rf /var/log/${APP_NAME}
 rm -rf /var/run/${APP_NAME}
-rm -rf /usr/share/omar/${APP_NAME}
+rm -rf /usr/share/ossim/${APP_NAME}
 
 %files
 %{_bindir}/*
