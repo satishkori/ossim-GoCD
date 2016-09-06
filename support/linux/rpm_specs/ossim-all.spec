@@ -182,14 +182,14 @@ Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 This sub-package contains the geopdf ossim plugin for reading geopdf files via
 the podofo library.
 
-%package    hdf5-plugin
-Summary:        HDF5 ossim plugin
-Group:          System Environment/Libraries
-Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
+#%package    hdf5-plugin
+#Summary:        HDF5 ossim plugin
+#Group:          System Environment/Libraries
+#Requires:       %{name}-libs%{?_isa} = %{version}-%{release}
 
-%description hdf5-plugin
-This sub-package contains the Hierarchical Data Format(hdf) ossim plugin for
-reading hdf5 images via the hdf5 libraries
+#%description hdf5-plugin
+#This sub-package contains the Hierarchical Data Format(hdf) ossim plugin for
+#reading hdf5 images via the hdf5 libraries
 
 %package    jpip-server
 Summary:        ossim kakadu jpip server
@@ -549,8 +549,8 @@ rm -rf /usr/share/ossim/${APP_NAME}
 %files jpeg12-plugin
 %{_libdir}/ossim/plugins/libossim_jpeg12_plugin.so
 
-%files hdf5-plugin
-%{_libdir}/ossim/plugins/libossim_hdf5_plugin.so
+#%files hdf5-plugin
+#%{_libdir}/ossim/plugins/libossim_hdf5_plugin.so
 
 %files jpip-server
 %{_bindir}/ossim-jpip-server
