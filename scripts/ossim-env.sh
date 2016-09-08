@@ -86,7 +86,7 @@ if [ -z $BUILD_GDAL_PLUGIN ] ; then
 fi
 
 if [ -z $BUILD_HDF5_PLUGIN ] ; then
-   export BUILD_HDF5_PLUGIN=ON
+   export BUILD_HDF5_PLUGIN=OFF
 fi
 
 if [ -z $BUILD_POTRACE_PLUGIN ] ; then
