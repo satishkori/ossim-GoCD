@@ -71,6 +71,7 @@ test_config_file13: potrace-test.kwl
 test_config_file13: vertices-test.kwl
 test_config_file14: kmeans-test.kwl
 test_config_file15: ossim-chipper-test.kwl
+test_config_file16: viirs-hdf5-test.kwl
 
 
 //test_config_file10: WMS_PNG.kwl
